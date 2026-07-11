@@ -75,3 +75,37 @@ window.TX_SUPABASE = {
     return false;
   };
 })();
+
+/* ----- 햄버거 드로어 (전 페이지 공용 주입) ----- */
+(function(){
+  addEventListener('DOMContentLoaded', function(){
+    var right = document.querySelector('.gnb-right');
+    if (!right || document.querySelector('.drawer')) return;
+    var btn = document.createElement('button');
+    btn.className = 'menu-btn'; btn.setAttribute('aria-label','메뉴 열기');
+    btn.innerHTML = '<i></i><i></i><i></i>';
+    right.appendChild(btn);
+    var ovl = document.createElement('div'); ovl.className = 'drawer-ovl';
+    var dr = document.createElement('nav'); dr.className = 'drawer';
+    dr.innerHTML = '<div class="d-head"><b>텍스토피아</b><button class="d-close" aria-label="닫기">✕</button></div>'
+      + '<a class="d-link" href="index.html">홈</a>'
+      + '<a class="d-link hot" href="read.html">무료 1화 읽기</a>'
+      + '<a class="d-link hot" href="quiz.html">나의 파트너 옷 찾기<span class="d-badge">NEW</span></a>'
+      + '<a class="d-link" href="world.html">세계관 · 대륙 지도</a>'
+      + '<a class="d-link" href="book.html">작품 소개</a>'
+      + '<a class="d-link" href="store.html">스토어</a>'
+      + '<a class="d-link" href="book.html#news">소식</a>'
+      + '<a class="d-link" href="book.html#about">우리 이야기</a>'
+      + '<div class="d-theme"><span>화면 모드</span><button class="theme-toggle" aria-label="테마 전환" style="display:block">☾</button></div>'
+      + '<div class="d-legal"><a class="stitch-link" href="terms.html">이용약관</a> · <a class="stitch-link" href="privacy.html">개인정보처리방침</a></div>';
+    document.body.appendChild(ovl); document.body.appendChild(dr);
+    function open(){ document.body.classList.add('drawer-open'); }
+    function close(){ document.body.classList.remove('drawer-open'); }
+    btn.addEventListener('click', open);
+    ovl.addEventListener('click', close);
+    dr.querySelector('.d-close').addEventListener('click', close);
+    var tt = dr.querySelector('.theme-toggle');
+    tt.textContent = document.documentElement.dataset.theme === 'dark' ? '☀' : '☾';
+    tt.addEventListener('click', window.toggleTheme);
+  });
+})();
