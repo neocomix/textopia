@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>주문 완료 — 텍스토피아</title>
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23C96F8F' stroke-width='3'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='12' cy='20' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23C96F8F'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="gnb">
+  <a class="logo" href="index.html">텍스토피아<span class="dot"></span></a>
+  <div class="gnb-right"><button class="theme-toggle" aria-label="테마 전환">☾</button></div>
+</header>
+
+<main class="narrow" style="text-align:center">
+  <div class="steps">
+    <div class="st"><span class="knot-dot" style="background:var(--stitch)"></span>주문</div><div class="dash"></div>
+    <div class="st"><span class="knot-dot" style="background:var(--stitch)"></span>결제</div><div class="dash"></div>
+    <div class="st on"><span class="knot-dot"></span>완료</div>
+  </div>
+
+  <svg class="knot" viewBox="0 0 90 40" aria-hidden="true" style="margin-bottom:4px">
+    <path id="knotPath" d="M 5,20 C 25,4 35,36 45,20 S 65,4 85,20" fill="none" stroke="var(--stitch)" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="45" cy="20" r="4.5" fill="none" stroke="var(--accent)" stroke-width="2"/>
+  </svg>
+  <h1 style="font-size:24px;margin-bottom:6px">매듭이 지어졌어요</h1>
+  <p class="sub">입력하신 이메일로 다운로드 링크를 보내드릴게요.<br>(데모라서 실제 메일은 발송되지 않아요.)</p>
+
+  <div class="card" style="text-align:left;margin-bottom:22px">
+    <h3 id="doneItem">텍스토피아 전 3권 세트 (EPUB)</h3>
+    <p>다운로드 링크 유효기간: 발송 후 24시간 / 3회<br>EPUB 뷰어(리디, Apple Books, Play 북스 등)에서 열 수 있어요.</p>
+  </div>
+
+  <a class="btn" href="read.html" style="margin-bottom:12px"><span class="btn-hole"></span>기다리는 동안 1화 다시 읽기</a>
+  <div><a class="stitch-link" href="index.html">홈으로 돌아가기</a></div>
+</main>
+
+<script src="assets/app.js"></script>
+<script>
+(function(){
+  const names = {set:"텍스토피아 전 3권 세트 (EPUB)", vol1:"텍스토피아 1권 (EPUB)", vol2:"텍스토피아 2권 (EPUB)"};
+  const q = new URLSearchParams(location.search).get('item');
+  if(names[q]) document.getElementById('doneItem').textContent = names[q];
+  const p = document.getElementById('knotPath');
+  const L = p.getTotalLength();
+  p.style.strokeDasharray = L; p.style.strokeDashoffset = L;
+  p.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(.22,1,.36,1)';
+  requestAnimationFrame(()=> requestAnimationFrame(()=> p.style.strokeDashoffset = 0));
+  txEvent('purchase_demo_done',{item:q||'set'});
+})();
+</script>
+</body>
+</html>

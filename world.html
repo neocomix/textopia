@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>세계관 — 텍스토피아</title>
+<meta name="description" content="옷이 살아 숨 쉬는 대륙 텍스토피아. 여섯 개의 땅과 그곳의 주민들을 만나보세요.">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23C96F8F' stroke-width='3'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='12' cy='20' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23C96F8F'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="gnb">
+  <a class="logo" href="index.html">텍스토피아<span class="dot"></span></a>
+  <nav class="gnb-menu">
+    <a href="world.html" style="color:var(--primary)">세계관</a>
+    <a href="book.html">작품</a>
+    <a href="book.html#news">소식</a>
+    <a href="book.html#about">이야기</a>
+    <a class="btn btn--sm" href="read.html"><span class="btn-hole"></span>무료 1화 읽기</a>
+  </nav>
+  <div class="gnb-right"><button class="theme-toggle" aria-label="테마 전환">☾</button></div>
+</header>
+
+<div class="world-layout">
+  <div>
+    <h1 style="font-size:clamp(24px,4.5vw,32px);margin-bottom:6px">옷이 살아 숨 쉬는 대륙</h1>
+    <p style="color:var(--ink-soft);font-size:14px;margin-bottom:18px">궁금한 땅을 눌러보세요. 여섯 개의 원단, 여섯 개의 이야기.</p>
+    <div class="map-box">
+      <svg viewBox="0 0 400 300" id="worldMap" aria-label="텍스토피아 대륙 지도">
+        <ellipse cx="200" cy="150" rx="192" ry="140" fill="#EFE3C8" stroke="#8A6D4A" stroke-width="2.5" stroke-dasharray="8,5"/>
+        <!-- 니트마운틴 (북) -->
+        <g class="region" data-r="knit" tabindex="0" role="button" aria-label="니트마운틴">
+          <path d="M 100,70 Q 200,32 304,74 L 292,112 Q 200,86 112,114 Z" fill="#EDE6DF" stroke="#A58963" stroke-width="2" stroke-dasharray="5,4"/>
+          <circle cx="160" cy="72" r="11" fill="none" stroke="#B9A98E" stroke-width="4"/>
+          <circle cx="202" cy="64" r="9" fill="none" stroke="#B9A98E" stroke-width="4"/>
+          <circle cx="244" cy="74" r="11" fill="none" stroke="#B9A98E" stroke-width="4"/>
+          <text x="200" y="102" text-anchor="middle" font-size="12" fill="#6E6047" font-weight="700">니트마운틴</text>
+        </g>
+        <!-- 데님캐니언 (서) -->
+        <g class="region" data-r="denim" tabindex="0" role="button" aria-label="데님캐니언">
+          <path d="M 44,116 Q 106,102 132,140 L 124,208 Q 76,226 46,196 Z" fill="#C8D4E8" stroke="#3B5F8F" stroke-width="2" stroke-dasharray="5,4"/>
+          <ellipse cx="86" cy="172" rx="18" ry="11" fill="#28456E" opacity=".65"/>
+          <text x="88" y="140" text-anchor="middle" font-size="12" fill="#2E4A73" font-weight="700">데님캐니언</text>
+        </g>
+        <!-- 실크오션 (동) -->
+        <g class="region" data-r="silk" tabindex="0" role="button" aria-label="실크오션">
+          <path d="M 296,114 Q 358,128 356,176 Q 352,220 306,228 L 282,172 Z" fill="#F0E4EC" stroke="#8F7FA8" stroke-width="2" stroke-dasharray="5,4"/>
+          <ellipse cx="322" cy="176" rx="11" ry="16" fill="none" stroke="#8F7FA8" stroke-width="3"/>
+          <text x="320" y="146" text-anchor="middle" font-size="12" fill="#6E5A8A" font-weight="700">실크오션</text>
+        </g>
+        <!-- 레더정글 (남) -->
+        <g class="region" data-r="leather" tabindex="0" role="button" aria-label="레더정글">
+          <path d="M 130,222 Q 200,254 276,224 Q 268,258 210,266 Q 150,260 130,222 Z" fill="#DCC9B2" stroke="#6B4A2B" stroke-width="2" stroke-dasharray="5,4"/>
+          <text x="202" y="248" text-anchor="middle" font-size="12" fill="#5C3E20" font-weight="700">레더정글</text>
+        </g>
+        <!-- 누더기 묘지 (남서) -->
+        <g class="region" data-r="grave" tabindex="0" role="button" aria-label="누더기 묘지">
+          <path d="M 122,196 q 10,-14 20,0 q 11,-11 19,1 q -6,12 -39,9 Z" fill="#B49C7E" stroke="#8A6D4A" stroke-width="1.6"/>
+          <text x="141" y="222" text-anchor="middle" font-size="10.5" fill="#6E6047" font-weight="700">누더기 묘지</text>
+        </g>
+        <!-- 코튼시티 (중앙) -->
+        <g class="region" data-r="cotton" tabindex="0" role="button" aria-label="코튼시티">
+          <rect x="160" y="124" width="82" height="62" rx="5" fill="#FBF6EC" stroke="#8A6D4A" stroke-width="2"/>
+          <path d="M 180,124 v62 M 200,124 v62 M 222,124 v62 M 160,144 h82 M 160,166 h82" stroke="#DCCFB4" stroke-width="1"/>
+          <path d="M 199,156 L 204,156 L 202.2,102 L 200.8,102 Z" fill="#5C4033"/>
+          <ellipse cx="201.5" cy="100" rx="2.4" ry="4.4" fill="none" stroke="#5C4033" stroke-width="1.6"/>
+          <text x="201" y="178" text-anchor="middle" font-size="12" fill="#5C4033" font-weight="700">코튼시티</text>
+        </g>
+        <!-- 나침반 -->
+        <g transform="translate(358,44)" opacity=".85">
+          <circle r="16" fill="#E6D3AE" stroke="#8A6D4A" stroke-width="1.6"/>
+          <circle r="2.8" fill="none" stroke="#8A6D4A" stroke-width="1.2"/>
+          <path d="M 0,-13 L 2.2,-2 L 0,2 L -2.2,-2 Z" fill="#5C4033"/>
+          <text y="-20" text-anchor="middle" font-size="8" fill="#6E6047">N</text>
+        </g>
+      </svg>
+    </div>
+    <p style="font-size:12px;color:var(--ink-soft);margin-top:10px">* 지도 일러스트는 정식판에서 파스텔 동화풍 채색으로 교체될 예정이에요.</p>
+  </div>
+
+  <aside class="panel">
+    <div class="card" id="regionPanel">
+      <h3 id="rName">텍스토피아 대륙</h3>
+      <p class="tagline" id="rTag">한 땀 한 땀 기워진 세계. 지도에서 궁금한 땅을 눌러보세요.</p>
+      <div class="chips" id="rChips"></div>
+      <div class="meta" id="rMeta"></div>
+      <div style="margin-top:18px"><a class="btn btn--ghost btn--sm" href="read.html" id="rCta">이 세계를 1화로 만나기 →</a></div>
+    </div>
+  </aside>
+</div>
+
+<!-- 용어 사전 -->
+<div class="dict">
+  <h2 style="font-size:22px;margin-bottom:6px">가볍게 읽는 용어 사전</h2>
+  <p style="color:var(--ink-soft);font-size:13.5px;margin-bottom:16px">스포일러 없이, 세계를 이해하는 열쇠만.</p>
+  <details class="acc"><summary>결(Grain)</summary><div>모든 옷감이 지닌 고유한 흐름. 결을 읽을 수 있는 사람은 옷의 상처와 기억을 본다. 주인공 강이서가 이 세계에서 눈뜬 능력.</div></details>
+  <details class="acc"><summary>수선사</summary><div>옷의 몸이 아니라 마음까지 깁는 사람. 텍스토피아에서 가장 오래된, 그러나 잊혀가던 직업.</div></details>
+  <details class="acc"><summary>아이언 스티치</summary><div>"완벽한 옷만이 가치 있다"고 믿는 세력. 규격 밖의 옷들을 '불량'으로 낙인찍는다.</div></details>
+  <details class="acc"><summary>바늘 탑</summary><div>코튼시티 중심에 솟은 탑. 대륙의 모든 실이 이곳으로 이어져 있다고 전해진다.</div></details>
+  <details class="acc"><summary>운명의 물레방아</summary><div>니트마운틴 깊은 곳에서 돌아가는 거대한 물레. 세계의 실을 잣는 곳.</div></details>
+  <details class="acc"><summary>누더기 묘지</summary><div>버려진 옷들이 마지막으로 닿는 땅. 그러나 끝이 아니라, 어쩌면 시작.</div></details>
+</div>
+
+<!-- 인물 도감 -->
+<div style="max-width:1100px;margin:0 auto;padding:0 20px 14px">
+  <h2 style="font-size:22px;margin-bottom:6px">이 세계의 주민들</h2>
+  <p style="color:var(--ink-soft);font-size:13.5px;margin-bottom:16px">카드를 뒤집어 보세요. 초상 일러스트는 곧 도착합니다.</p>
+</div>
+<div class="char-grid" id="charGrid"></div>
+
+<footer>
+  시접출판사 (Seam Press)<br>
+  ⓒ 2026 Seam Press. 오늘 당신의 옷은, 행복한가요?
+</footer>
+
+<nav class="bottom-nav">
+  <a href="world.html" class="active"><span class="ico">🧵</span>세계관</a>
+  <a href="book.html"><span class="ico">📖</span>작품</a>
+  <a class="cta" href="read.html"><span class="pill">무료 1화</span></a>
+  <a href="book.html#news"><span class="ico">✉</span>소식</a>
+</nav>
+
+<script src="assets/app.js"></script>
+<script>
+const WORLD = {
+  cotton:{name:"코튼시티", tag:"대륙의 심장. 무명 원단의 도시, 그리고 이서의 수선집 '한 땀'이 있는 곳.", chips:["무명·면직물","바늘 탑","수선집 한 땀"], meta:"<b>주민</b> 무명 옷들, 시장 상인들<br><b>명소</b> 바늘 탑, 중앙 시장, 골목 수선집<br><b>한 줄</b> 평범한 천이 가장 오래 견딘다."},
+  knit:{name:"니트마운틴", tag:"실로 짜인 눈 덮인 봉우리. 풀린 올을 따라가면 운명의 물레방아에 닿는다.", chips:["니트·울","운명의 물레방아","털실 고개"], meta:"<b>주민</b> 스웨터 산양들, 뜨개 노인들<br><b>명소</b> 운명의 물레방아, 코바늘 빙벽<br><b>한 줄</b> 풀린 것은 다시 짤 수 있다."},
+  denim:{name:"데님캐니언", tag:"거칠지만 의리 있는 협곡. 청바지 부족이 인디고 호수를 지킨다.", chips:["데님","인디고 호수","리벳 바위"], meta:"<b>주민</b> 데님 부족, 늑대 재킷들<br><b>명소</b> 인디고 호수, 워싱 폭포<br><b>한 줄</b> 낡을수록 멋이 드는 땅."},
+  silk:{name:"실크오션", tag:"빛에 따라 색이 바뀌는 바다. 그 위에 누에고치성이 떠 있다.", chips:["실크·시폰","누에고치성","진주 단추 섬"], meta:"<b>주민</b> 드레스 가문, 나비 스카프들<br><b>명소</b> 누에고치성, 광택의 해협<br><b>한 줄</b> 아름다움은 부드러움에서 온다."},
+  leather:{name:"레더정글", tag:"질기고 무성한 남쪽 밀림. 무두질 늪을 건너는 자만이 통과한다.", chips:["가죽","무두질 늪","버클 덩굴"], meta:"<b>주민</b> 가죽 재킷 맹수들, 부츠 사냥꾼<br><b>명소</b> 무두질 늪, 스터드 절벽<br><b>한 줄</b> 시간이 만드는 가장 단단한 갑옷."},
+  grave:{name:"누더기 묘지", tag:"버려진 옷들이 닿는 마지막 땅. 이 이야기가 시작된 곳이자, 끝나는 곳.", chips:["넝마·누더기","잊힌 옷들"], meta:"<b>주민</b> 이름을 잃은 옷들<br><b>명소</b> 단추 비석 언덕<br><b>한 줄</b> 버려졌다고, 끝난 것은 아니다."}
+};
+(function(){
+  const map = document.getElementById('worldMap');
+  map.addEventListener('click', e => {
+    const g = e.target.closest('.region'); if(!g) return; select(g);
+  });
+  map.addEventListener('keydown', e => {
+    if(e.key==='Enter'||e.key===' '){ const g=e.target.closest('.region'); if(g){e.preventDefault();select(g);} }
+  });
+  function select(g){
+    document.querySelectorAll('.region').forEach(r=>r.classList.remove('sel'));
+    g.classList.add('sel');
+    const d = WORLD[g.dataset.r];
+    document.getElementById('rName').textContent = d.name;
+    document.getElementById('rTag').textContent = d.tag;
+    document.getElementById('rChips').innerHTML = d.chips.map(c=>`<span class="chip">${c}</span>`).join('');
+    document.getElementById('rMeta').innerHTML = d.meta;
+    txEvent('map_click',{region:g.dataset.r});
+    if(innerWidth < 900) document.getElementById('regionPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+  // 인물 도감
+  const CHARS = [
+    ["강이서","수선사","서울의 리폼 가게 사장. 실 한 가닥에 이끌려 이 세계로. 옷의 '결'을 읽는다."],
+    ["단추","단추 요정","이서의 첫 친구이자 안내자. 작지만, 가장 단단한 존재."],
+    ["릴리","시폰 원피스","찢어진 상처를 안고 수선집을 찾아온 첫 손님."],
+    ["바르크","데님 재킷","데님캐니언의 늑대. 무뚝뚝하지만 의리로 기워진 사이."],
+    ["노아","견습 재봉사","이서의 첫 제자. 서툰 바느질, 진심의 한 땀."],
+    ["사틴","드레스 가문","실크오션의 귀부인. 광택 아래 감춰진 이야기."],
+    ["바론","???","바늘 탑의 그림자. 완벽을 말하는 자."],
+    ["패치 노인","넝마 현자","누더기 묘지의 문지기. 모든 버려진 것들의 이름을 기억한다."]
+  ];
+  const grid = document.getElementById('charGrid');
+  CHARS.forEach(c => {
+    grid.insertAdjacentHTML('beforeend',
+      `<button class="char-card" aria-label="${c[0]} 카드 뒤집기"><div class="char-inner">
+        <div class="char-face"><div class="char-sil"></div><b>${c[0]}</b><small>${c[1]}</small></div>
+        <div class="char-face char-back"><b>${c[0]}</b><small>${c[2]}</small></div>
+      </div></button>`);
+  });
+  grid.addEventListener('click', e => {
+    const card = e.target.closest('.char-card'); if(card) card.classList.toggle('flip');
+  });
+})();
+</script>
+</body>
+</html>

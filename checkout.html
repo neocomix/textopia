@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>주문·결제 — 텍스토피아</title>
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23C96F8F' stroke-width='3'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='12' cy='20' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23C96F8F'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="gnb">
+  <a class="logo" href="index.html">텍스토피아<span class="dot"></span></a>
+  <div class="gnb-right"><button class="theme-toggle" aria-label="테마 전환">☾</button></div>
+</header>
+
+<main class="narrow">
+  <div class="steps">
+    <div class="st on"><span class="knot-dot"></span>주문</div><div class="dash"></div>
+    <div class="st"><span class="knot-dot"></span>결제</div><div class="dash"></div>
+    <div class="st"><span class="knot-dot"></span>완료</div>
+  </div>
+
+  <h1>주문서</h1>
+  <p class="sub">EPUB 다운로드 링크를 받을 이메일만 있으면 돼요.</p>
+  <div class="demo-note">🧵 데모 결제예요. 카드 정보는 입력받지 않고, 실제 결제도 일어나지 않아요.</div>
+
+  <div class="card" style="margin-bottom:22px">
+    <div class="price-line"><span id="itemName">텍스토피아 전 3권 세트 (EPUB)</span><span id="itemPrice">9,900원</span></div>
+    <div class="price-line"><span>할인</span><span id="itemDisc">-3,600원</span></div>
+    <div class="price-line total"><span>결제 금액</span><span id="itemTotal">9,900원</span></div>
+  </div>
+
+  <form id="payForm">
+    <div class="field">
+      <label for="email">이메일 (다운로드 링크 수신)</label>
+      <input id="email" type="email" placeholder="you@example.com" required>
+      <div class="hint" id="emailHint">이메일 형식을 확인해 주세요</div>
+    </div>
+    <label class="check"><input type="checkbox" id="agree1" required><span>디지털 상품 특성(다운로드 후 환불 불가)을 확인했어요. (필수)</span></label>
+    <label class="check"><input type="checkbox" id="agree2"><span>출간 소식 뉴스레터도 받아볼래요. (선택)</span></label>
+    <button class="btn" type="submit" style="width:100%;margin-top:10px"><span class="btn-hole"></span>결제하기 (데모)</button>
+  </form>
+</main>
+
+<script src="assets/app.js"></script>
+<script>
+(function(){
+  const items = {
+    set:["텍스토피아 전 3권 세트 (EPUB)","9,900원","-3,600원","9,900원"],
+    vol1:["텍스토피아 1권 — 수선되지 않는 운명 (EPUB)","4,500원","0원","4,500원"],
+    vol2:["텍스토피아 2권 — 아이언 스티치의 그림자 (EPUB)","4,500원","0원","4,500원"]
+  };
+  const q = new URLSearchParams(location.search).get('item') || 'set';
+  const it = items[q] || items.set;
+  itemName.textContent = it[0]; itemPrice.textContent = it[1];
+  itemDisc.textContent = it[2]; itemTotal.textContent = it[3];
+
+  document.getElementById('payForm').addEventListener('submit', e=>{
+    e.preventDefault();
+    const em = document.getElementById('email').value.trim();
+    const ok = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em);
+    document.getElementById('emailHint').style.display = ok ? 'none':'block';
+    if(!ok) return;
+    txEvent('checkout_demo',{item:q, newsletter:document.getElementById('agree2').checked});
+    const btn = e.target.querySelector('.btn');
+    btn.disabled = true; btn.innerHTML = '실을 꿰는 중…';
+    setTimeout(()=> location.href = 'success.html?item='+q, 900);
+  });
+})();
+</script>
+</body>
+</html>

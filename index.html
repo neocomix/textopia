@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>텍스토피아 — 당신의 옷은, 살아있다</title>
+<meta name="description" content="옷이 살아 숨 쉬는 세계 텍스토피아. 수선사 강이서의 힐링 판타지, 전 3권 완결. 무료 1화를 지금 읽어보세요.">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23C96F8F' stroke-width='3'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='12' cy='20' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23C96F8F'/%3E%3C/svg%3E">
+</head>
+<body>
+<div class="hero-progress" id="heroProgress"></div>
+
+<header class="gnb">
+  <a class="logo" href="index.html">텍스토피아<span class="dot"></span></a>
+  <nav class="gnb-menu">
+    <a href="world.html">세계관</a>
+    <a href="book.html">작품</a>
+    <a href="book.html#news">소식</a>
+    <a href="book.html#about">이야기</a>
+    <a class="btn btn--sm" href="read.html"><span class="btn-hole"></span>무료 1화 읽기</a>
+  </nav>
+  <div class="gnb-right"><button class="theme-toggle" aria-label="테마 전환">☾</button></div>
+</header>
+
+<!-- ===== 히어로: 스크롤텔링 4막 ===== -->
+<section class="hero" id="hero" aria-label="텍스토피아 소개">
+  <div class="hero-stage">
+    <div class="act act1 on" data-act="1">
+      <div class="alley"></div>
+      <p class="big-type">당신의 옷은,</p>
+      <div class="scroll-hint">SCROLL</div>
+    </div>
+    <div class="act act2" data-act="2">
+      <svg class="thread-svg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <path id="threadPath" d="M -20,150 C 60,60 140,240 200,150 S 340,60 420,150" fill="none" stroke="#8FB0E0" stroke-width="2.5" stroke-linecap="round"/>
+        <circle id="needleTip" r="3.5" fill="#EDE6D6"/>
+      </svg>
+      <p class="big-type">당신의 옷은,<br><span class="alive" id="aliveText">살아있다</span></p>
+    </div>
+    <div class="act act3" data-act="3">
+      <p class="big-type" style="opacity:.25">살아있다</p>
+      <div class="tear" id="tear"><p class="tear-label" style="text-align:center;padding-top:46vh">실 한 가닥이, 세계를 열었다</p></div>
+    </div>
+    <div class="act act4" data-act="4">
+      <div class="map-wrap">
+        <svg viewBox="0 0 400 260" aria-label="텍스토피아 대륙">
+          <ellipse cx="200" cy="132" rx="180" ry="112" fill="#EFE3C8" stroke="#8A6D4A" stroke-width="2.5" stroke-dasharray="8,5"/>
+          <path d="M 110,70 Q 200,40 300,72 L 292,102 Q 200,80 122,104 Z" fill="#EDE6DF" stroke="#A58963" stroke-width="1.5" stroke-dasharray="5,4"/>
+          <circle cx="170" cy="76" r="9" fill="none" stroke="#B9A98E" stroke-width="3"/>
+          <circle cx="205" cy="70" r="7" fill="none" stroke="#B9A98E" stroke-width="3"/>
+          <circle cx="238" cy="78" r="9" fill="none" stroke="#B9A98E" stroke-width="3"/>
+          <path d="M 62,110 Q 110,100 128,132 L 122,190 Q 84,204 62,180 Z" fill="#C8D4E8" stroke="#3B5F8F" stroke-width="1.5" stroke-dasharray="5,4"/>
+          <ellipse cx="95" cy="156" rx="15" ry="9" fill="#28456E" opacity=".7"/>
+          <path d="M 292,104 Q 344,116 342,158 Q 338,196 300,204 L 282,158 Z" fill="#F0E4EC" stroke="#8F7FA8" stroke-width="1.5" stroke-dasharray="5,4"/>
+          <ellipse cx="314" cy="150" rx="10" ry="14" fill="none" stroke="#8F7FA8" stroke-width="2.5"/>
+          <path d="M 140,196 Q 200,222 268,198 Q 262,226 210,232 Q 158,228 140,196 Z" fill="#DCC9B2" stroke="#6B4A2B" stroke-width="1.5" stroke-dasharray="5,4"/>
+          <rect x="168" y="112" width="66" height="52" rx="4" fill="#FBF6EC" stroke="#8A6D4A" stroke-width="1.6"/>
+          <path d="M 184,112 v52 M 200,112 v52 M 216,112 v52 M 168,128 h66 M 168,146 h66" stroke="#DCCFB4" stroke-width=".9"/>
+          <path d="M 199,140 L 203,140 L 201.6,96 L 200.4,96 Z" fill="#5C4033"/>
+          <ellipse cx="201" cy="94.5" rx="2" ry="3.6" fill="none" stroke="#5C4033" stroke-width="1.4"/>
+          <path d="M 150,172 q 8,-11 16,0 q 9,-9 15,1 q -5,9 -31,7 Z" fill="#B49C7E" stroke="#8A6D4A" stroke-width="1.2"/>
+          <g transform="translate(354,52)">
+            <circle r="15" fill="#E6D3AE" stroke="#8A6D4A" stroke-width="1.6"/>
+            <circle r="2.6" fill="none" stroke="#8A6D4A" stroke-width="1.2"/>
+            <path d="M 0,-12 L 2,-2 L 0,2 L -2,-2 Z" fill="#5C4033"/>
+          </g>
+        </svg>
+      </div>
+      <h1>버려진 옷들의 세계, 텍스토피아</h1>
+      <p class="sub">그곳에 떨어진 수선사 강이서.<br>바늘 하나로, 세상을 다시 깁기 시작했다.</p>
+      <a class="btn" href="read.html" onclick="txEvent('cta_read',{from:'hero'})"><span class="btn-hole"></span>무료 1화 읽기</a>
+    </div>
+  </div>
+</section>
+<button class="hero-skip" id="heroSkip">바로 입장 ↓</button>
+
+<!-- ===== H2 책 소개 ===== -->
+<section class="section" id="books">
+  <h2 class="reveal">전 3권, 완결로 만나는 이야기</h2>
+  <p class="sec-sub reveal">연재 기다림 없이, 처음부터 끝까지.</p>
+  <div class="grid3">
+    <a class="card book-card reveal" href="book.html"><div class="cover cover-1"><span class="vol">VOL.1</span><span class="bt">수선되지<br>않는 운명</span></div><h3>1권</h3><p>낯선 세계, 첫 번째 바느질</p></a>
+    <a class="card book-card reveal" href="book.html"><div class="cover cover-2"><span class="vol">VOL.2</span><span class="bt">아이언 스티치의<br>그림자</span></div><h3>2권</h3><p>바늘 탑과의 전쟁</p></a>
+    <a class="card book-card reveal" href="book.html"><div class="cover cover-3"><span class="vol">VOL.3</span><span class="bt">마지막<br>한 땀</span></div><h3>3권</h3><p>세상에서 가장 큰 수선</p></a>
+  </div>
+</section>
+
+<!-- ===== H3 세계관 티저 ===== -->
+<section class="section">
+  <h2 class="reveal">여기는 텍스토피아 — 옷이 살아 숨 쉬는 대륙</h2>
+  <p class="sec-sub reveal">여섯 개의 땅, 여섯 가지 원단. 궁금한 곳을 눌러보세요.</p>
+  <a class="btn btn--ghost reveal" href="world.html" onclick="txEvent('cta_world',{})">대륙 탐험하기 →</a>
+</section>
+
+<!-- ===== H4 명문장 ===== -->
+<section class="section">
+  <h2 class="reveal">책 속의 한 땀</h2>
+  <div class="card quote-carousel reveal" id="quotes">
+    <div class="quote-track" id="quoteTrack"></div>
+    <div class="q-dots" id="quoteDots"></div>
+  </div>
+</section>
+
+<!-- ===== H5 이야기 ===== -->
+<section class="section">
+  <h2 class="reveal">둘이서 출판사를 차렸습니다. AI랑 셋이서요.</h2>
+  <p class="sec-sub reveal">코드를 짜는 사람과 옷을 짓는 사람이 만든 작은 출판사, 시접출판사의 이야기.</p>
+  <a class="stitch-link reveal" href="book.html#about">우리 이야기 →</a>
+</section>
+
+<!-- ===== H6 뉴스레터 ===== -->
+<section class="section">
+  <h2 class="reveal">이야기의 소식을 실어 보낼게요</h2>
+  <p class="sec-sub reveal">출시 소식과 제작 비하인드, 한 달에 몇 번만.</p>
+  <form class="newsletter reveal" onsubmit="return txSubscribe(this)">
+    <input type="email" placeholder="이메일 주소" aria-label="이메일 주소" required>
+    <button class="btn" type="submit"><span class="btn-hole"></span>구독</button>
+    <span class="form-msg"></span>
+  </form>
+</section>
+
+<footer>
+  시접출판사 (Seam Press) · 대표 [입력] · 사업자등록번호 [입력] · 통신판매업 [입력]<br>
+  <a class="stitch-link" href="book.html#faq">자주 묻는 질문</a> · <a class="stitch-link" href="#">이용약관</a> · <a class="stitch-link" href="#">개인정보처리방침</a><br>
+  ⓒ 2026 Seam Press. 오늘 당신의 옷은, 행복한가요?
+</footer>
+
+<nav class="bottom-nav">
+  <a href="world.html"><span class="ico">🧵</span>세계관</a>
+  <a href="book.html"><span class="ico">📖</span>작품</a>
+  <a class="cta" href="read.html"><span class="pill">무료 1화</span></a>
+  <a href="book.html#news"><span class="ico">✉</span>소식</a>
+</nav>
+
+<script src="assets/app.js"></script>
+<script>
+// ===== 히어로 스크롤텔링 =====
+(function(){
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hero = document.getElementById('hero');
+  const acts = [...document.querySelectorAll('.act')];
+  const bar = document.getElementById('heroProgress');
+  const path = document.getElementById('threadPath');
+  const tip = document.getElementById('needleTip');
+  const tear = document.getElementById('tear');
+  const alive = document.getElementById('aliveText');
+  const skip = document.getElementById('heroSkip');
+  const L = path.getTotalLength();
+  path.style.strokeDasharray = L; path.style.strokeDashoffset = L;
+  let fired = {};
+
+  function setAct(n){ acts.forEach(a => a.classList.toggle('on', +a.dataset.act === n)); }
+
+  function onScroll(){
+    const rect = hero.getBoundingClientRect();
+    const total = hero.offsetHeight - innerHeight;
+    const p = Math.min(1, Math.max(0, -rect.top / total));
+    bar.style.width = (p*100) + '%';
+    if (p >= 1) bar.style.opacity = 0; else bar.style.opacity = 1;
+
+    if (p < .25){ setAct(1); }
+    else if (p < .5){
+      setAct(2);
+      const t = (p - .25) / .25;
+      path.style.strokeDashoffset = L * (1 - t);
+      const pt = path.getPointAtLength(L * t);
+      tip.setAttribute('cx', pt.x); tip.setAttribute('cy', pt.y);
+      alive.style.opacity = .25 + .75 * t;
+      if(!fired[25] && t > .1){ fired[25]=1; txEvent('hero_25',{}); }
+    }
+    else if (p < .75){
+      setAct(3);
+      const t = (p - .5) / .25;
+      const s = 50 - t*62, e = 50 + t*62;
+      tear.style.clipPath = `polygon(${50 - t*4}% ${s}%, ${50 + t*4}% ${s}%, ${50 + t*3}% ${e}%, ${50 - t*3}% ${e}%)`;
+      tear.classList.toggle('torn', t > .35);
+      if(!fired[50] && t > .1){ fired[50]=1; txEvent('hero_50',{}); }
+    }
+    else {
+      setAct(4);
+      if(!fired[100] && p > .96){ fired[100]=1; txEvent('hero_100',{}); }
+    }
+  }
+
+  if (reduced){ setAct(4); bar.style.display='none'; skip.style.display='none'; }
+  else {
+    addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+    // 재방문자(1화 진행 이력) 자동 스킵
+    if (localStorage.getItem('tx-read-pos')) hero.scrollIntoView({block:'end'});
+  }
+  skip.addEventListener('click', () => { hero.scrollIntoView({block:'end', behavior:'smooth'}); });
+  addEventListener('scroll', () => {
+    skip.style.display = (hero.getBoundingClientRect().bottom > innerHeight + 50) ? 'block' : 'none';
+  }, {passive:true});
+  txEvent('visit', {});
+})();
+
+// ===== 명문장 카루셀 =====
+(function(){
+  const QUOTES = [
+    ["“옷도 알아요. 누가 자신을 아껴주는지, 누가 자신을 도구로만 보는지.”","1부에서"],
+    ["“괜찮아. 찢어진 곳은 내가 다시 이어줄게. 이건 흉터가 아니라, 숨통을 틔워주는 거야.”","1부에서"],
+    ["“환자를 앞에 두고 도망치는 가게가 어딨어.”","1부에서"],
+    ["“강함은 부드러움을 이길 수 없어요. 특히 패션에서는.”","3부에서"],
+    ["“네 잘못이 아니야. 넌 그저, 조금 서툰 재봉사를 만났을 뿐이야.”","1부에서"],
+    ["비단은 찢어지면 끝이지만, 무명은 기워 입을수록 더 단단해진다.","3부에서"],
+    ["“얼룩은 지워지지 않아요. 하지만 그 얼룩이 바로 우리가 살아있다는 증거죠.”","3부에서"],
+    ["“오늘 당신의 옷은, 행복한가요?”","마지막 장에서"]
+  ];
+  const track = document.getElementById('quoteTrack');
+  const dots = document.getElementById('quoteDots');
+  QUOTES.forEach((q,i) => {
+    track.insertAdjacentHTML('beforeend', `<figure class="quote-card"><blockquote>${q[0]}</blockquote><cite>— ${q[1]}</cite></figure>`);
+    dots.insertAdjacentHTML('beforeend', `<button aria-label="${i+1}번 문장" data-i="${i}" ${i===0?'class="on"':''}></button>`);
+  });
+  let cur = 0;
+  function go(i){
+    cur = (i + QUOTES.length) % QUOTES.length;
+    track.style.transform = `translateX(-${cur*100}%)`;
+    dots.querySelectorAll('button').forEach((b,j)=>b.classList.toggle('on', j===cur));
+  }
+  dots.addEventListener('click', e => { if(e.target.dataset.i) go(+e.target.dataset.i); });
+  let sx = 0;
+  track.addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1));
+  }, {passive:true});
+})();
+</script>
+</body>
+</html>
