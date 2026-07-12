@@ -68,8 +68,9 @@
       .map-real .region:hover .tag rect,.map-real .region.sel .tag rect{stroke:var(--accent);stroke-dasharray:none;fill:var(--surface)}
       .map-hint{position:absolute;left:50%;top:10px;transform:translateX(-50%);background:color-mix(in srgb,var(--surface) 92%,transparent);border:1.5px dashed var(--accent);border-radius:20px;padding:7px 16px;font-size:12.5px;font-weight:600;color:var(--ink);backdrop-filter:blur(4px);pointer-events:none;transition:opacity .4s;white-space:nowrap}
       .map-real.touched .map-hint{opacity:0}
-      .hr-card{position:absolute;left:10px;right:10px;bottom:10px;background:color-mix(in srgb,var(--surface) 96%,transparent);border:1.5px solid var(--stitch);border-radius:10px;padding:11px 14px;text-align:left;opacity:0;transform:translateY(8px);transition:all .25s var(--ease);pointer-events:none;backdrop-filter:blur(4px)}
-      .map-real.picked .hr-card{opacity:1;transform:none;pointer-events:auto}
+      .hr-card{display:none;margin-top:10px;background:var(--surface);border:1.5px solid var(--stitch);border-radius:10px;padding:11px 14px;text-align:left}
+      .map-real.picked .hr-card{display:block;animation:fadeUpCard .3s var(--ease)}
+      @keyframes fadeUpCard{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
       .hr-card b{font-family:var(--font-display);font-size:15px;display:block;margin-bottom:2px}
       .hr-card p{font-size:12.5px;color:var(--ink-soft);line-height:1.6;margin-bottom:4px}
       </style>
