@@ -1,5 +1,6 @@
 /* ========= 텍스토피아 — 디자인 토큰 (웹기획 06 정본) ========= */
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
 @import url('https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css');
 
 :root{
@@ -10,9 +11,9 @@
   --ease:cubic-bezier(.22,1,.36,1);
   --radius-card:10px; --radius-btn:24px;
   --shadow-card:0 2px 12px rgba(58,55,48,.08);
-  --font-display:'MaruBuri','Maru Buri',serif;
+  --font-display:'Gowun Batang','MaruBuri',serif;
   --font-ui:'Pretendard',-apple-system,sans-serif;
-  --font-serif:'MaruBuri','Maru Buri','Noto Serif KR',serif;
+  --font-serif:'Gowun Batang','MaruBuri','Noto Serif KR',serif;
 }
 [data-theme='dark']{
   --bg:#14172A; --surface:#1E2238; --ink:#EDE6D6; --ink-soft:#A9A290;
@@ -28,7 +29,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;opacity:.035;
 [data-theme='dark'] body::before{opacity:.02}
 img{max-width:100%;display:block}
 a{color:var(--primary);text-decoration:none}
-h1,h2,h3{font-family:var(--font-display);line-height:1.3}
+h1,h2,h3{font-family:var(--font-display);line-height:1.35;word-break:keep-all}
 
 /* ---------- 스티치 링크 ---------- */
 .stitch-link{position:relative;padding-bottom:2px;background-image:linear-gradient(90deg,var(--stitch) 60%,transparent 60%);background-size:8px 2px;background-repeat:repeat-x;background-position:0 100%}
@@ -273,3 +274,5 @@ body.drawer-open .drawer-ovl{opacity:1;pointer-events:auto}
 .ft-biz{grid-column:1/-1;color:var(--ink-soft);font-size:11px;line-height:1.9;border-top:1px dashed color-mix(in srgb,var(--stitch) 40%,transparent);padding-top:12px}
 .ft-bottom{max-width:1100px;margin:18px auto 0;padding-top:12px;border-top:1px dashed color-mix(in srgb,var(--stitch) 40%,transparent);font-size:11px;color:var(--ink-soft);text-align:center}
 @media(min-width:768px){.ft-grid{grid-template-columns:2fr 1fr 1fr;font-size:13px}.ft-brand{grid-column:auto}}
+
+body{word-break:keep-all}
