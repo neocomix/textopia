@@ -28,13 +28,14 @@
     <div class="map-box map-real">
       <img src="assets/img/map.webp" alt="텍스토피아 대륙 지도" width="1536" height="1024">
       <svg viewBox="0 0 1536 1024" id="worldMap" aria-label="지역 선택">
-        <g class="region" data-r="knit" tabindex="0" role="button" aria-label="니트마운틴"><ellipse cx="810" cy="160" rx="400" ry="140"/></g>
-        <g class="region" data-r="denim" tabindex="0" role="button" aria-label="데님캐니언"><ellipse cx="290" cy="510" rx="215" ry="265"/></g>
-        <g class="region" data-r="silk" tabindex="0" role="button" aria-label="실크오션"><ellipse cx="1250" cy="505" rx="225" ry="265"/></g>
-        <g class="region" data-r="leather" tabindex="0" role="button" aria-label="레더정글"><ellipse cx="775" cy="850" rx="460" ry="145"/></g>
-        <g class="region" data-r="cotton" tabindex="0" role="button" aria-label="코튼시티"><ellipse cx="765" cy="490" rx="240" ry="205"/></g>
-        <g class="region" data-r="grave" tabindex="0" role="button" aria-label="누더기 묘지"><ellipse cx="520" cy="660" rx="120" ry="85"/></g>
+        <g class="region" data-r="knit" tabindex="0" role="button" aria-label="니트마운틴"><ellipse cx="810" cy="160" rx="400" ry="140"/><g class="tag" transform="translate(810,300)"><rect x="-145" y="-30" width="290" height="60" rx="30"/><circle class="dot" cx="-111" cy="0" r="7"/><text x="10" y="15" text-anchor="middle">니트마운틴</text></g></g>
+        <g class="region" data-r="denim" tabindex="0" role="button" aria-label="데님캐니언"><ellipse cx="290" cy="510" rx="215" ry="265"/><g class="tag" transform="translate(300,530)"><rect x="-145" y="-30" width="290" height="60" rx="30"/><circle class="dot" cx="-111" cy="0" r="7"/><text x="10" y="15" text-anchor="middle">데님캐니언</text></g></g>
+        <g class="region" data-r="silk" tabindex="0" role="button" aria-label="실크오션"><ellipse cx="1250" cy="505" rx="225" ry="265"/><g class="tag" transform="translate(1245,540)"><rect x="-125" y="-30" width="250" height="60" rx="30"/><circle class="dot" cx="-91" cy="0" r="7"/><text x="10" y="15" text-anchor="middle">실크오션</text></g></g>
+        <g class="region" data-r="leather" tabindex="0" role="button" aria-label="레더정글"><ellipse cx="775" cy="850" rx="460" ry="145"/><g class="tag" transform="translate(775,880)"><rect x="-125" y="-30" width="250" height="60" rx="30"/><circle class="dot" cx="-91" cy="0" r="7"/><text x="10" y="15" text-anchor="middle">레더정글</text></g></g>
+        <g class="region" data-r="cotton" tabindex="0" role="button" aria-label="코튼시티"><ellipse cx="765" cy="490" rx="240" ry="205"/><g class="tag" transform="translate(765,610)"><rect x="-125" y="-30" width="250" height="60" rx="30"/><circle class="dot" cx="-91" cy="0" r="7"/><text x="10" y="15" text-anchor="middle">코튼시티</text></g></g>
+        <g class="region" data-r="grave" tabindex="0" role="button" aria-label="누더기 묘지"><ellipse cx="520" cy="660" rx="120" ry="85"/><g class="tag" transform="translate(520,720)"><rect x="-150" y="-30" width="300" height="60" rx="30"/><circle class="dot" cx="-116" cy="0" r="7"/><text x="10" y="15" text-anchor="middle">누더기 묘지</text></g></g>
       </svg>
+      <div class="map-hint">🪡 궁금한 땅을 눌러보세요</div>
     </div>
     <style>
     .map-real{position:relative;padding:0;overflow:hidden}
@@ -43,6 +44,14 @@
     .map-real .region ellipse{fill:transparent;stroke:transparent;stroke-width:5;cursor:pointer;transition:all .15s var(--ease)}
     .map-real .region:hover ellipse,.map-real .region:focus ellipse{stroke:var(--accent);stroke-dasharray:10 8;fill:rgba(255,255,255,.10)}
     .map-real .region.sel ellipse{stroke:var(--accent);stroke-width:7;stroke-dasharray:none;fill:rgba(255,255,255,.06)}
+    
+    .map-real .tag rect{fill:color-mix(in srgb,var(--surface) 94%,transparent);stroke:var(--stitch);stroke-width:2;stroke-dasharray:8 6}
+    .map-real .tag text{font-family:var(--font-ui);font-weight:700;font-size:40px;fill:var(--ink);pointer-events:none}
+    .map-real .tag .dot{fill:var(--accent);transform-origin:center;transform-box:fill-box;animation:mapPulse 1.8s ease-in-out infinite}
+    @keyframes mapPulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.55)}}
+    .map-real .region:hover .tag rect,.map-real .region.sel .tag rect{stroke:var(--accent);stroke-dasharray:none;fill:var(--surface)}
+    .map-hint{position:absolute;left:50%;top:14px;transform:translateX(-50%);background:color-mix(in srgb,var(--surface) 92%,transparent);border:1.5px dashed var(--accent);border-radius:20px;padding:8px 18px;font-size:13px;font-weight:600;color:var(--ink);backdrop-filter:blur(4px);pointer-events:none;transition:opacity .4s}
+    .map-box.touched .map-hint{opacity:0}
     </style>
 
   </div>
@@ -113,6 +122,7 @@ const WORLD = {
     if(e.key==='Enter'||e.key===' '){ const g=e.target.closest('.region'); if(g){e.preventDefault();select(g);} }
   });
   function select(g){
+    map.closest('.map-box').classList.add('touched');
     document.querySelectorAll('.region').forEach(r=>r.classList.remove('sel'));
     g.classList.add('sel');
     const d = WORLD[g.dataset.r];
