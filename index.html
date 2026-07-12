@@ -43,30 +43,36 @@
       <div class="tear" id="tear"><p class="tear-label" style="text-align:center;padding-top:46vh">실 한 가닥이, 세계를 열었다</p></div>
     </div>
     <div class="act act4" data-act="4">
-      <div class="map-wrap">
-        <svg viewBox="0 0 400 260" aria-label="텍스토피아 대륙">
-          <ellipse cx="200" cy="132" rx="180" ry="112" fill="#EFE3C8" stroke="#8A6D4A" stroke-width="2.5" stroke-dasharray="8,5"/>
-          <path d="M 110,70 Q 200,40 300,72 L 292,102 Q 200,80 122,104 Z" fill="#EDE6DF" stroke="#A58963" stroke-width="1.5" stroke-dasharray="5,4"/>
-          <circle cx="170" cy="76" r="9" fill="none" stroke="#B9A98E" stroke-width="3"/>
-          <circle cx="205" cy="70" r="7" fill="none" stroke="#B9A98E" stroke-width="3"/>
-          <circle cx="238" cy="78" r="9" fill="none" stroke="#B9A98E" stroke-width="3"/>
-          <path d="M 62,110 Q 110,100 128,132 L 122,190 Q 84,204 62,180 Z" fill="#C8D4E8" stroke="#3B5F8F" stroke-width="1.5" stroke-dasharray="5,4"/>
-          <ellipse cx="95" cy="156" rx="15" ry="9" fill="#28456E" opacity=".7"/>
-          <path d="M 292,104 Q 344,116 342,158 Q 338,196 300,204 L 282,158 Z" fill="#F0E4EC" stroke="#8F7FA8" stroke-width="1.5" stroke-dasharray="5,4"/>
-          <ellipse cx="314" cy="150" rx="10" ry="14" fill="none" stroke="#8F7FA8" stroke-width="2.5"/>
-          <path d="M 140,196 Q 200,222 268,198 Q 262,226 210,232 Q 158,228 140,196 Z" fill="#DCC9B2" stroke="#6B4A2B" stroke-width="1.5" stroke-dasharray="5,4"/>
-          <rect x="168" y="112" width="66" height="52" rx="4" fill="#FBF6EC" stroke="#8A6D4A" stroke-width="1.6"/>
-          <path d="M 184,112 v52 M 200,112 v52 M 216,112 v52 M 168,128 h66 M 168,146 h66" stroke="#DCCFB4" stroke-width=".9"/>
-          <path d="M 199,140 L 203,140 L 201.6,96 L 200.4,96 Z" fill="#5C4033"/>
-          <ellipse cx="201" cy="94.5" rx="2" ry="3.6" fill="none" stroke="#5C4033" stroke-width="1.4"/>
-          <path d="M 150,172 q 8,-11 16,0 q 9,-9 15,1 q -5,9 -31,7 Z" fill="#B49C7E" stroke="#8A6D4A" stroke-width="1.2"/>
-          <g transform="translate(354,52)">
-            <circle r="15" fill="#E6D3AE" stroke="#8A6D4A" stroke-width="1.6"/>
-            <circle r="2.6" fill="none" stroke="#8A6D4A" stroke-width="1.2"/>
-            <path d="M 0,-12 L 2,-2 L 0,2 L -2,-2 Z" fill="#5C4033"/>
-          </g>
+      <div class="map-wrap map-real" id="heroMap">
+        <img src="assets/img/map.webp" alt="텍스토피아 대륙 지도" width="1400" height="933" style="display:block;width:100%;height:auto;border-radius:14px;box-shadow:0 12px 34px rgba(58,55,48,.22)">
+        <svg viewBox="0 0 1536 1024" style="position:absolute;inset:0;width:100%;height:100%" aria-label="지역 선택">
+          <g class="region" data-r="knit" tabindex="0" role="button" aria-label="니트마운틴"><ellipse cx="810" cy="160" rx="400" ry="140"/><g class="tag" transform="translate(810,300)"><rect x="-145" y="-30" width="290" height="60" rx="30"/><circle class="dot" cx="-111" cy="0" r="7"/><text x="10" y="15" text-anchor="middle">니트마운틴</text></g></g>
+          <g class="region" data-r="denim" tabindex="0" role="button" aria-label="데님캐니언"><ellipse cx="290" cy="510" rx="215" ry="265"/><g class="tag" transform="translate(300,530)"><rect x="-145" y="-30" width="290" height="60" rx="30"/><circle class="dot" cx="-111" cy="0" r="7"/><text x="10" y="15" text-anchor="middle">데님캐니언</text></g></g>
+          <g class="region" data-r="silk" tabindex="0" role="button" aria-label="실크오션"><ellipse cx="1250" cy="505" rx="225" ry="265"/><g class="tag" transform="translate(1245,540)"><rect x="-125" y="-30" width="250" height="60" rx="30"/><circle class="dot" cx="-91" cy="0" r="7"/><text x="10" y="15" text-anchor="middle">실크오션</text></g></g>
+          <g class="region" data-r="leather" tabindex="0" role="button" aria-label="레더정글"><ellipse cx="775" cy="850" rx="460" ry="145"/><g class="tag" transform="translate(775,880)"><rect x="-125" y="-30" width="250" height="60" rx="30"/><circle class="dot" cx="-91" cy="0" r="7"/><text x="10" y="15" text-anchor="middle">레더정글</text></g></g>
+          <g class="region" data-r="cotton" tabindex="0" role="button" aria-label="코튼시티"><ellipse cx="765" cy="490" rx="240" ry="205"/><g class="tag" transform="translate(765,610)"><rect x="-125" y="-30" width="250" height="60" rx="30"/><circle class="dot" cx="-91" cy="0" r="7"/><text x="10" y="15" text-anchor="middle">코튼시티</text></g></g>
+          <g class="region" data-r="grave" tabindex="0" role="button" aria-label="누더기 묘지"><ellipse cx="520" cy="660" rx="120" ry="85"/><g class="tag" transform="translate(520,720)"><rect x="-150" y="-30" width="300" height="60" rx="30"/><circle class="dot" cx="-116" cy="0" r="7"/><text x="10" y="15" text-anchor="middle">누더기 묘지</text></g></g>
         </svg>
+        <div class="map-hint">🪡 궁금한 땅을 눌러보세요</div>
+        <div class="hr-card" id="hrCard"><b id="hrName"></b><p id="hrTag"></p><a class="stitch-link" href="world.html" style="font-size:12px">세계관에서 더 알아보기 →</a></div>
       </div>
+      <style>
+      .act4 .map-wrap{position:relative;padding:0;overflow:visible}
+      .map-real .region ellipse{fill:transparent;stroke:transparent;stroke-width:5;cursor:pointer;transition:all .15s var(--ease)}
+      .map-real .region:hover ellipse,.map-real .region:focus ellipse{stroke:var(--accent);stroke-dasharray:10 8;fill:rgba(255,255,255,.10)}
+      .map-real .region.sel ellipse{stroke:var(--accent);stroke-width:7;fill:rgba(255,255,255,.06)}
+      .map-real .tag rect{fill:color-mix(in srgb,var(--surface) 94%,transparent);stroke:var(--stitch);stroke-width:2;stroke-dasharray:8 6}
+      .map-real .tag text{font-family:var(--font-ui);font-weight:700;font-size:44px;fill:var(--ink);pointer-events:none}
+      .map-real .tag .dot{fill:var(--accent);transform-origin:center;transform-box:fill-box;animation:mapPulse 1.8s ease-in-out infinite}
+      @keyframes mapPulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.55)}}
+      .map-real .region:hover .tag rect,.map-real .region.sel .tag rect{stroke:var(--accent);stroke-dasharray:none;fill:var(--surface)}
+      .map-hint{position:absolute;left:50%;top:10px;transform:translateX(-50%);background:color-mix(in srgb,var(--surface) 92%,transparent);border:1.5px dashed var(--accent);border-radius:20px;padding:7px 16px;font-size:12.5px;font-weight:600;color:var(--ink);backdrop-filter:blur(4px);pointer-events:none;transition:opacity .4s;white-space:nowrap}
+      .map-real.touched .map-hint{opacity:0}
+      .hr-card{position:absolute;left:10px;right:10px;bottom:10px;background:color-mix(in srgb,var(--surface) 96%,transparent);border:1.5px solid var(--stitch);border-radius:10px;padding:11px 14px;text-align:left;opacity:0;transform:translateY(8px);transition:all .25s var(--ease);pointer-events:none;backdrop-filter:blur(4px)}
+      .map-real.picked .hr-card{opacity:1;transform:none;pointer-events:auto}
+      .hr-card b{font-family:var(--font-display);font-size:15px;display:block;margin-bottom:2px}
+      .hr-card p{font-size:12.5px;color:var(--ink-soft);line-height:1.6;margin-bottom:4px}
+      </style>
       <h1>버려진 옷들의 세계, 텍스토피아</h1>
       <p class="sub">그곳에 떨어진 수선사 강이서.<br>바늘 하나로, 세상을 다시 깁기 시작했다.</p>
       <a class="btn" href="read.html" onclick="txEvent('cta_read',{from:'hero'})"><span class="btn-hole"></span>무료 1화 읽기</a>
@@ -242,6 +248,35 @@
     const dx = e.changedTouches[0].clientX - sx;
     if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1));
   }, {passive:true});
+})();
+</script>
+
+<script>
+// 홈 히어로 지도 인터랙션
+(function(){
+  var HW = {
+    cotton:["코튼시티","대륙의 심장. 무명 원단의 도시, 이서의 수선집 '한 땀'이 있는 곳."],
+    knit:["니트마운틴","실로 짜인 눈 덮인 봉우리. 운명의 물레방아가 도는 땅."],
+    denim:["데님캐니언","거칠지만 의리 있는 협곡. 인디고 호수와 데님 부족의 고향."],
+    silk:["실크오션","빛에 따라 색이 바뀌는 바다. 누에고치성이 떠 있는 곳."],
+    leather:["레더정글","질기고 무성한 남쪽 밀림. 무두질 늪을 건너는 자만이 통과한다."],
+    grave:["누더기 묘지","버려진 옷들이 닿는 마지막 땅. 이야기가 시작된 곳."]
+  };
+  var box = document.getElementById('heroMap');
+  if(!box) return;
+  box.addEventListener('click', function(e){
+    var g = e.target.closest('.region'); if(!g) return;
+    box.classList.add('touched','picked');
+    box.querySelectorAll('.region').forEach(function(r){r.classList.remove('sel');});
+    g.classList.add('sel');
+    var d = HW[g.dataset.r];
+    document.getElementById('hrName').textContent = d[0];
+    document.getElementById('hrTag').textContent = d[1];
+    txEvent('map_click',{region:g.dataset.r, from:'hero'});
+  });
+  box.addEventListener('keydown', function(e){
+    if(e.key==='Enter'||e.key===' '){ var g=e.target.closest('.region'); if(g){e.preventDefault(); g.dispatchEvent(new Event('click',{bubbles:true}));} }
+  });
 })();
 </script>
 </body>
