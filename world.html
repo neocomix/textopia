@@ -53,12 +53,14 @@
     .map-real .region:hover .tag rect,.map-real .region.sel .tag rect{stroke:var(--accent);stroke-dasharray:none;fill:var(--surface)}
     .map-hint{position:absolute;left:50%;top:14px;transform:translateX(-50%);background:color-mix(in srgb,var(--surface) 92%,transparent);border:1.5px dashed var(--accent);border-radius:20px;padding:8px 18px;font-size:13px;font-weight:600;color:var(--ink);backdrop-filter:blur(4px);pointer-events:none;transition:opacity .4s}
     .map-box.touched .map-hint{opacity:0}
+    .region-thumb{width:100%;aspect-ratio:8/5;object-fit:cover;border-radius:12px;margin-bottom:14px;display:block;box-shadow:0 2px 12px rgba(0,0,0,.10)}
     </style>
 
   </div>
 
   <aside class="panel">
     <div class="card" id="regionPanel">
+      <img id="rImg" class="region-thumb" alt="" hidden>
       <h3 id="rName">텍스토피아 대륙</h3>
       <p class="tagline" id="rTag">한 땀 한 땀 기워진 세계. 지도에서 궁금한 땅을 눌러보세요.</p>
       <div class="chips" id="rChips"></div>
@@ -127,6 +129,10 @@ const WORLD = {
     document.querySelectorAll('.region').forEach(r=>r.classList.remove('sel'));
     g.classList.add('sel');
     const d = WORLD[g.dataset.r];
+    const rImg = document.getElementById('rImg');
+    rImg.src = `assets/img/region-${g.dataset.r}.webp?v=6`;
+    rImg.alt = d.name;
+    rImg.hidden = false;
     document.getElementById('rName').textContent = d.name;
     document.getElementById('rTag').textContent = d.tag;
     document.getElementById('rChips').innerHTML = d.chips.map(c=>`<span class="chip">${c}</span>`).join('');
@@ -145,7 +151,7 @@ const WORLD = {
     ["노아","견습 재봉사","이서의 첫 제자. 서툰 바느질, 진심의 한 땀.","char-noa"],
     ["사틴","드레스 가문","실크오션의 귀부인. 광택 아래 감춰진 이야기.",null],
     ["바론","???","바늘 탑의 그림자. 완벽을 말하는 자.","char-baron"],
-    ["패치 노인","넝마 현자","누더기 묘지의 문지기. 모든 버려진 것들의 이름을 기억한다.",null]
+    ["패치 노인","넝마 현자","누더기 묘지의 문지기. 모든 버려진 것들의 이름을 기억한다.","char-patch"]
   ];
   const grid = document.getElementById('charGrid');
   CHARS.forEach(c => {
