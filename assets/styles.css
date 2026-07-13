@@ -92,7 +92,7 @@ a.card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(58,55,48,.14)
 .act{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;opacity:0;transition:opacity .5s var(--ease)}
 .act.on{opacity:1}
 .act1{background:linear-gradient(180deg,#101322 0%,#1a1e33 100%)}
-.act1 .alley{position:absolute;inset:0;background:radial-gradient(ellipse 60% 45% at 50% 68%,rgba(232,178,107,.13),transparent 70%)}
+.act1 .alley{position:absolute;inset:0;background:radial-gradient(ellipse 60% 45% at 50% 68%,rgba(232,178,107,.22),transparent 68%),linear-gradient(180deg,rgba(18,20,38,.62),rgba(18,20,38,.40) 55%,rgba(18,20,38,.66)),url(img/hero-alley.webp) center/cover;background-blend-mode:screen,normal,normal}
 .big-type{font-family:var(--font-display);font-weight:800;color:#EDE6D6;font-size:clamp(38px,9vw,84px);line-height:1.25;letter-spacing:-.01em}
 .act2{background:#181c30}
 .thread-svg{position:absolute;inset:0;width:100%;height:100%}
@@ -127,9 +127,9 @@ a.card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(58,55,48,.14)
 .book-card:hover .cover{transform:scale(1.02)}
 .cover .vol{font-size:12px;opacity:.85;letter-spacing:.2em}
 .cover .bt{font-size:20px;font-weight:800;line-height:1.4}
-.cover-1{background:linear-gradient(160deg,#28456E,#1a2c48)}
-.cover-2{background:linear-gradient(160deg,#5E4B78,#3d3153)}
-.cover-3{background:linear-gradient(160deg,#9E4A68,#6e3348)}
+.cover-1{background:linear-gradient(180deg,rgba(26,44,72,.30),rgba(26,44,72,0) 26%,rgba(26,44,72,0) 60%,rgba(26,44,72,.55)),url(img/cover-vol1.webp) center/cover,#1a2c48}
+.cover-2{background:linear-gradient(180deg,rgba(61,49,83,.30),rgba(61,49,83,0) 26%,rgba(61,49,83,0) 60%,rgba(61,49,83,.55)),url(img/cover-vol2.webp) center/cover,#3d3153}
+.cover-3{background:linear-gradient(180deg,rgba(110,51,72,.30),rgba(110,51,72,0) 26%,rgba(110,51,72,0) 60%,rgba(110,51,72,.55)),url(img/cover-vol3.webp) center/cover,#6e3348}
 .cover::after{content:'';position:absolute;inset:10px;border:1px dashed rgba(247,241,227,.35);border-radius:5px;pointer-events:none}
 .quote-carousel{position:relative;overflow:hidden}
 .quote-track{display:flex;transition:transform var(--dur-med) var(--ease)}
@@ -276,3 +276,8 @@ body.drawer-open .drawer-ovl{opacity:1;pointer-events:auto}
 @media(min-width:768px){.ft-grid{grid-template-columns:2fr 1fr 1fr;font-size:13px}.ft-brand{grid-column:auto}}
 
 body{word-break:keep-all}
+
+/* 이미지 적용 v6 */
+.char-photo{width:64%;aspect-ratio:1;border-radius:50%;object-fit:cover;border:2px solid color-mix(in srgb,var(--primary) 30%,var(--surface));box-shadow:0 3px 10px rgba(58,55,48,.14)}
+.world-hero{display:block;width:100%;height:auto;border-radius:16px;box-shadow:0 12px 34px rgba(58,55,48,.20);margin:6px 0 22px}
+.err-art{display:block;width:min(420px,80%);height:auto;margin:0 auto 18px;border-radius:16px;box-shadow:0 10px 30px rgba(58,55,48,.18)}
