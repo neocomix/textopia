@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>나의 파트너 옷 찾기 — 텍스토피아</title>
 <meta name="description" content="텍스토피아 세계에서 당신과 함께할 운명의 옷은? 1분 테스트.">
-<link rel="stylesheet" href="assets/styles.css?v=4">
+<link rel="stylesheet" href="assets/styles.css?v=6">
+<script src="assets/i18n.js?v=7"></script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23C96F8F' stroke-width='3'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='12' cy='20' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23C96F8F'/%3E%3C/svg%3E">
 <style>
 .q-wrap{max-width:560px;margin:0 auto;padding:96px 20px 120px}
@@ -28,7 +29,7 @@
 </head>
 <body>
 <header class="gnb">
-  <a class="logo" href="index.html">텍스토피아<span class="dot"></span></a>
+  <a class="logo" href="index.html"><span data-i18n="common.drawer.brand">텍스토피아</span><span class="dot"></span></a>
   <div class="gnb-right"><button class="theme-toggle" aria-label="테마 전환">☾</button></div>
 </header>
 
@@ -39,48 +40,69 @@
 
 <footer>
   <div style="margin-top:6px">
-    <a class="stitch-link" href="index.html">홈</a> · <a class="stitch-link" href="read.html">무료 1화</a> · <a class="stitch-link" href="world.html">세계관</a><br>
+    <a class="stitch-link" href="index.html" data-i18n="common.drawer.home">홈</a> · <a class="stitch-link" href="read.html" data-i18n="common.footer.read">무료 1화</a> · <a class="stitch-link" href="world.html" data-i18n="common.footer.world">세계관</a><br>
     ⓒ 2026 Orsion.
   </div>
 </footer>
 
-<script src="assets/app.js?v=4"></script>
+<script src="assets/app.js?v=7"></script>
 <script>
 (function(){
-  var Q = [
-    {q:"지친 하루의 끝, 집에 돌아온 당신이 가장 먼저 하는 일은?", o:[
-      ["포근한 이불 속으로 직행","knit"],["오늘 있었던 일을 누군가에게 조곤조곤 얘기","chiffon"],["내일 입을 옷을 미리 정해두기","linen"],["갑자기 야식 먹으러 밖으로 출발","denim"]]},
-    {q:"친구가 울면서 전화를 걸어왔다. 당신의 첫 마디는?", o:[
-      ["괜찮아, 천천히 말해봐.","chiffon"],["어디야? 내가 갈게.","denim"],["일단 뭐라도 먹었어?","knit"],["상황부터 차분히 정리해 보자.","leather"]]},
-    {q:"옷장을 열었을 때, 당신 손이 가장 자주 가는 옷은?", o:[
-      ["10년을 입어도 질리지 않는 그 옷","linen"],["오늘 기분을 살려주는 화려한 한 벌","silk"],["몸에 착 붙는 익숙하고 편한 옷","knit"],["약간의 각이 살아 있는 단단한 옷","leather"]]},
-    {q:"낯선 도시로 여행을 왔다. 당신의 스타일은?", o:[
-      ["계획표대로 착착 — 다 돌아본다","linen"],["골목에서 우연히 만난 가게에 세 시간","chiffon"],["현지인만 아는 곳으로 무작정","denim"],["가장 전망 좋은 카페에서 우아하게","silk"]]},
-    {q:"누군가 당신을 한 단어로 표현한다면, 가장 기쁠 말은?", o:[
-      ["듬직하다","denim"],["다정하다","knit"],["감각 있다","silk"],["강단 있다","leather"]]},
-    {q:"텍스토피아에 떨어진 당신, 제일 먼저 가보고 싶은 곳은?", o:[
-      ["실이 노래하는 니트마운틴","knit"],["빛으로 반짝이는 실크오션","silk"],["거칠고 자유로운 데님캐니언","denim"],["오래된 골목의 수선집 한 땀","linen"]]}
+  function TX(path, fb){ var v = window.txT ? window.txT(path) : null; return (v==null) ? fb : v; }
+  // 채점용 키(번역 대상 아님) — 질문·보기 순서와 1:1 대응
+  var QKEYS = [
+    ["knit","chiffon","linen","denim"],
+    ["chiffon","denim","knit","leather"],
+    ["linen","silk","knit","leather"],
+    ["linen","chiffon","denim","silk"],
+    ["denim","knit","silk","leather"],
+    ["knit","silk","denim","linen"]
   ];
-  var R = {
-    denim:{name:"데님 재킷 · 블루", sub:"DENIM — 의리의 파트너", color:"#28456E",
+  // 결과별 색상(번역 대상 아님)
+  var COLORS = {denim:"#28456E",chiffon:"#C96F8F",knit:"#B98A4A",leather:"#6B4A2B",silk:"#8F5A7E",linen:"#8A6D4A"};
+
+  // ----- 폴백(한국어 원문) -----
+  var QFB = [
+    {q:"지친 하루의 끝, 집에 돌아온 당신이 가장 먼저 하는 일은?", options:["포근한 이불 속으로 직행","오늘 있었던 일을 누군가에게 조곤조곤 얘기","내일 입을 옷을 미리 정해두기","갑자기 야식 먹으러 밖으로 출발"]},
+    {q:"친구가 울면서 전화를 걸어왔다. 당신의 첫 마디는?", options:["괜찮아, 천천히 말해봐.","어디야? 내가 갈게.","일단 뭐라도 먹었어?","상황부터 차분히 정리해 보자."]},
+    {q:"옷장을 열었을 때, 당신 손이 가장 자주 가는 옷은?", options:["10년을 입어도 질리지 않는 그 옷","오늘 기분을 살려주는 화려한 한 벌","몸에 착 붙는 익숙하고 편한 옷","약간의 각이 살아 있는 단단한 옷"]},
+    {q:"낯선 도시로 여행을 왔다. 당신의 스타일은?", options:["계획표대로 착착 — 다 돌아본다","골목에서 우연히 만난 가게에 세 시간","현지인만 아는 곳으로 무작정","가장 전망 좋은 카페에서 우아하게"]},
+    {q:"누군가 당신을 한 단어로 표현한다면, 가장 기쁠 말은?", options:["듬직하다","다정하다","감각 있다","강단 있다"]},
+    {q:"텍스토피아에 떨어진 당신, 제일 먼저 가보고 싶은 곳은?", options:["실이 노래하는 니트마운틴","빛으로 반짝이는 실크오션","거칠고 자유로운 데님캐니언","오래된 골목의 수선집 한 땀"]}
+  ];
+  var RFB = {
+    denim:{name:"데님 재킷 · 블루", sub:"DENIM — 의리의 파트너",
       desc:"낡을수록 멋이 드는 사람. 당신은 한번 곁을 준 사람을 끝까지 지키는 타입이에요. 무뚝뚝해 보여도, 위기의 순간 가장 먼저 달려오는 건 언제나 당신이죠.",
       mate:"데님캐니언의 늑대, 블루", spot:"데님캐니언 · 인디고 호수"},
-    chiffon:{name:"시폰 원피스 · 릴리", sub:"CHIFFON — 공감의 파트너", color:"#C96F8F",
+    chiffon:{name:"시폰 원피스 · 릴리", sub:"CHIFFON — 공감의 파트너",
       desc:"바람에 흔들리는 대신, 바람의 이야기를 들어주는 사람. 당신의 부드러움은 약함이 아니라 남들이 못 가진 감각이에요.",
       mate:"수선집의 첫 손님, 릴리의 원피스", spot:"코튼시티 · 골목 수선집"},
-    knit:{name:"니트 스웨터", sub:"KNIT — 온기의 파트너", color:"#B98A4A",
+    knit:{name:"니트 스웨터", sub:"KNIT — 온기의 파트너",
       desc:"곁에 있으면 겨울도 견딜 만해지는 사람. 당신은 화려하게 빛나기보다, 오래 따뜻하게 남는 쪽을 택하죠. 풀린 것은 다시 짜면 된다는 걸 아는 사람.",
       mate:"운명의 물레방아의 털실", spot:"니트마운틴 · 물레방아"},
-    leather:{name:"가죽 재킷", sub:"LEATHER — 단단함의 파트너", color:"#6B4A2B",
+    leather:{name:"가죽 재킷", sub:"LEATHER — 단단함의 파트너",
       desc:"시간이 지날수록 더 멋있어지는 사람. 상처도 흉터도 당신에겐 무늬가 돼요. 세상이 뭐라 해도 자기 결대로 사는 강단이 있죠.",
       mate:"레더정글의 방랑 재킷", spot:"레더정글 · 스터드 절벽"},
-    silk:{name:"실크 스카프", sub:"SILK — 감각의 파트너", color:"#8F5A7E",
+    silk:{name:"실크 스카프", sub:"SILK — 감각의 파트너",
       desc:"빛에 따라 다른 색을 내는 사람. 당신은 아름다움이 사치가 아니라 삶의 태도라는 걸 알아요. 부드러움이 강함을 이긴다는 것도.",
       mate:"누에고치성의 스카프", spot:"실크오션 · 광택의 해협"},
-    linen:{name:"무명 앞치마 · 이서의 것", sub:"LINEN — 꾸준함의 파트너", color:"#8A6D4A",
+    linen:{name:"무명 앞치마 · 이서의 것", sub:"LINEN — 꾸준함의 파트너",
       desc:"평범한 천이 가장 오래 견딥니다. 당신은 매일의 한 땀을 쌓아 결국 세상을 깁는 사람. 주인공 이서가 고른 천이 바로 이거예요.",
       mate:"수선사 이서의 작업 앞치마", spot:"코튼시티 · 수선집 한 땀"}
   };
+  var UIFB = {
+    mateLabel:"운명의 파트너", spotLabel:"어울리는 땅",
+    share:"결과 공유하기", readCta:"이 세계를 1화로 만나기", retry:"다시 해보기",
+    shareTitle:"나의 파트너 옷 찾기",
+    shareLine:"나의 텍스토피아 파트너 옷은 [{name}] — {sub}",
+    shareHook:"너의 옷도 찾아봐: https://textopia.vercel.app/quiz.html",
+    copied:"결과가 복사됐어요! 친구에게 붙여넣어 보세요."
+  };
+
+  var Q = TX('quiz.questions', QFB);
+  var R = TX('quiz.results', RFB);
+  var UI = TX('quiz.ui', UIFB);
+
   var box = document.getElementById('qBox');
   var bar = document.getElementById('qBar');
   var score = {denim:0,chiffon:0,knit:0,leather:0,silk:0,linen:0};
@@ -91,7 +113,7 @@
     bar.style.width = (cur/Q.length*100)+'%';
     var q = Q[cur];
     var html = '<div class="fade-in"><p class="q-num">Q'+(cur+1)+' / '+Q.length+'</p><h1 class="q-title">'+q.q+'</h1>';
-    q.o.forEach(function(o){ html += '<button class="q-opt" data-k="'+o[1]+'">'+o[0]+'</button>'; });
+    q.options.forEach(function(opt, j){ html += '<button class="q-opt" data-k="'+QKEYS[cur][j]+'">'+opt+'</button>'; });
     html += '</div>';
     box.innerHTML = html;
   }
@@ -105,21 +127,21 @@
     var r = R[best];
     txEvent('quiz_done', {result:best});
     box.innerHTML = '<div class="card fade-in" style="text-align:center;padding:34px 26px">'
-      + '<div class="res-swatch" style="background:'+r.color+'"></div>'
+      + '<div class="res-swatch" style="background:'+COLORS[best]+'"></div>'
       + '<p class="res-sub">'+r.sub+'</p><h1 class="res-name">'+r.name+'</h1>'
       + '<p class="res-desc">'+r.desc+'</p>'
-      + '<p class="res-meta"><b>운명의 파트너</b> '+r.mate+'<br><b>어울리는 땅</b> '+r.spot+'</p>'
-      + '<button class="btn" id="shareBtn" style="width:100%;margin-bottom:10px"><span class="btn-hole"></span>결과 공유하기</button>'
-      + '<a class="btn btn--ghost" href="read.html" style="width:100%;margin-bottom:16px">이 세계를 1화로 만나기</a>'
-      + '<button class="stitch-link" id="retryBtn" style="background:none;border:none;cursor:pointer;color:var(--ink-soft);font-size:13px;font-family:var(--font-ui)">다시 해보기</button>'
+      + '<p class="res-meta"><b>'+UI.mateLabel+'</b> '+r.mate+'<br><b>'+UI.spotLabel+'</b> '+r.spot+'</p>'
+      + '<button class="btn" id="shareBtn" style="width:100%;margin-bottom:10px"><span class="btn-hole"></span>'+UI.share+'</button>'
+      + '<a class="btn btn--ghost" href="read.html" style="width:100%;margin-bottom:16px">'+UI.readCta+'</a>'
+      + '<button class="stitch-link" id="retryBtn" style="background:none;border:none;cursor:pointer;color:var(--ink-soft);font-size:13px;font-family:var(--font-ui)">'+UI.retry+'</button>'
       + '</div>';
     document.getElementById('retryBtn').onclick = function(){
       score = {denim:0,chiffon:0,knit:0,leather:0,silk:0,linen:0}; cur = 0; show();
     };
     document.getElementById('shareBtn').onclick = function(){
-      var text = '나의 텍스토피아 파트너 옷은 [' + r.name + '] — ' + r.sub + String.fromCharCode(10) + '너의 옷도 찾아봐: https://textopia.vercel.app/quiz.html';
-      if (navigator.share){ navigator.share({title:'나의 파트너 옷 찾기', text:text}).catch(function(){}); }
-      else if (navigator.clipboard){ navigator.clipboard.writeText(text).then(function(){ alert('결과가 복사됐어요! 친구에게 붙여넣어 보세요.'); }); }
+      var text = UI.shareLine.replace('{name}', r.name).replace('{sub}', r.sub) + String.fromCharCode(10) + UI.shareHook;
+      if (navigator.share){ navigator.share({title:UI.shareTitle, text:text}).catch(function(){}); }
+      else if (navigator.clipboard){ navigator.clipboard.writeText(text).then(function(){ alert(UI.copied); }); }
       txEvent('quiz_share', {result:best});
     };
   }

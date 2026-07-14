@@ -3,26 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>페이지를 찾을 수 없어요 — 텍스토피아</title>
+<title data-i18n="404.meta.title">페이지를 찾을 수 없어요 — 텍스토피아</title>
 <link rel="stylesheet" href="assets/styles.css?v=6">
+<script src="assets/i18n.js?v=7"></script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23C96F8F' stroke-width='3'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='12' cy='20' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23C96F8F'/%3E%3C/svg%3E">
 </head>
 <body>
 <header class="gnb">
-  <a class="logo" href="index.html">텍스토피아<span class="dot"></span></a>
+  <a class="logo" href="index.html"><span data-i18n="common.drawer.brand">텍스토피아</span><span class="dot"></span></a>
   <div class="gnb-right"><button class="theme-toggle" aria-label="테마 전환">☾</button></div>
 </header>
 
 <main class="err-wrap">
-  <img class="err-art" src="assets/img/art-404.webp?v=6" alt="뜯어진 페이지를 꿰매는 이서">
-  <h1>이 페이지는 올이 풀렸나 봐요</h1>
-  <p>찾으시는 실은 여기 없지만, 이야기는 여전히 이어지고 있어요.</p>
+  <img class="err-art" src="assets/img/art-404.webp?v=6" alt="뜯어진 페이지를 꿰매는 이서" data-i18n-attr="alt:404.imgAlt">
+  <h1 data-i18n="404.h1">이 페이지는 올이 풀렸나 봐요</h1>
+  <p data-i18n="404.msg">찾으시는 실은 여기 없지만, 이야기는 여전히 이어지고 있어요.</p>
   <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
-    <a class="btn" href="index.html"><span class="btn-hole"></span>홈으로</a>
-    <a class="btn btn--ghost" href="read.html">무료 1화 읽기</a>
+    <a class="btn" href="index.html"><span class="btn-hole"></span><span data-i18n="404.home">홈으로</span></a>
+    <a class="btn btn--ghost" href="read.html" data-i18n="404.cta">무료 1화 읽기</a>
   </div>
 </main>
 
-<script src="assets/app.js?v=6"></script>
+<script src="assets/app.js?v=7"></script>
 </body>
 </html>
