@@ -206,10 +206,10 @@
 
   if (reduced){ setAct(4); bar.style.display='none'; skip.style.display='none'; }
   else {
+    if('scrollRestoration' in history) history.scrollRestoration='manual';
+    scrollTo(0,0);
     addEventListener('scroll', onScroll, {passive:true});
     onScroll();
-    // 재방문자(1화 진행 이력) 자동 스킵
-    if (localStorage.getItem('tx-read-pos')) hero.scrollIntoView({block:'end'});
   }
   skip.addEventListener('click', () => { hero.scrollIntoView({block:'end', behavior:'smooth'}); });
   addEventListener('scroll', () => {
