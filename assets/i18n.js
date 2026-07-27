@@ -205,8 +205,8 @@ window.I18N.es = {"_label": "Español", "404": {"meta": {"title": "Página no en
   } catch(e){}
   // CJK 폰트 (일본어·중국어)
   var FONTS={
-    ja:{link:'https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap',css:":root{--font-display:'Noto Serif JP',serif;--font-serif:'Noto Serif JP',serif;--font-ui:'Noto Sans JP',-apple-system,sans-serif}"},
-    zh:{link:'https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap',css:":root{--font-display:'Noto Serif SC',serif;--font-serif:'Noto Serif SC',serif;--font-ui:'Noto Sans SC',-apple-system,sans-serif}"}
+    ja:{link:'https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap',css:":root{--font-display:'Noto Serif JP',serif;--font-serif:'Noto Serif JP',serif;--font-ui:'Noto Sans JP',-apple-system,sans-serif}body,h1,h2,h3,p,div,span,a,li{word-break:normal!important;overflow-wrap:anywhere}"},
+    zh:{link:'https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap',css:":root{--font-display:'Noto Serif SC',serif;--font-serif:'Noto Serif SC',serif;--font-ui:'Noto Sans SC',-apple-system,sans-serif}body,h1,h2,h3,p,div,span,a,li{word-break:normal!important;overflow-wrap:anywhere}"}
   };
   if (FONTS[LANG]) { try {
     var _fl=document.createElement('link'); _fl.rel='stylesheet'; _fl.href=FONTS[LANG].link; document.head.appendChild(_fl);
