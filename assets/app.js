@@ -21,6 +21,12 @@ window.TX_SUPABASE = {
     });
     var nav = document.querySelector('.bottom-nav');
     if (nav){
+      if (!nav.querySelector('a[href="imagebook.html"]')){
+        var _ib=document.createElement('a'); _ib.href='imagebook.html';
+        _ib.innerHTML='<span class="ico">🖼️</span><span>'+((window.txT&&window.txT('common.nav.imagebook'))||'아트북')+'</span>';
+        var _cta=nav.querySelector('.cta');
+        if(_cta&&_cta.nextSibling){ nav.insertBefore(_ib,_cta.nextSibling); } else { nav.appendChild(_ib); }
+      }
       var last = scrollY;
       addEventListener('scroll', function(){
         nav.classList.toggle('hide', scrollY > last && scrollY > 140);
@@ -98,6 +104,7 @@ window.TX_SUPABASE = {
       + '<a class="d-link hot" href="quiz.html">'+t('common.drawer.quiz','나의 파트너 옷 찾기')+'<span class="d-badge">NEW</span></a>'
       + '<a class="d-link" href="world.html">'+t('common.drawer.world','세계관 · 대륙 지도')+'</a>'
       + '<a class="d-link" href="book.html">'+t('common.drawer.book','작품 소개')+'</a>'
+      + '<a class="d-link" href="imagebook.html">'+t('common.nav.imagebook','아트북')+'</a>'
       + '<a class="d-link" href="store.html">'+t('common.drawer.store','스토어')+'</a>'
       + '<a class="d-link" href="book.html#news">'+t('common.drawer.news','소식')+'</a>'
       + '<a class="d-link" href="book.html#about">'+t('common.drawer.about','우리 이야기')+'</a>'
