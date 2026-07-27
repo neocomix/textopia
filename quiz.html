@@ -16,8 +16,9 @@
 .q-title{font-family:var(--font-display);font-size:clamp(20px,4.6vw,26px);line-height:1.5;margin-bottom:22px}
 .q-opt{display:block;width:100%;text-align:left;margin-bottom:12px;padding:16px 18px;border:1.5px dashed var(--stitch);border-radius:10px;background:var(--surface);color:var(--ink);font-size:15px;font-family:var(--font-ui);cursor:pointer;transition:all .15s var(--ease)}
 .q-opt:hover{border-style:solid;border-color:var(--accent);transform:translateX(4px)}
-.res-swatch{width:110px;height:110px;border-radius:50%;margin:0 auto 16px;border:3px solid var(--stitch);position:relative;overflow:hidden}
-.res-swatch::after{content:'';position:absolute;inset:6px;border:1.5px dashed rgba(255,255,255,.55);border-radius:50%;z-index:1;pointer-events:none}
+.res-img{width:100%;aspect-ratio:4/3;border-radius:12px;margin:0 auto 20px;border:1.5px solid var(--stitch);box-shadow:var(--shadow-card);position:relative;overflow:hidden;background:var(--surface)}
+.res-img::after{content:'';position:absolute;inset:7px;border:1.5px dashed rgba(255,255,255,.5);border-radius:8px;z-index:1;pointer-events:none}
+.res-img img{width:100%;height:100%;object-fit:cover;display:block}
 .res-name{font-family:var(--font-display);font-size:26px;text-align:center;margin-bottom:4px}
 .res-sub{text-align:center;color:var(--accent);font-weight:700;font-size:13.5px;letter-spacing:.1em;margin-bottom:16px}
 .res-desc{line-height:1.85;color:var(--ink-soft);margin-bottom:18px}
@@ -130,7 +131,7 @@
     var r = R[best];
     txEvent('quiz_done', {result:best});
     box.innerHTML = '<div class="card fade-in" style="text-align:center;padding:34px 26px">'
-      + '<div class="res-swatch" style="background:'+COLORS[best]+'"><img src="assets/img/'+IMG[best]+'.webp" alt="" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:'+(POS[best]||'center')+'"></div>'
+      + '<div class="res-img" style="background:'+COLORS[best]+'"><img src="assets/img/'+IMG[best]+'.webp" alt="" loading="lazy" onerror="this.remove()" style="width:100%;height:100%;object-fit:cover;object-position:'+(POS[best]||'center')+'"></div>'
       + '<p class="res-sub">'+r.sub+'</p><h1 class="res-name">'+r.name+'</h1>'
       + '<p class="res-desc">'+r.desc+'</p>'
       + '<p class="res-meta"><b>'+UI.mateLabel+'</b> '+r.mate+'<br><b>'+UI.spotLabel+'</b> '+r.spot+'</p>'
