@@ -10,7 +10,7 @@ window.I18N = window.I18N || {};
 window.I18N.ko = {
   _label: "한국어",
   common: {
-    nav: { world: "세계관", book: "작품", news: "소식", about: "이야기", read: "무료 1화 읽기" },
+    nav: { world: "세계관", book: "작품", imagebook: "이미지북", news: "소식", about: "이야기", read: "무료 1화 읽기" },
     bottom: { world: "세계관", book: "작품", read: "무료 1화", quiz: "퀴즈" },
     drawer: {
       brand: "텍스토피아", home: "홈", read: "무료 1화 읽기", quiz: "나의 파트너 옷 찾기",
@@ -81,7 +81,7 @@ window.I18N.ko = {
 window.I18N.en = {
   _label: "English",
   common: {
-    nav: { world: "World", book: "The Books", news: "News", about: "About", read: "Read Chapter 1 — Free" },
+    nav: { world: "World", book: "The Books", imagebook: "Image Book", news: "News", about: "About", read: "Read Chapter 1 — Free" },
     bottom: { world: "World", book: "Books", read: "Free Ch.1", quiz: "Quiz" },
     drawer: {
       brand: "Textopia", home: "Home", read: "Read Chapter 1 — Free", quiz: "Find your partner garment",
