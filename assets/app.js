@@ -27,6 +27,14 @@ window.TX_SUPABASE = {
         var _cta=nav.querySelector('.cta');
         if(_cta&&_cta.nextSibling){ nav.insertBefore(_ib,_cta.nextSibling); } else { nav.appendChild(_ib); }
       }
+      // 옷의 기억(이서의 리딩) — 히어로 기능, 무료1화 바로 옆에 노출
+      if (!nav.querySelector('a[href="reading.html"]')){
+        var _rd=document.createElement('a'); _rd.href='reading.html';
+        _rd.innerHTML='<span class="ico">🧶</span><span style="white-space:nowrap">'+((window.txT&&window.txT('common.nav.reading'))||'옷의 기억')+'</span>';
+        if(location.pathname.replace(/^\//,'').indexOf('reading')===0) _rd.className='active';
+        var _cta2=nav.querySelector('.cta');
+        if(_cta2&&_cta2.nextSibling){ nav.insertBefore(_rd,_cta2.nextSibling); } else { nav.appendChild(_rd); }
+      }
       var last = scrollY;
       addEventListener('scroll', function(){
         nav.classList.toggle('hide', scrollY > last && scrollY > 140);
