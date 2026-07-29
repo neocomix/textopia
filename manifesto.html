@@ -118,7 +118,7 @@
       <div class="mf-pr"><div class="no">01</div><div><h3 data-k="p1h">이야기를 먼저.</h3><p data-k="p1p">버리기 전에, 그 옷의 기억을 먼저 읽습니다. ‘이서의 리딩’으로 옷 한 벌의 사연을 남기는 문화를 만들어요. 버리는 손을 잠깐 멈추게 하는 한 문장을.</p></div></div>
       <div class="mf-pr"><div class="no">02</div><div><h3 data-k="p2h">만들지 않고, 전합니다.</h3><p data-k="p2p">텍스토피아의 굿즈는 재고도 폐기도 없는 <b style="color:#F0C079">디지털에서 출발</b>합니다. 태워질 물건을 새로 만들지 않는 것 — 그것이 옷 이야기를 파는 우리가 지켜야 할 최소한이라 믿어요.</p></div></div>
       <div class="mf-pr"><div class="no">03</div><div><h3 data-k="p3h">버리지 않고, 잇습니다.</h3><p data-k="p3p">옷을 쓰레기가 아니라 다음 사람에게. 옷의 기억을 이야기와 함께 이어주는 순환 — 중고·업사이클·리폼을 텍스토피아의 방식으로 준비하고 있어요.</p></div></div>
-      <div class="mf-pr"><div class="no">04</div><div><h3 data-k="p4h">받은 것을, 되돌립니다.</h3><p data-k="p4p">이야기로 얻은 것의 일부를 다시 옷과 지구로. 수익의 일부를 의류 순환과 수선 문화에 돌려보내는 것을, 우리의 약속으로 삼으려 합니다.</p></div></div>
+      <div class="mf-pr"><div class="no">04</div><div><h3 data-k="p4h">받은 것을, 되돌립니다.</h3><p data-k="p4p">이야기로 얻은 것의 일부를 다시 옷과 지구로. <b style="color:#F0C079">매출의 1%</b>를 의류 순환과 수선 문화에 돌려보내는 것을, 우리의 약속으로 삼습니다.</p></div></div>
     </div>
   </div>
   </div>
@@ -167,9 +167,11 @@
 <script src="assets/app.js?v=8"></script>
 <script>
 (function(){
-  var lang=((window.txLang||document.documentElement.lang||'ko')+'').slice(0,2); if(lang!=='ko') lang='en';
+  var lang=((window.txLang||document.documentElement.lang||'ko')+'').slice(0,2);
+  if(['ko','en','ja','zh','es'].indexOf(lang)<0) lang='en';
   if(lang==='ko') return;
-  var EN={
+  var DICT={};
+  DICT.en={
     nav_promise:'Our Promise',
     hero_badge:'The Textopia Promise',
     hero_h1:'The most beautiful clothes in the world<br><span class="em">are already beside you.</span>',
@@ -204,7 +206,7 @@
     p3h:'We pass on, we don’t throw out.',
     p3p:'Clothes to the next person, not the bin. We’re building circulation — resale, upcycling, reform — that passes a garment on together with its story, the Textopia way.',
     p4h:'We give back.',
-    p4p:'A share of what our stories earn, returned to clothing and the planet. We intend to make giving part of our revenue — to textile circulation and repair culture — a standing promise.',
+    p4p:'A share of what our stories earn, returned to clothing and the planet. We pledge <b style="color:#F0C079">1% of our revenue</b> to textile circulation and repair culture.',
     cta_h2:'Let’s tie the thread, together',
     cta_lead:'Your clothes have stories too. Before you let them go, read one.',
     cta_b1:'Leave a garment’s memory', cta_b2:'Join us · Get news',
@@ -212,8 +214,138 @@
     src_1:'Global textile waste, recycling rate & lost value',
     src_2:'Korea textile waste', src_3:'Emotional durability', src_4:'Resale market'
   };
-  Object.keys(EN).forEach(function(k){ var el=document.querySelector('[data-k="'+k+'"]'); if(el) el.innerHTML=EN[k]; });
-  document.documentElement.lang='en';
+  DICT.ja={
+    nav_promise:'私たちの約束',
+    hero_badge:'テキストピアの約束',
+    hero_h1:'世界でいちばん美しい服は、<br><span class="em">もうあなたのそばにあります。</span>',
+    hero_lead:'新しく買わなくていいのです。長く着るほど、服はより多くの物語を抱きます。テキストピアは、まさにその——<b>服に宿る記憶</b>——から始まった物語です。',
+    prob_kick:'毎年、物語ごと捨てられています',
+    prob_h2:'捨てているのは布ではなく、<br>誰かの季節です。',
+    prob_p:'世界では毎年<b style="color:#F0C079">1億2千万トン</b>の衣類・繊維が捨てられています。その大半は焼却か埋立てで、新しい糸に生まれ変わるのは1%にも満たない。たとえば韓国でも毎年およそ11万トンの服が捨てられます。その中には、誰かの初出勤や最後の別れ、伸びた袖に染み込んだぬくもりが一緒に埋もれています。',
+    st1n:'1.2億トン', st1c:'世界で毎年捨てられる衣類・繊維(2024)',
+    st2n:'80%', st2c:'焼却または埋立てされる割合',
+    st3n:'1%未満', st3c:'新しい生地に再生される割合',
+    st4n:'1,500億ドル', st4c:'毎年失われる原材料の価値',
+    phil_kick:'服には記憶が宿る',
+    phil_h2:'いちばん環境にやさしい服は、<br>すでに存在している服です。',
+    phil_p1:'デザイン研究者ジョナサン・チャップマンはこれを<b>「感情的耐久性(emotional durability)」</b>と呼びました——愛するものほど、長く残る。素材を変えたりリサイクルを増やすことより、一着を大切に長く着させる<b>心</b>こそが、最も強い解決策だという考えです。',
+    phil_p2:'テキストピアの仕立て直し師<b>イソ</b>が服の記憶を読む物語は、実は私たちが皆すでに知っている真実から始まります。伸びた袖一つにも、誰かを何度も抱きしめた時間が残っている。長く着ることは古びることではなく、物語が深まることなのです。',
+    quote:'「最も環境負荷の少ない服は、おそらくすでに存在しているその服だ。」<span class="by">— 感情的耐久性デザイン、ジョナサン・チャップマン</span>',
+    mov_kick:'私たちは一人ではありません',
+    mov_h2:'やさしさは、すでに<br>世界の流れです。',
+    mov_p:'服を大切にし、直し、次へと渡すこと。これは郷愁ではなく、最も速く育つ未来です。世界のブランドがすでに証明しています。',
+    c1big:'パタゴニア', c1h:'「このジャケットを買わないで」',
+    c1p:'2011年のブラックフライデー、あるブランドは「買い控えて」と広告した。すると逆に信頼を得て、売上は30%伸び、2017年には年商10億ドルに。その中心には修理と再利用(Worn Wear)がありました。',
+    c2big:'RE;CODE · コーロン', c2h:'焼却ではなく、世界に一着',
+    c2p:'毎年焼却されていた数十億ウォン規模の在庫を、世界に一つだけの服へとアップサイクル。2012年に始まり、数万着を蘇らせ、修理・リフォームのアトリエも開きました。',
+    c3big:'リユース市場', c3h:'2030年、3,930億ドル',
+    c3p:'中古ファッションは新品の2倍の速さで成長し、2030年には約3,930億ドル規模に。その成長の70%をZ世代とミレニアル世代が牽引しています。',
+    mov_close:'服を大切にすることは感傷ではなく、最も速く育つ未来です。',
+    pr_kick:'だから私たちは', pr_h2:'テキストピアの四つの約束',
+    p1h:'まず、物語を。',
+    p1p:'捨てる前に、その服の記憶をまず読む。「イソのリーディング」で、一着ごとに物語を残す文化をつくります——捨てようとする手を、ほんの少し止めるひと言を。',
+    p2h:'つくらず、伝えます。',
+    p2p:'テキストピアのグッズは、在庫も廃棄もない<b style="color:#F0C079">デジタルから始まります</b>。焼かれる運命の物をこれ以上つくらないこと——服の物語を売る私たちが守るべき、最低限だと信じています。',
+    p3h:'捨てず、つなぎます。',
+    p3p:'服はゴミ箱ではなく、次の人へ。服の記憶を物語ごと受け渡す循環——中古・アップサイクル・リフォームを、テキストピアらしいやり方で準備しています。',
+    p4h:'受け取ったものを、還します。',
+    p4p:'物語で得たものの一部を、服と地球へ。<b style="color:#F0C079">売上の1%</b>を衣類の循環と修理文化に還元することを、私たちの約束とします。',
+    cta_h2:'いっしょに、糸をつなぎましょう',
+    cta_lead:'あなたの服にも物語があります。手放す前に、一度読んでみてください。',
+    cta_b1:'服の記憶を残す', cta_b2:'参加する · お知らせを受け取る',
+    src_h:'出典',
+    src_1:'世界の繊維廃棄・リサイクル率・損失価値',
+    src_2:'韓国の衣類廃棄', src_3:'感情的耐久性', src_4:'リユース市場'
+  };
+  DICT.zh={
+    nav_promise:'我们的承诺',
+    hero_badge:'Textopia 的承诺',
+    hero_h1:'世界上最美的衣服，<br><span class="em">早已在你身边。</span>',
+    hero_lead:'不必买新的。一件衣服穿得越久，承载的故事就越多。Textopia 正是从这一点开始的故事——<b>衣物里藏着的记忆</b>。',
+    prob_kick:'每一年，连同故事一起被丢弃',
+    prob_h2:'我们丢掉的不是布料，<br>而是某个人的一段时光。',
+    prob_p:'全球每年丢弃<b style="color:#F0C079">1.2 亿吨</b>衣物与纺织品，其中大部分被焚烧或填埋，能重生为新纤维的还不到 1%。仅在韩国，每年就有约 11 万吨衣物被丢弃。被一起埋葬的，还有某人的第一天上班、最后一次告别，以及那件被撑松的袖口里留存的温度。',
+    st1n:'1.2 亿吨', st1c:'全球每年丢弃的衣物与纺织品(2024)',
+    st2n:'80%', st2c:'其中被焚烧或填埋的比例',
+    st3n:'不到 1%', st3c:'被回收成新面料的比例',
+    st4n:'1500 亿美元', st4c:'每年白白流失的原料价值',
+    phil_kick:'衣物里住着记忆',
+    phil_h2:'最环保的衣服，<br>是已经存在的那一件。',
+    phil_p1:'设计学者乔纳森·查普曼称之为<b>“情感耐久性(emotional durability)”</b>——我们爱的东西，才会留下来。比起更换材料或增加回收，让人珍惜一件衣服、穿上许多年的那份<b>心意</b>，才是最有力的解方。',
+    phil_p2:'Textopia 的修补师<b>李绪</b>阅读衣物中的记忆——这个故事，其实始于我们早已知晓的真相。哪怕一只被撑松的袖子，也留着它一次次拥抱某人的时光。把衣服穿久，不是穿旧，而是让故事更深。',
+    quote:'“影响最小的那件衣服，也许正是已经存在的那一件。”<span class="by">— 乔纳森·查普曼，情感耐久性设计</span>',
+    mov_kick:'我们并不孤单',
+    mov_h2:'温柔，早已是<br>世界的方向。',
+    mov_p:'珍惜衣物、修补它、把它传下去——这不是怀旧，而是增长最快的未来。世界各地的品牌已经在证明这一点。',
+    c1big:'巴塔哥尼亚', c1h:'“别买这件夹克”',
+    c1p:'2011 年黑色星期五，一个品牌打出“少买一点”的广告，反而赢得信任——销售额增长 30%，到 2017 年成为年营收 10 亿美元的品牌。其核心，正是修补与再利用(Worn Wear)。',
+    c2big:'RE;CODE · 可隆', c2h:'不是焚烧，而是独一无二',
+    c2p:'曾经每年被焚烧的数十亿韩元库存，被升级再造为世上仅此一件的衣服。自 2012 年起，已让数万件衣物重获新生，还开设了修补与改制工坊。',
+    c3big:'二手市场', c3h:'到 2030 年，3930 亿美元',
+    c3p:'二手时尚的增速是新品的两倍，到 2030 年将达约 3930 亿美元——其中 70% 的增长由 Z 世代和千禧一代推动。',
+    mov_close:'珍惜衣物不是多愁善感，而是增长最快的未来。',
+    pr_kick:'所以，我们', pr_h2:'Textopia 的四个承诺',
+    p1h:'先，讲故事。',
+    p1p:'在丢弃之前，先读一读这件衣服的记忆。我们以“李绪的解读”打造一种为每件衣服留下故事的仪式——用一句话，让准备丢弃的手停一停。',
+    p2h:'我们讲述，不制造。',
+    p2p:'Textopia 的周边从<b style="color:#F0C079">数字开始——没有库存，没有废弃</b>。不再多造一件注定被焚烧的东西，是我们这些贩卖衣物故事的人，应守的底线。',
+    p3h:'我们传递，不丢弃。',
+    p3p:'衣服交给下一个人，而不是垃圾桶。我们正在打造一种循环——二手、升级再造、改制——把一件衣服连同它的故事一起传下去，以 Textopia 的方式。',
+    p4h:'我们回馈。',
+    p4p:'把故事所得的一部分，还给衣物与地球。我们承诺将<b style="color:#F0C079">营收的 1%</b>投入衣物循环与修补文化。',
+    cta_h2:'让我们一起，接上这根线',
+    cta_lead:'你的衣服也有故事。在放手之前，读一读它。',
+    cta_b1:'留下一件衣服的记忆', cta_b2:'加入我们 · 获取消息',
+    src_h:'来源',
+    src_1:'全球纺织废弃、回收率与损失价值',
+    src_2:'韩国衣物废弃', src_3:'情感耐久性', src_4:'二手市场'
+  };
+  DICT.es={
+    nav_promise:'Nuestra promesa',
+    hero_badge:'La promesa de Textopia',
+    hero_h1:'La ropa más hermosa del mundo<br><span class="em">ya está a tu lado.</span>',
+    hero_lead:'No necesitas comprar ropa nueva. Cuanto más la llevas, más historias guarda. Textopia es una historia que nació justo de ahí — <b>los recuerdos que guarda la ropa.</b>',
+    prob_kick:'Cada año se tira — con historias y todo',
+    prob_h2:'Lo que tiramos no es tela.<br>Es la estación de alguien.',
+    prob_p:'Cada año el mundo desecha <b style="color:#F0C079">120 millones de toneladas</b> de ropa y textiles. La mayoría se quema o se entierra, y menos del 1% renace como fibra nueva. Solo en Corea se tiran unas 110.000 toneladas al año. Con ellas se entierra: un primer día de trabajo, una última despedida, el calor impregnado en una manga ya dada de sí.',
+    st1n:'120 M ton', st1c:'Ropa y textiles desechados en el mundo cada año (2024)',
+    st2n:'80%', st2c:'Quemados o enviados a vertederos',
+    st3n:'menos del 1%', st3c:'Reciclados en tela nueva',
+    st4n:'150 mil M$', st4c:'Valor de materia prima perdido cada año',
+    phil_kick:'La ropa vive de recuerdos',
+    phil_h2:'La prenda más sostenible es<br>la que ya existe.',
+    phil_p1:'El académico del diseño Jonathan Chapman lo llamó <b>“durabilidad emocional”</b>: lo que amamos, lo conservamos. Más poderoso que mejores materiales o más reciclaje es el <b>afecto</b> que nos hace querer una prenda y llevarla durante años.',
+    phil_p2:'La zurcidora de Textopia, <b>Iseo</b>, lee los recuerdos que guarda la ropa — una historia que parte de una verdad que ya todos conocemos. Hasta una manga dada de sí guarda las horas que pasó abrazando a alguien. Llevar algo mucho tiempo no es gastarlo; es dejar que su historia se haga más honda.',
+    quote:'«La prenda de menor impacto es, probablemente, la que ya existe.»<span class="by">— Jonathan Chapman, sobre el diseño emocionalmente duradero</span>',
+    mov_kick:'No estamos solos',
+    mov_h2:'La ternura ya es<br>la dirección del mundo.',
+    mov_p:'Cuidar la ropa, repararla, pasarla a otros — no es nostalgia. Es el futuro que más rápido crece, y las marcas del mundo ya lo están demostrando.',
+    c1big:'Patagonia', c1h:'«No compres esta chaqueta»',
+    c1p:'En el Black Friday de 2011, una marca pidió comprar menos. Ganó confianza a cambio: sus ventas subieron un 30% y llegó a facturar mil millones en 2017. La reparación y la reutilización (Worn Wear) fueron su corazón.',
+    c2big:'RE;CODE · Kolon', c2h:'Piezas únicas, no la incineradora',
+    c2p:'Millones en excedentes que antes se quemaban cada año, transformados (upcycling) en piezas que no existen en ningún otro lugar. Desde 2012 ha revivido decenas de miles de prendas y abierto talleres de reparación y reforma.',
+    c3big:'El mercado de reventa', c3h:'393 mil M$ en 2030',
+    c3p:'La moda de segunda mano crece el doble de rápido que la nueva y alcanzará unos 393 mil millones en 2030 — con la generación Z y los millennials impulsando el 70% de ese crecimiento.',
+    mov_close:'Cuidar la ropa no es sentimentalismo — es el futuro que más rápido crece.',
+    pr_kick:'Por eso, esta es nuestra', pr_h2:'Las cuatro promesas de Textopia',
+    p1h:'Primero, la historia.',
+    p1p:'Antes de tirarla, leemos primero la memoria de la prenda. Con “La lectura de Iseo” creamos el ritual de dejar una historia para cada pieza — una frase que detiene la mano que iba a desechar.',
+    p2h:'Contamos, no fabricamos.',
+    p2p:'Los productos de Textopia nacen en <b style="color:#F0C079">digital — sin inventario, sin residuos</b>. No fabricar una cosa más destinada a arder es lo mínimo que debemos, como quienes vendemos historias sobre ropa.',
+    p3h:'Transmitimos, no tiramos.',
+    p3p:'La ropa a la siguiente persona, no al cubo. Construimos una circulación — reventa, upcycling, reforma — que pasa la prenda junto con su historia, al estilo de Textopia.',
+    p4h:'Devolvemos.',
+    p4p:'Una parte de lo que ganan nuestras historias, devuelta a la ropa y al planeta. Destinamos el <b style="color:#F0C079">1% de nuestros ingresos</b> a la circulación textil y la cultura de la reparación.',
+    cta_h2:'Unamos el hilo, juntos',
+    cta_lead:'Tu ropa también tiene historias. Antes de dejarla ir, lee una.',
+    cta_b1:'Deja el recuerdo de una prenda', cta_b2:'Únete · Recibe novedades',
+    src_h:'Fuentes',
+    src_1:'Residuos textiles globales, tasa de reciclaje y valor perdido',
+    src_2:'Residuos textiles de Corea', src_3:'Durabilidad emocional', src_4:'Mercado de reventa'
+  };
+  var T=DICT[lang]||DICT.en;
+  Object.keys(T).forEach(function(k){ var el=document.querySelector('[data-k="'+k+'"]'); if(el) el.innerHTML=T[k]; });
+  document.documentElement.lang=lang;
 })();
 </script>
 </body>
