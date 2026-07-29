@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>옷의 기억 · 이서의 리딩 — 텍스토피아</title>
+<meta name="description" content="버리기엔 아까운, 그런데 왜 못 버리는 옷. 그거, 이서에게 보내주세요. 제가 읽어드릴게요.">
+<link rel="stylesheet" href="assets/styles.css?v=6">
+<script src="assets/i18n.js?v=8"></script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23C96F8F' stroke-width='3'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='12' cy='20' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23C96F8F'/%3E%3C/svg%3E">
+<style>
+.rd-wrap{max-width:600px;margin:0 auto;padding:30px 18px 110px}
+.rd-hero{text-align:center;margin-bottom:24px}
+.rd-kicker{font-size:11.5px;letter-spacing:.22em;color:var(--accent);font-weight:800;text-transform:uppercase}
+.rd-hero h1{font-family:var(--font-display);font-size:clamp(26px,6vw,36px);margin:8px 0 6px}
+.rd-hero p{color:var(--ink-soft);font-size:14.5px;max-width:400px;margin:0 auto;line-height:1.7}
+.rd-card{background:var(--surface);border:1.5px dashed var(--stitch);border-radius:14px;padding:18px 18px 20px;margin-bottom:14px}
+.rd-q{font-size:13px;font-weight:800;color:var(--primary);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.rd-q .n{width:19px;height:19px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;display:grid;place-items:center;font-weight:800;flex:none}
+.rd-q .opt{font-size:11px;color:var(--ink-soft);font-weight:600;margin-left:auto}
+.rd-chips{display:flex;flex-wrap:wrap;gap:7px}
+.rd-chip{border:1.4px solid var(--stitch);background:var(--bg);color:var(--ink);border-radius:22px;padding:7px 13px;font-size:13.5px;cursor:pointer;transition:all var(--dur-fast) var(--ease);font-weight:600;font-family:var(--font-ui)}
+.rd-chip:hover{border-color:var(--accent)}
+.rd-chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.rd-wrap input[type=text],.rd-wrap textarea{width:100%;border:1.4px solid var(--stitch);border-radius:10px;padding:11px 12px;font:inherit;font-size:14.5px;background:var(--bg);color:var(--ink);font-family:var(--font-ui);resize:vertical}
+.rd-wrap input:focus,.rd-wrap textarea:focus{outline:none;border-color:var(--accent)}
+.rd-hint{font-size:11.5px;color:var(--ink-soft);margin-top:6px}
+.rd-send{width:100%;border:none;border-radius:12px;background:var(--primary);color:#fff;padding:15px;font-size:15.5px;font-weight:800;cursor:pointer;margin-top:4px;font-family:var(--font-ui);transition:transform var(--dur-fast) var(--ease)}
+.rd-send:active{transform:scale(.98)}
+.rd-err{color:var(--accent);font-size:12.5px;text-align:center;margin-top:9px;min-height:15px;font-weight:600}
+.rd-stage{margin-top:6px}
+.rd-loading{text-align:center;padding:56px 0;color:var(--ink-soft);font-family:var(--font-display)}
+.rd-needle{width:32px;height:32px;margin:0 auto 15px;border:3px solid var(--stitch);border-top-color:var(--accent);border-radius:50%;animation:rdspin 1s linear infinite;opacity:.7}
+@keyframes rdspin{to{transform:rotate(360deg)}}
+.rd-result{animation:rdrise .6s var(--ease)}
+@keyframes rdrise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.rd-mem{border-radius:18px;overflow:hidden;box-shadow:0 20px 50px -20px rgba(58,55,48,.45);border:1px solid rgba(0,0,0,.05)}
+.rd-art{padding:28px 24px 16px;color:#fff;position:relative}
+.rd-art::after{content:'';position:absolute;inset:9px;border:1px dashed rgba(255,255,255,.4);border-radius:12px;pointer-events:none}
+.rd-mk{font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.85;font-weight:800}
+.rd-title{font-family:var(--font-display);font-size:25px;font-weight:800;margin:5px 0 0;line-height:1.3}
+.rd-body{background:var(--surface);padding:22px 24px 18px}
+.rd-reading{font-family:var(--font-serif);font-size:16.5px;line-height:1.95;color:var(--ink);white-space:pre-wrap}
+.rd-sign{margin-top:14px;font-size:13px;color:var(--ink-soft);text-align:right}
+.rd-foot{display:flex;align-items:center;justify-content:space-between;padding:11px 24px 14px;background:var(--surface);border-top:1px dashed var(--stitch)}
+.rd-brand{font-size:12px;color:var(--ink-soft);font-weight:700}
+.rd-brand b{color:var(--accent)}
+.rd-safe .rd-art{background:linear-gradient(135deg,#4a6b8a,#2d4a63)!important}
+.rd-safebox{background:var(--bg);border:1.4px solid var(--stitch);border-radius:11px;padding:13px 15px;margin-top:13px;font-size:13.5px;color:var(--primary);line-height:1.7}
+.rd-safebox b{color:var(--accent)}
+.rd-optin{display:flex;align-items:center;gap:9px;margin-top:14px;padding:12px 14px;background:var(--bg);border-radius:11px;font-size:13px;color:var(--ink-soft);cursor:pointer}
+.rd-optin input{width:17px;height:17px;accent-color:var(--accent);flex:none}
+.rd-actions{display:flex;gap:9px;margin-top:14px}
+.rd-actions button,.rd-actions a{flex:1;border-radius:11px;padding:12px;font-size:14px;font-weight:800;cursor:pointer;border:1.5px solid var(--stitch);background:var(--surface);color:var(--ink);text-align:center;text-decoration:none;font-family:var(--font-ui)}
+.rd-actions .pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.rd-toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%) translateY(16px);background:var(--primary);color:#fff;padding:10px 18px;border-radius:22px;font-size:13px;opacity:0;pointer-events:none;transition:all .3s var(--ease);font-weight:600;z-index:50}
+.rd-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.rd-hidden{display:none!important}
+</style>
+</head>
+<body>
+<header class="gnb">
+  <a class="logo" href="index.html"><span data-i18n="common.drawer.brand">텍스토피아</span><span class="dot"></span></a>
+  <nav class="gnb-menu">
+    <a href="world.html" data-i18n="common.nav.world">세계관</a>
+    <a href="reading.html" style="color:var(--primary)">옷의 기억</a>
+    <a href="book.html" data-i18n="common.nav.book">작품</a>
+    <a class="btn btn--sm" href="read.html"><span class="btn-hole"></span><span data-i18n="common.nav.read">무료 1화 읽기</span></a>
+  </nav>
+  <div class="gnb-right"><button class="theme-toggle" aria-label="테마 전환">☾</button></div>
+</header>
+
+<main class="rd-wrap">
+  <div class="rd-hero">
+    <div class="rd-kicker" id="rdKicker">TEXTOPIA · 이서의 리딩</div>
+    <h1 id="rdH1">옷의 기억, 이서가 읽어드려요</h1>
+    <p id="rdSub">버리기엔 아까운, 그런데 왜 못 버리는 옷. 그거, 이서에게 보내주세요. 제가 읽어드릴게요.</p>
+  </div>
+
+  <div id="rdForm">
+    <div class="rd-card"><div class="rd-q"><span class="n">1</span><span id="lq1">이 옷은 어떤 옷인가요?</span></div><div class="rd-chips" data-group="garment"></div></div>
+    <div class="rd-card"><div class="rd-q"><span class="n">2</span><span id="lq2">지금 이 옷의 모습은?</span><span class="opt" id="lopt2">선택</span></div><div class="rd-chips" data-group="wear"></div></div>
+    <div class="rd-card"><div class="rd-q"><span class="n">3</span><span id="lq3">이 옷엔 누가 함께 있나요?</span></div><div class="rd-chips" data-group="relation"></div></div>
+    <div class="rd-card"><div class="rd-q"><span class="n">4</span><span id="lq4">언제의 옷인가요?</span><span class="opt" id="lopt4">선택</span></div><div class="rd-chips" data-group="era"></div></div>
+    <div class="rd-card"><div class="rd-q"><span class="n">5</span><span id="lq5">지금 이 옷을 보면?</span></div><div class="rd-chips" data-group="emotion"></div></div>
+    <div class="rd-card"><div class="rd-q"><span class="n">6</span><span id="lq6">이 옷은 지금?</span><span class="opt" id="lopt6">선택</span></div><div class="rd-chips" data-group="status"></div></div>
+    <div class="rd-card"><div class="rd-q"><span class="n">7</span><span id="lq7">이 옷을 한 단어로 부른다면?</span><span class="opt" id="lopt7">선택 · 강력</span></div><input type="text" id="rdWord" maxlength="20" placeholder="예: 보풀, 봄, 파랑"></div>
+    <div class="rd-card"><div class="rd-q"><span class="n">8</span><span id="lq8">짧은 사연이 있다면 들려주세요.</span><span class="opt" id="lopt8">선택</span></div><textarea id="rdStory" rows="3" placeholder="예: 엄마가 떠주신 스웨터, 소매가 다 늘어났는데 못 버리겠어요."></textarea><div class="rd-hint" id="rdHint">이서가 당신의 말 한마디를 리딩에 엮어드려요.</div></div>
+    <button class="rd-send" id="rdSend">이서에게 보내기</button>
+    <div class="rd-err" id="rdErr"></div>
+  </div>
+
+  <div class="rd-stage rd-hidden" id="rdStage"></div>
+  <p class="rd-hint" style="text-align:center;margin-top:24px" id="rdNote">지금은 데모 리딩(로컬)입니다. 정식 서비스는 이서가 직접 읽어드려요. 입력은 저장·전송되지 않습니다.</p>
+</main>
+
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand"><b data-i18n="common.drawer.brand">텍스토피아</b><br><span data-i18n="common.footer.brandDesc">옷이 살아 숨 쉬는 세계. 버려진 것들의 두 번째 이야기.</span></div>
+    <div><b data-i18n="common.footer.exploreH">둘러보기</b><br><a class="stitch-link" href="world.html" data-i18n="common.footer.world">세계관</a><br><a class="stitch-link" href="reading.html">옷의 기억</a><br><a class="stitch-link" href="wall.html">기억의 벽</a><br><a class="stitch-link" href="read.html" data-i18n="common.footer.read">무료 1화</a></div>
+    <div><b data-i18n="common.footer.policyH">약관·정책</b><br><a class="stitch-link" href="terms.html" data-i18n="common.footer.terms">이용약관</a><br><a class="stitch-link" href="privacy.html" data-i18n="common.footer.privacy">개인정보처리방침</a></div>
+  </div>
+  <div class="ft-bottom" data-i18n="common.footer.bottom">ⓒ 2026 Orsion. 오늘 당신의 옷은, 행복한가요?</div>
+</footer>
+
+<nav class="bottom-nav">
+  <a href="world.html"><span class="ico">🧵</span><span data-i18n="common.bottom.world">세계관</span></a>
+  <a href="reading.html" class="active"><span class="ico">🧶</span>옷의 기억</a>
+  <a class="cta" href="read.html"><span class="pill" data-i18n="common.bottom.read">무료 1화</span></a>
+  <a href="wall.html"><span class="ico">🪡</span>기억의 벽</a>
+</nav>
+
+<div class="rd-toast" id="rdToast"></div>
+
+<script src="assets/app.js?v=7"></script>
+<script>
+(function(){
+  function TX(p,fb){ var v=window.txT?window.txT(p):null; return v==null?fb:v; }
+  var lang=((window.txLang||document.documentElement.lang||'ko')+'').slice(0,2);
+  if(lang!=='ko') lang='en'; // 데모 UI/리딩은 ko·en 지원, ja/zh/es는 en 폴백(정식은 LLM이 원어 처리)
+
+  var OPTS={
+    garment:[["knit","니트","Knit"],["coat","코트","Coat"],["dress","원피스","Dress"],["shirt","셔츠","Shirt"],["jeans","청바지","Jeans"],["shoes","신발","Shoes"],["scarf","스카프","Scarf"],["bag","가방","Bag"],["uniform","교복·유니폼","Uniform"],["baby","아기옷","Baby"],["etc","기타","Other"]],
+    wear:[["new","새것같음","Like new"],["old","많이 낡음","Well-worn"],["stain","얼룩·자국","Stained"],["frayed","헤짐·늘어남","Frayed"]],
+    relation:[["self","나 자신","Myself"],["parent","부모","A parent"],["grand","조부모","Grandparent"],["lover","연인·배우자","Partner"],["friend","친구","A friend"],["child","자녀","My child"],["gone","떠난 사람","Someone gone"],["stranger","모르는 사람","A stranger"]],
+    era:[["child","어린시절","Childhood"],["school","학창시절","School days"],["youth","청춘","Younger years"],["recent","최근","Recently"],["longago","아주 오래전","Long ago"]],
+    emotion:[["longing","그리움","Longing"],["love","사랑","Love"],["regret","후회","Regret"],["comfort","위로","Comfort"],["pride","자부심","Pride"],["growth","성장·이별","Growth"],["thanks","감사","Gratitude"]],
+    status:[["kept","아직 간직","Still keeping"],["passed","떠나보냄","Passed on"],["almost","버리려다 멈춤","Almost let go"]]
+  };
+  var sel={garment:null,wear:null,relation:null,era:null,emotion:null,status:null};
+  var TONE={knit:"#B98A4A",coat:"#6B4A2B",dress:"#C96F8F",shirt:"#5E7B9E",jeans:"#28456E",shoes:"#4A4A4A",scarf:"#8F5A7E",bag:"#7A6A55",uniform:"#3E6B5A",baby:"#D9A7B0",etc:"#8A6D4A"};
+
+  function chips(){
+    document.querySelectorAll('.rd-chips[data-group]').forEach(function(box){
+      var g=box.dataset.group; box.innerHTML='';
+      OPTS[g].forEach(function(o){
+        var el=document.createElement('button');
+        el.className='rd-chip'+(sel[g]===o[0]?' on':'');
+        el.textContent=lang==='ko'?o[1]:o[2];
+        el.onclick=function(){ sel[g]=sel[g]===o[0]?null:o[0]; chips(); };
+        box.appendChild(el);
+      });
+    });
+  }
+  var UITEXT={
+    ko:{kicker:"TEXTOPIA · 이서의 리딩",h1:"옷의 기억, 이서가 읽어드려요",sub:"버리기엔 아까운, 그런데 왜 못 버리는 옷. 그거, 이서에게 보내주세요. 제가 읽어드릴게요.",
+        q1:"이 옷은 어떤 옷인가요?",q2:"지금 이 옷의 모습은?",q3:"이 옷엔 누가 함께 있나요?",q4:"언제의 옷인가요?",q5:"지금 이 옷을 보면?",q6:"이 옷은 지금?",q7:"이 옷을 한 단어로 부른다면?",q8:"짧은 사연이 있다면 들려주세요.",
+        opt:"선택",optStrong:"선택 · 강력",hint:"이서가 당신의 말 한마디를 리딩에 엮어드려요.",note:"지금은 데모 리딩(로컬)입니다. 정식 서비스는 이서가 직접 읽어드려요. 입력은 저장·전송되지 않습니다.",send:"이서에게 보내기",phWord:"예: 보풀, 봄, 파랑",phStory:"예: 엄마가 떠주신 스웨터, 소매가 다 늘어났는데 못 버리겠어요."},
+    en:{kicker:"TEXTOPIA · THE MENDER'S READING",h1:"Iseo reads the memory in your clothes",sub:"That garment you can't throw away, though you've tried. Send it to Iseo — she'll read it for you.",
+        q1:"What is this garment?",q2:"How does it look now?",q3:"Who lives in it?",q4:"From when?",q5:"When you see it now?",q6:"And now, this garment is…",q7:"One word for it?",q8:"Tell its short story, if you'd like.",
+        opt:"optional",optStrong:"optional · powerful",hint:"Iseo will weave your own words into the reading.",note:"This is a local demo reading; the real service is written by Iseo. Nothing is stored or sent.",send:"Send to Iseo",phWord:"e.g. blue, spring",phStory:"e.g. His shirt. I kept it three years. I think I'm ready now."}
+  };
+  function setT(id,v){var e=document.getElementById(id); if(e)e.textContent=v;}
+  function applyText(){var u=UITEXT[lang];
+    setT('rdKicker',u.kicker);setT('rdH1',u.h1);setT('rdSub',u.sub);
+    setT('lq1',u.q1);setT('lq2',u.q2);setT('lq3',u.q3);setT('lq4',u.q4);setT('lq5',u.q5);setT('lq6',u.q6);setT('lq7',u.q7);setT('lq8',u.q8);
+    setT('lopt2',u.opt);setT('lopt4',u.opt);setT('lopt6',u.opt);setT('lopt7',u.optStrong);setT('lopt8',u.opt);
+    setT('rdHint',u.hint);setT('rdNote',u.note);setT('rdSend',u.send);
+    var w=document.getElementById('rdWord'); if(w)w.placeholder=u.phWord;
+    var s=document.getElementById('rdStory'); if(s)s.placeholder=u.phStory;
+  }
+  applyText(); chips();
+  (function localizeNav(){ var L={ 'reading.html':{ko:'옷의 기억',en:'Memories in Cloth'}, 'wall.html':{ko:'기억의 벽',en:'Wall of Memories'} };
+    document.querySelectorAll('a[href="reading.html"],a[href="wall.html"]').forEach(function(a){ var m=L[a.getAttribute('href')]; if(!m)return;
+      for(var i=a.childNodes.length-1;i>=0;i--){ var n=a.childNodes[i]; if(n.nodeType===3 && n.nodeValue.trim()){ n.nodeValue=m[lang]; break; } } }); })();
+
+  var CRISIS=[/죽(고|어|을|자)/,/사라지고\s*싶/,/끝내(버|고)/,/자해/,/살기\s*싫/,/kill myself/i,/end it all/i,/want to (die|disappear)/i,/suicide/i];
+  function isCrisis(s){ return CRISIS.some(function(r){return r.test(s||"");}); }
+
+  var FRAG={ko:{
+   M1:{knit:"당신은 이 니트를 손끝으로 먼저 알아보는군요. 오래 만진 옷이 그렇죠.",coat:"어깨의 결이 이미 한 사람의 모양을 기억하고 있네요.",dress:"이 원피스에는 어떤 하루가 통째로 접혀 있어요.",shirt:"이 셔츠는 입던 사람보다 더 멀리 왔네요.",jeans:"많이 접히고 펴진 천이에요. 무릎 자리가 당신의 하루를 아는군요.",shoes:"이 신발은 당신이 걸어온 길을 밑창으로 기억해요.",scarf:"가볍지만, 목에 감기던 온기는 가볍지 않았겠죠.",bag:"많은 것을 담고도 아무 말 없던 물건이네요.",uniform:"이 옷엔 어떤 한 시절이 통째로 배어 있어요.",baby:"이 옷은… 참 작네요. 손바닥 위에 다 담기는.",etc:"오래 곁에 둔 물건은, 만지면 먼저 알아요."},
+   M2:{child:"어린 계절의 냄새가 아직 배어 있어요.",school:"교실 창가의 빛 같은 게 남아 있네요.",youth:"가장 겁 없이 빛나던 시절의 색이에요.",recent:"아직 온기가 다 식지 않았어요.",longago:"아주 오래전의 공기가 접혀 있네요."},
+   M3:{self:"여기 깃든 건 다름 아닌 당신이에요. 그때의 당신을 이 옷이 붙들고 있죠.",parent:"여기, 당신이 따뜻하길 바라며 애쓴 손이 있어요.",grand:"한 생을 건너온 사람의 등이 여기 남아 있어요.",lover:"이 솔기 안에 한때 누군가가 살았어요. 당신은 작은 것들로 그를 사랑했고요.",friend:"나란히 걷던 어깨가 이 천에 기대 있어요.",child:"짧았대도 온전했던 하나의 시간이 여기 담겨 있어요.",gone:"떠난 이의 온기가, 아직 이 천에 머물러 있네요.",stranger:"당신은 모르는 이의 기억까지 받아 안았군요."},
+   M4:{longing:"그래서 놓지 못하는 거예요. 이건 옷이 아니라 아직 곁에 남은 온기니까.",love:"사랑은 길이로 재는 것이 아니었죠. 이 옷이 그걸 알아요.",regret:"다 여미지 못한 마음이 소맷단에 남아 있네요. 그래도 괜찮아요.",comfort:"지친 날, 이 옷이 당신을 대신 안아줬군요.",pride:"당신이 여기까지 온 증거예요. 낡음은 흠이 아니라 훈장이고요.",growth:"이 옷을 지나 당신은 조금 더 자랐어요. 이별도 성장의 다른 이름이죠.",thanks:"고맙다는 말을, 이 천이 대신 오래 품고 있었네요."},
+   M5:{kept:"제가 실을 다시 여며 둘게요. 이대로, 그대로 두고요.",passed:"해진 끝단을 여며 다음 길로 보낼게요. 다음 겨울도 따뜻하기를.",almost:"버리지 않아도 돼요. 오늘은 그냥, 한 번 더 안아만 주세요."}
+  },en:{
+   M1:{knit:"You know this knit by your fingertips before your eyes — worn things are like that.",coat:"Its shoulders already remember the shape of one person.",dress:"A whole day sits folded into this dress.",shirt:"This shirt has traveled further than the one who wore it.",jeans:"Cloth folded and unfolded many times; the knees know your days.",shoes:"These shoes remember your road in their soles.",scarf:"Light — but the warmth once wound at your neck was not.",bag:"A quiet thing that held so much and said nothing.",uniform:"A whole season is soaked into this cloth.",baby:"This one is… so small. It fits in the palm of a hand.",etc:"A thing kept close — your hands know it first."},
+   M2:{child:"The scent of an early season still lingers.",school:"Something like classroom-window light remains.",youth:"The color of your most fearless years.",recent:"Its warmth hasn't fully cooled.",longago:"The air of long ago is folded in."},
+   M3:{self:"What lives here is you — the you of then, held by this cloth.",parent:"Here, a pair of hands that tried so hard to keep you warm.",grand:"The back of someone who crossed a whole life stays here.",lover:"Someone lived inside these seams once; you loved them in small things.",friend:"A shoulder that walked beside you leans into this cloth.",child:"A time short but whole is gathered here.",gone:"The warmth of someone gone still rests in this cloth.",stranger:"You took in even a stranger's memory."},
+   M4:{longing:"That's why you can't let go — not a garment, but a warmth still beside you.",love:"Love was never measured in length; this cloth knows that.",regret:"An unfinished feeling stays in the cuff. And that's alright.",comfort:"On tired days, this held you when no one else could.",pride:"Proof of how far you've come — the wear is a medal, not a flaw.",growth:"Past this garment you grew a little; parting is another word for growth.",thanks:"A thank-you this cloth has carried quietly, for a long time."},
+   M5:{kept:"Let me tuck the threads back in, and leave it just as it is.",passed:"I'll hem the frayed edge and send it on — may its next winter be warm.",almost:"You don't have to let it go. Today, just hold it once more."}
+  }};
+  var TITLE={ko:{longing:"아직 남은 온기",love:"사랑의 길이",regret:"여미지 못한 소맷단",comfort:"대신 안아준 옷",pride:"여기까지의 증거",growth:"지나온 자리",thanks:"오래 품은 말"},
+             en:{longing:"A Warmth Still Here",love:"The Length of Love",regret:"The Unfinished Cuff",comfort:"The Cloth That Held You",pride:"Proof of the Road",growth:"The Place You Passed",thanks:"A Long-Kept Thank-You"}};
+
+  function compose(){
+    var F=FRAG[lang], g=sel.garment||'etc', w=document.getElementById('rdWord').value.trim();
+    var m2=F.M2[sel.era||'recent']; if(w){ m2+= lang==='ko'?(' 당신이 "'+w+'"이라 부른 그것이, 지나온 계절의 지문 같네요.'):(' the "'+w+'" you named it by — like a fingerprint of a season you walked through.'); }
+    var m5=F.M5[sel.status||'kept']; if(w){ m5+= lang==='ko'?(' "'+w+'"도 그대로요.'):(' The "'+w+'" too, just as it is.'); }
+    return [F.M1[g],m2,F.M3[sel.relation||'self'],F.M4[sel.emotion||'longing'],m5].join(" ");
+  }
+  function shade(hex){var n=parseInt(hex.slice(1),16),r=Math.max(0,(n>>16)-30),g=Math.max(0,((n>>8)&255)-30),b=Math.max(0,(n&255)-30);return '#'+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1);}
+
+  var stage=document.getElementById('rdStage'),form=document.getElementById('rdForm'),toastEl=document.getElementById('rdToast');
+  function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(function(){toastEl.classList.remove('show');},1900);}
+
+  document.getElementById('rdSend').onclick=function(){
+    var err=document.getElementById('rdErr');
+    if(!sel.garment||!sel.relation||!sel.emotion){ err.textContent=lang==='ko'?'옷 · 사람 · 마음은 골라주세요.':'Please pick garment, person, and feeling.'; return; }
+    err.textContent='';
+    if(window.txEvent) txEvent('reading_submit',{garment:sel.garment,relation:sel.relation,emotion:sel.emotion});
+    form.classList.add('rd-hidden'); stage.classList.remove('rd-hidden');
+    stage.innerHTML='<div class="rd-loading"><div class="rd-needle"></div>'+(lang==='ko'?'이서가 옷을 읽고 있어요…':'Iseo is reading the cloth…')+'</div>';
+    window.scrollTo({top:0,behavior:'smooth'});
+    var story=document.getElementById('rdStory').value.trim();
+    setTimeout(function(){ isCrisis(story)?renderSafe():renderCard(); },1400);
+  };
+
+  function renderCard(){
+    var g=sel.garment||'etc',tone=TONE[g]||'#8A6D4A',reading=compose(),title=TITLE[lang][sel.emotion||'longing'];
+    var again=lang==='ko'?'다시 읽어보기':'Read again', share=lang==='ko'?'카드 공유':'Share', wall=lang==='ko'?'기억의 벽에 걸기':'Hang on the Wall';
+    var tagTxt=lang==='ko'?'옷의 기억':'MEMORY IN CLOTH', signTxt=lang==='ko'?'— 이서':'— Iseo', brandTxt=lang==='ko'?'텍스토피아 <b>·</b> 이서의 리딩':"Textopia <b>·</b> The Mender's Reading";
+    if(window.txEvent) txEvent('reading_done',{emotion:sel.emotion});
+    stage.innerHTML='<div class="rd-result"><div class="rd-mem">'
+      +'<div class="rd-art" style="background:linear-gradient(135deg,'+tone+','+shade(tone)+')"><div class="rd-mk">'+tagTxt+'</div><div class="rd-title">'+title+'</div></div>'
+      +'<div class="rd-body"><div class="rd-reading">'+reading+'</div><div class="rd-sign">'+signTxt+'</div>'
+      +'<label class="rd-optin"><input type="checkbox" id="rdOptin"> '+(lang==='ko'?'이 리딩을 익명으로 「기억의 벽」에 걸어도 될까요?':'May I hang this anonymously on the Wall of Memories?')+'</label></div>'
+      +'<div class="rd-foot"><span class="rd-brand">'+brandTxt+'</span><span class="rd-brand">textopia</span></div></div>'
+      +'<div class="rd-actions"><button id="rdAgain">'+again+'</button><a href="wall.html" id="rdWall">'+wall+'</a><button class="pri" id="rdShare">'+share+'</button></div></div>';
+    document.getElementById('rdAgain').onclick=reset;
+    document.getElementById('rdShare').onclick=function(){ var s=lang==='ko'?"— 이서 · 텍스토피아":"— Iseo · Textopia"; if(navigator.clipboard) navigator.clipboard.writeText(title+"\n\n"+reading+"\n\n"+s); toast(lang==='ko'?'카드 문구가 복사됐어요.':'Reading copied.'); };
+    document.getElementById('rdWall').onclick=function(){
+      // 옵트인 시에만 기억의 벽으로 (데모: localStorage 적재. 정식: Supabase is_public=true)
+      if(document.getElementById('rdOptin').checked){
+        try{ var w=JSON.parse(localStorage.getItem('tx_wall')||'[]'); w.unshift({title:title,excerpt:reading.slice(0,80),tone:tone,emotion:sel.emotion,ts:Date.now()}); localStorage.setItem('tx_wall',JSON.stringify(w.slice(0,60))); }catch(e){}
+        if(window.txEvent) txEvent('wall_optin',{emotion:sel.emotion});
+      }
+    };
+  }
+  function renderSafe(){
+    if(window.txEvent) txEvent('reading_safe',{});
+    var body=lang==='ko'?'이 옷 이야기를 읽어드리려다, 잠시 멈췄어요. 지금 당신이 건넨 건 옷보다 더 중요한 마음 같아서요. 그 무게, 혼자 들기엔 너무 무거워요.':"I paused before reading this cloth. What you've handed me feels more important than any garment — and that weight is too heavy to carry alone.";
+    var note=lang==='ko'?'혼자가 아니에요. 지금 이야기 나눌 수 있는 곳이 있어요 — <b>자살예방상담 109</b> (24시간). 당신의 옷은 제가 잘 맡아둘게요.':"You're not alone. Please reach a local crisis line right now. I'll keep your garment safe for you.";
+    stage.innerHTML='<div class="rd-result"><div class="rd-mem rd-safe"><div class="rd-art"><div class="rd-mk">TEXTOPIA</div><div class="rd-title">'+(lang==='ko'?'여기 있어요':"I'm here")+'</div></div>'
+      +'<div class="rd-body"><div class="rd-reading">'+body+'</div><div class="rd-safebox">'+note+'</div></div>'
+      +'<div class="rd-foot"><span class="rd-brand">'+(lang==='ko'?'텍스토피아 <b>·</b> 이서':'Textopia <b>·</b> Iseo')+'</span><span class="rd-brand">safe mode</span></div></div>'
+      +'<div class="rd-actions"><button id="rdAgain">'+(lang==='ko'?'돌아가기':'Back')+'</button></div></div>';
+    document.getElementById('rdAgain').onclick=reset;
+  }
+  function reset(){ stage.classList.add('rd-hidden'); stage.innerHTML=''; form.classList.remove('rd-hidden'); window.scrollTo({top:0,behavior:'smooth'}); }
+})();
+</script>
+</body>
+</html>

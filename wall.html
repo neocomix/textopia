@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>기억의 벽 — 텍스토피아</title>
+<meta name="description" content="세상의 옷들이, 그 안의 기억과 함께 익명으로 걸리는 벽. 당신의 기억도 함께 걸어보세요.">
+<link rel="stylesheet" href="assets/styles.css?v=6">
+<script src="assets/i18n.js?v=8"></script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23C96F8F' stroke-width='3'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='12' cy='20' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23C96F8F'/%3E%3C/svg%3E">
+<style>
+.wl-wrap{max-width:940px;margin:0 auto;padding:30px 18px 110px}
+.wl-hero{text-align:center;margin-bottom:22px}
+.wl-kicker{font-size:11.5px;letter-spacing:.22em;color:var(--accent);font-weight:800;text-transform:uppercase}
+.wl-hero h1{font-family:var(--font-display);font-size:clamp(26px,6vw,36px);margin:8px 0 6px}
+.wl-hero p{color:var(--ink-soft);font-size:14.5px;max-width:440px;margin:0 auto 16px;line-height:1.7}
+.wl-cta{display:inline-block;border:none;border-radius:var(--radius-btn);background:var(--accent);color:#fff;padding:12px 22px;font-size:14.5px;font-weight:800;text-decoration:none;font-family:var(--font-ui)}
+.wl-filters{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:22px 0 20px}
+.wl-fchip{border:1.4px solid var(--stitch);background:var(--surface);color:var(--ink);border-radius:22px;padding:6px 14px;font-size:13px;cursor:pointer;font-weight:600;font-family:var(--font-ui);transition:all var(--dur-fast) var(--ease)}
+.wl-fchip:hover{border-color:var(--accent)}
+.wl-fchip.on{background:var(--primary);border-color:var(--primary);color:#fff}
+.wl-grid{columns:3 260px;column-gap:14px}
+.wl-item{break-inside:avoid;margin-bottom:14px;border-radius:14px;overflow:hidden;box-shadow:var(--shadow-card);border:1px solid rgba(58,55,48,.06);animation:wlrise .5s var(--ease) both}
+@keyframes wlrise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.wl-top{padding:16px 16px 12px;color:#fff;position:relative}
+.wl-top::after{content:'';position:absolute;inset:7px;border:1px dashed rgba(255,255,255,.38);border-radius:10px;pointer-events:none}
+.wl-tag{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.9;font-weight:800}
+.wl-ttl{font-family:var(--font-display);font-size:19px;font-weight:800;margin-top:3px;line-height:1.3}
+.wl-ex{background:var(--surface);padding:14px 16px 15px;font-family:var(--font-serif);font-size:14.5px;line-height:1.75;color:var(--ink)}
+.wl-meta{display:flex;justify-content:space-between;align-items:center;padding:0 16px 13px;background:var(--surface);font-size:11.5px;color:var(--ink-soft)}
+.wl-empty{text-align:center;color:var(--ink-soft);padding:40px 0;font-family:var(--font-display)}
+@media(max-width:640px){.wl-grid{columns:2 150px}}
+</style>
+</head>
+<body>
+<header class="gnb">
+  <a class="logo" href="index.html"><span data-i18n="common.drawer.brand">텍스토피아</span><span class="dot"></span></a>
+  <nav class="gnb-menu">
+    <a href="world.html" data-i18n="common.nav.world">세계관</a>
+    <a href="reading.html">옷의 기억</a>
+    <a href="wall.html" style="color:var(--primary)">기억의 벽</a>
+    <a class="btn btn--sm" href="read.html"><span class="btn-hole"></span><span data-i18n="common.nav.read">무료 1화 읽기</span></a>
+  </nav>
+  <div class="gnb-right"><button class="theme-toggle" aria-label="테마 전환">☾</button></div>
+</header>
+
+<main class="wl-wrap">
+  <div class="wl-hero">
+    <div class="wl-kicker" id="wlKicker">TEXTOPIA · 기억의 벽</div>
+    <h1 id="wlH1">기억의 벽</h1>
+    <p id="wlSub">세상의 옷들이, 그 안의 기억과 함께 익명으로 걸린 벽. 누군가 놓지 못한 한 벌을, 이서가 읽어 이곳에 남겼어요.</p>
+    <a class="wl-cta" href="reading.html" id="wlCta">내 옷의 기억도 걸기</a>
+  </div>
+  <div class="wl-filters" id="wlFilters"></div>
+  <div class="wl-grid" id="wlGrid"></div>
+  <div class="wl-empty wl-hidden" id="wlEmpty" style="display:none">아직 이 감정의 기억이 걸리지 않았어요.</div>
+</main>
+
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand"><b data-i18n="common.drawer.brand">텍스토피아</b><br><span data-i18n="common.footer.brandDesc">옷이 살아 숨 쉬는 세계. 버려진 것들의 두 번째 이야기.</span></div>
+    <div><b data-i18n="common.footer.exploreH">둘러보기</b><br><a class="stitch-link" href="world.html" data-i18n="common.footer.world">세계관</a><br><a class="stitch-link" href="reading.html">옷의 기억</a><br><a class="stitch-link" href="wall.html">기억의 벽</a><br><a class="stitch-link" href="read.html" data-i18n="common.footer.read">무료 1화</a></div>
+    <div><b data-i18n="common.footer.policyH">약관·정책</b><br><a class="stitch-link" href="terms.html" data-i18n="common.footer.terms">이용약관</a><br><a class="stitch-link" href="privacy.html" data-i18n="common.footer.privacy">개인정보처리방침</a></div>
+  </div>
+  <div class="ft-bottom" data-i18n="common.footer.bottom">ⓒ 2026 Orsion. 오늘 당신의 옷은, 행복한가요?</div>
+</footer>
+
+<nav class="bottom-nav">
+  <a href="world.html"><span class="ico">🧵</span><span data-i18n="common.bottom.world">세계관</span></a>
+  <a href="reading.html"><span class="ico">🧶</span>옷의 기억</a>
+  <a class="cta" href="read.html"><span class="pill" data-i18n="common.bottom.read">무료 1화</span></a>
+  <a href="wall.html" class="active"><span class="ico">🪡</span>기억의 벽</a>
+</nav>
+
+<script src="assets/app.js?v=7"></script>
+<script>
+(function(){
+  var lang=((window.txLang||document.documentElement.lang||'ko')+'').slice(0,2); if(lang!=='ko') lang='en';
+  var TONE={longing:"#B98A4A",love:"#C96F8F",regret:"#6B4A2B",comfort:"#5E7B9E",pride:"#3E6B5A",growth:"#28456E",thanks:"#8F5A7E"};
+  var EMO={ko:{longing:"그리움",love:"사랑",regret:"후회",comfort:"위로",pride:"자부심",growth:"성장",thanks:"감사"},
+           en:{longing:"Longing",love:"Love",regret:"Regret",comfort:"Comfort",pride:"Pride",growth:"Growth",thanks:"Gratitude"}};
+  var WUI={ko:{kicker:"TEXTOPIA · 기억의 벽",h1:"기억의 벽",sub:"세상의 옷들이, 그 안의 기억과 함께 익명으로 걸린 벽. 누군가 놓지 못한 한 벌을, 이서가 읽어 이곳에 남겼어요.",cta:"내 옷의 기억도 걸기",all:"전체",tag:"옷의 기억",anon:"익명",empty:"아직 이 감정의 기억이 걸리지 않았어요."},
+           en:{kicker:"TEXTOPIA · WALL OF MEMORIES",h1:"The Wall of Memories",sub:"A wall where the world's garments hang anonymously, with the memories inside them. Iseo read a piece someone couldn't let go, and left it here.",cta:"Hang your garment's memory",all:"All",tag:"Memory in cloth",anon:"Anonymous",empty:"No memory of this feeling has been hung yet."}};
+  // 시드(익명, 예시). 정식: Supabase readings where is_public=true.
+  var SEED=[
+    {emotion:"longing",ts:Date.now()-3600e3*4, ko:{title:"늘어난 소매의 온기",excerpt:"늘어난 소매는 흠이 아니라, 그 손이 당신을 얼마나 자주 안았는지의 기록이에요."}, en:{title:"A Warmth in the Sleeves",excerpt:"The stretched-out sleeves aren't a flaw — they're a record of how often those arms held you."}},
+    {emotion:"regret",ts:Date.now()-3600e3*9, ko:{title:"여미지 못한 소맷단",excerpt:"다 여미지 못한 마음이 소맷단에 남아 있네요. 그래도 괜찮아요."}, en:{title:"The Unfinished Cuff",excerpt:"An unfinished feeling stays in the cuff. And that's alright."}},
+    {emotion:"comfort",ts:Date.now()-3600e3*20, ko:{title:"대신 안아준 옷",excerpt:"지친 날, 이 옷이 당신을 대신 안아줬군요. 오늘은 제가 안아드릴게요."}, en:{title:"The Cloth That Held You",excerpt:"On tired days, this held you when no one else could. Today, let me hold you."}},
+    {emotion:"pride",ts:Date.now()-3600e3*28, ko:{title:"여기까지의 증거",excerpt:"낡음은 흠이 아니라 훈장이에요. 당신이 여기까지 온 증거니까요."}, en:{title:"Proof of the Road",excerpt:"The wear is a medal, not a flaw — proof of how far you've come."}},
+    {emotion:"love",ts:Date.now()-3600e3*44, ko:{title:"사랑의 길이",excerpt:"사랑은 길이로 재는 것이 아니었죠. 이 작은 옷이 그걸 알아요."}, en:{title:"The Length of Love",excerpt:"Love was never measured in length; this small garment knows that."}},
+    {emotion:"growth",ts:Date.now()-3600e3*60, ko:{title:"지나온 자리",excerpt:"이 옷을 지나 당신은 조금 더 자랐어요. 이별도 성장의 다른 이름이죠."}, en:{title:"The Place You Passed",excerpt:"Past this garment you grew a little; parting is another word for growth."}},
+    {emotion:"thanks",ts:Date.now()-3600e3*72, ko:{title:"오래 품은 말",excerpt:"고맙다는 말을, 이 천이 대신 오래 품고 있었네요."}, en:{title:"A Long-Kept Thank-You",excerpt:"A thank-you this cloth has carried quietly, for a long time."}},
+    {emotion:"longing",ts:Date.now()-3600e3*96, ko:{title:"아직 남은 온기",excerpt:"이건 옷이 아니라, 아직 당신 곁에 남아 있는 온기예요."}, en:{title:"A Warmth Still Here",excerpt:"This isn't a garment — it's a warmth still beside you."}},
+    {emotion:"comfort",ts:Date.now()-3600e3*120, ko:{title:"첫 학기의 냄새",excerpt:"교실 창가의 빛 같은 게 아직 남아 있네요. 그 시절이 당신을 스쳐요."}, en:{title:"The Scent of a First Term",excerpt:"Something like classroom-window light remains. That season brushes past you."}}
+  ];
+  function norm(d){ if(d[lang]) return {title:d[lang].title,excerpt:d[lang].excerpt,emotion:d.emotion,ts:d.ts}; return d; }
+  function load(){ var u=[]; try{ u=JSON.parse(localStorage.getItem('tx_wall')||'[]'); }catch(e){} return u.concat(SEED.map(norm)); }
+  var W=WUI[lang];
+  (function chrome(){ function s(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
+    s('wlKicker',W.kicker);s('wlH1',W.h1);s('wlSub',W.sub);s('wlCta',W.cta);s('wlEmpty',W.empty); })();
+  (function localizeNav(){ var L={ 'reading.html':{ko:'옷의 기억',en:'Memories in Cloth'}, 'wall.html':{ko:'기억의 벽',en:'Wall of Memories'} };
+    document.querySelectorAll('a[href="reading.html"],a[href="wall.html"]').forEach(function(a){ var m=L[a.getAttribute('href')]; if(!m)return;
+      for(var i=a.childNodes.length-1;i>=0;i--){ var n=a.childNodes[i]; if(n.nodeType===3 && n.nodeValue.trim()){ n.nodeValue=m[lang]; break; } } }); })();
+  var DATA=load(), filter='all';
+  function rel(ts){ var d=(Date.now()-ts)/3600e3; if(d<1)return lang==='ko'?'방금':'just now'; if(d<24)return Math.floor(d)+(lang==='ko'?'시간 전':'h ago'); return Math.floor(d/24)+(lang==='ko'?'일 전':'d ago'); }
+  function shade(hex){var n=parseInt(hex.slice(1),16),r=Math.max(0,(n>>16)-28),g=Math.max(0,((n>>8)&255)-28),b=Math.max(0,(n&255)-28);return '#'+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1);}
+
+  function filters(){
+    var box=document.getElementById('wlFilters'); box.innerHTML='';
+    var all=[['all',W.all]].concat(Object.keys(EMO[lang]).map(function(k){return [k,EMO[lang][k]];}));
+    all.forEach(function(o){ var el=document.createElement('button'); el.className='wl-fchip'+(filter===o[0]?' on':''); el.textContent=o[1]; el.onclick=function(){ filter=o[0]; filters(); grid(); }; box.appendChild(el); });
+  }
+  function grid(){
+    var g=document.getElementById('wlGrid'), items=DATA.filter(function(d){return filter==='all'||d.emotion===filter;});
+    document.getElementById('wlEmpty').style.display=items.length?'none':'block';
+    g.innerHTML=items.map(function(d,i){ var tone=TONE[d.emotion]||'#8A6D4A';
+      return '<article class="wl-item" style="animation-delay:'+(i*40)+'ms">'
+        +'<div class="wl-top" style="background:linear-gradient(135deg,'+tone+','+shade(tone)+')"><div class="wl-tag">'+W.tag+'</div><div class="wl-ttl">'+d.title+'</div></div>'
+        +'<div class="wl-ex">'+d.excerpt+'</div>'
+        +'<div class="wl-meta"><span>'+W.anon+' · '+(EMO[lang][d.emotion]||'')+'</span><span>'+rel(d.ts)+'</span></div>'
+        +'</article>';
+    }).join('');
+  }
+  filters(); grid();
+})();
+</script>
+</body>
+</html>
