@@ -127,9 +127,9 @@ a.card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(58,55,48,.14)
 .book-card:hover .cover{transform:scale(1.02)}
 .cover .vol{font-size:12px;opacity:.85;letter-spacing:.2em}
 .cover .bt{font-size:20px;font-weight:800;line-height:1.4}
-.cover-1{background:linear-gradient(180deg,rgba(26,44,72,.30),rgba(26,44,72,0) 26%,rgba(26,44,72,0) 60%,rgba(26,44,72,.55)),url(img/cover-vol1.webp) center/cover,#1a2c48}
-.cover-2{background:linear-gradient(180deg,rgba(61,49,83,.30),rgba(61,49,83,0) 26%,rgba(61,49,83,0) 60%,rgba(61,49,83,.55)),url(img/cover-vol2.webp) center/cover,#3d3153}
-.cover-3{background:linear-gradient(180deg,rgba(110,51,72,.30),rgba(110,51,72,0) 26%,rgba(110,51,72,0) 60%,rgba(110,51,72,.55)),url(img/cover-vol3.webp) center/cover,#6e3348}
+.cover-1{background:linear-gradient(180deg,rgba(26,44,72,.30),rgba(26,44,72,0) 26%,rgba(26,44,72,0) 60%,rgba(26,44,72,.55)),url(img/cover-vol1.webp?v=7) center/cover,#1a2c48}
+.cover-2{background:linear-gradient(180deg,rgba(61,49,83,.30),rgba(61,49,83,0) 26%,rgba(61,49,83,0) 60%,rgba(61,49,83,.55)),url(img/cover-vol2.webp?v=7) center/cover,#3d3153}
+.cover-3{background:linear-gradient(180deg,rgba(110,51,72,.30),rgba(110,51,72,0) 26%,rgba(110,51,72,0) 60%,rgba(110,51,72,.55)),url(img/cover-vol3.webp?v=7) center/cover,#6e3348}
 .cover::after{content:'';position:absolute;inset:10px;border:1px dashed rgba(247,241,227,.35);border-radius:5px;pointer-events:none}
 .quote-carousel{position:relative;overflow:hidden}
 .quote-track{display:flex;transition:transform var(--dur-med) var(--ease)}
