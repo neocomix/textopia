@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>이서의 수선집 — 둘러보기 · 텍스토피아</title>
-<meta name="description" content="폰을 돌리거나 화면을 드래그해 이서의 수선집을 360°로 둘러보세요.">
+<meta name="description" content="폰을 돌리거나 기울여 이서의 수선집을 입체로 둘러보세요.">
 <link rel="stylesheet" href="assets/styles.css?v=6">
 <script src="assets/i18n.js?v=8"></script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23C96F8F' stroke-width='3'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='12' cy='20' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23C96F8F'/%3E%3C/svg%3E">
@@ -12,8 +12,9 @@
 html,body{margin:0;height:100%;background:#1a120c;overflow:hidden;font-family:var(--font-ui,'Pretendard',sans-serif);-webkit-user-select:none;user-select:none;touch-action:none}
 .rm-stage{position:fixed;inset:0;overflow:hidden;background:#241812;cursor:grab}
 .rm-stage:active{cursor:grabbing}
-.rm-wall{position:absolute;top:50%;left:50%;background-position:center center;background-size:cover;background-repeat:no-repeat;opacity:0;will-change:transform,opacity}
-/* soft edge shading so the four walls feel joined */
+#glc{position:absolute;inset:0;width:100%;height:100%;display:block}
+/* DOM fallback walls (used only if WebGL is unavailable) */
+.rm-wall{position:absolute;top:50%;left:50%;background-position:center;background-size:cover;background-repeat:no-repeat;opacity:0;will-change:transform,opacity}
 .rm-vin{position:fixed;inset:0;pointer-events:none;z-index:20;background:radial-gradient(115% 80% at 50% 46%,transparent 60%,rgba(26,15,8,.5) 100%)}
 .rm-topfade{position:fixed;top:0;left:0;right:0;height:120px;pointer-events:none;z-index:19;background:linear-gradient(180deg,rgba(20,12,7,.42),transparent)}
 .rm-botfade{position:fixed;bottom:0;left:0;right:0;height:150px;pointer-events:none;z-index:19;background:linear-gradient(0deg,rgba(20,12,7,.5),transparent)}
@@ -22,7 +23,6 @@ html,body{margin:0;height:100%;background:#1a120c;overflow:hidden;font-family:va
 .rm-top{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:16px 18px}
 .rm-back{display:inline-flex;align-items:center;gap:6px;color:#F3E9D8;text-decoration:none;font-size:14px;font-weight:700;background:rgba(30,20,12,.42);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:8px 14px}
 .rm-logo{color:#F3E9D8;font-family:var(--font-display,serif);font-weight:800;font-size:16px;letter-spacing:.02em;text-shadow:0 1px 8px rgba(0,0,0,.5)}
-/* wall label + compass */
 .rm-nav{position:fixed;left:0;right:0;bottom:30px;z-index:26;display:flex;flex-direction:column;align-items:center;gap:12px;pointer-events:none}
 .rm-label{color:#F5ECDB;font-family:var(--font-display,serif);font-weight:800;font-size:19px;letter-spacing:.04em;text-shadow:0 1px 10px rgba(0,0,0,.65);opacity:.94;transition:opacity .3s ease}
 .rm-dots{display:flex;gap:9px}
@@ -45,10 +45,11 @@ html,body{margin:0;height:100%;background:#1a120c;overflow:hidden;font-family:va
 <body>
 
 <div class="rm-stage" id="stage">
-  <div class="rm-wall" id="w0" data-c="0"></div>
-  <div class="rm-wall" id="w1" data-c="90"></div>
-  <div class="rm-wall" id="w2" data-c="180"></div>
-  <div class="rm-wall" id="w3" data-c="270"></div>
+  <canvas id="glc"></canvas>
+  <div class="rm-wall" id="w0"></div>
+  <div class="rm-wall" id="w1"></div>
+  <div class="rm-wall" id="w2"></div>
+  <div class="rm-wall" id="w3"></div>
 </div>
 
 <div class="rm-topfade"></div>
@@ -65,14 +66,14 @@ html,body{margin:0;height:100%;background:#1a120c;overflow:hidden;font-family:va
   <div class="rm-dots" id="rmDots"><i></i><i></i><i></i><i></i></div>
 </div>
 
-<div class="rm-hint" id="rmHint">드래그하거나 폰을 돌려 둘러보세요</div>
+<div class="rm-hint" id="rmHint">돌려서 둘러보고, 기울여서 들여다보세요</div>
 
 <div class="rm-load" id="rmLoad"><span class="sp"></span><span id="loadT">수선집을 여는 중…</span></div>
 
 <div class="rm-intro" id="rmIntro">
   <div class="k">TEXTOPIA</div>
   <h1 id="introH">이서의 수선집</h1>
-  <p id="introP">햇살 든 오전의 수선집. 폰을 돌리거나 화면을 드래그해, 이서의 방을 360°로 천천히 둘러보세요.</p>
+  <p id="introP">햇살 든 오전의 수선집. 폰을 좌우로 돌려 둘러보고, 살짝 기울이면 방 안이 입체로 살아나요.</p>
   <button class="rm-start" id="rmStart">둘러보기 시작</button>
 </div>
 
@@ -81,120 +82,179 @@ html,body{margin:0;height:100%;background:#1a120c;overflow:hidden;font-family:va
 (function(){
   var lang=((window.txLang||document.documentElement.lang||'ko')+'').slice(0,2); if(lang!=='ko') lang='en';
   var WALLS=[
-    {img:'assets/room-01.jpg', ko:'작업대', en:'The Worktable'},
-    {img:'assets/room-02.jpg', ko:'창가',   en:'By the Window'},
-    {img:'assets/room-03.jpg', ko:'선반',   en:'The Shelves'},
-    {img:'assets/room-04.jpg', ko:'문가',   en:'The Doorway'}
+    {img:'assets/room-01.jpg', dep:'assets/room-01-depth.png', ko:'작업대', en:'The Worktable'},
+    {img:'assets/room-02.jpg', dep:'assets/room-02-depth.png', ko:'창가',   en:'By the Window'},
+    {img:'assets/room-03.jpg', dep:'assets/room-03-depth.png', ko:'선반',   en:'The Shelves'},
+    {img:'assets/room-04.jpg', dep:'assets/room-04-depth.png', ko:'문가',   en:'The Doorway'}
   ];
   var T={ko:{back:'돌아가기',logo:'이서의 수선집',introH:'이서의 수선집',
-             introP:'햇살 든 오전의 수선집. 폰을 돌리거나 화면을 드래그해, 이서의 방을 360°로 천천히 둘러보세요.',
+             introP:'햇살 든 오전의 수선집. 폰을 좌우로 돌려 둘러보고, 살짝 기울이면 방 안이 입체로 살아나요.',
              start:'둘러보기 시작',load:'수선집을 여는 중…',
-             hintTilt:'폰을 돌리거나 드래그해 둘러보세요',hintDrag:'화면을 드래그해 둘러보세요'},
+             hintTilt:'돌려서 둘러보고, 기울여서 들여다보세요',hintDrag:'드래그해 둘러보고, 마우스로 들여다보세요'},
           en:{back:'Back',logo:"The Mender's Atelier",introH:"The Mender's Atelier",
-             introP:'A sunlit morning in the atelier. Turn your phone or drag the screen to look all the way around Iseo’s room.',
+             introP:'A sunlit morning in the atelier. Turn your phone to look around, and tilt it to peer into the room in 3D.',
              start:'Start looking around',load:'Opening the atelier…',
-             hintTilt:'Turn your phone or drag to look around',hintDrag:'Drag to look around'}}[lang];
+             hintTilt:'Turn to look around, tilt to peer in',hintDrag:'Drag to look around, move the mouse to peer in'}}[lang];
   function s(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
   s('rmBackT',T.back);s('rmLogo',T.logo);s('introH',T.introH);s('introP',T.introP);s('rmStart',T.start);s('loadT',T.load);
 
-  var wallEls=[document.getElementById('w0'),document.getElementById('w1'),document.getElementById('w2'),document.getElementById('w3')];
-  for(var i=0;i<4;i++){ wallEls[i].style.backgroundImage="url('"+WALLS[i].img+"')"; }
-
-  // ---- preload ----
-  var loaded=0, load=document.getElementById('rmLoad');
-  WALLS.forEach(function(w){ var im=new Image(); im.onload=im.onerror=function(){ if(++loaded>=4){ load.classList.add('hide'); setTimeout(function(){load.style.display='none';},500); } }; im.src=w.img; });
-  setTimeout(function(){ load.classList.add('hide'); }, 6000); // safety
-
+  var label=document.getElementById('rmLabel'), dots=document.getElementById('rmDots').children;
+  var lastLabel=-1, load=document.getElementById('rmLoad');
   function clamp(v,a,b){return v<a?a:v>b?b:v;}
   function ang(a){ a=a%360; if(a>180)a-=360; if(a<-180)a+=360; return a; }
+  function opacityFor(ad){ return ad>=58?0: ad<=32?1:(58-ad)/26; }
 
-  // Geometry: a landscape image on a tall phone is cropped hard by `cover`,
-  // leaving a wide hidden strip. We pan across that whole strip as you turn,
-  // so a ~90° turn sweeps the full wall (real "look around" feel).
-  var SC=1.06, imgR=1600/1066;
-  var W,H,spareX,spareY,PANK,ky;
-  function geom(){ W=innerWidth; H=innerHeight;
-    // Each wall div is sized to the FULL image (bigger than the screen) and
-    // centered, so translating it pans across the picture while it always
-    // keeps the screen fully covered — no background ever peeks through.
-    var dispW=Math.max(W,H*imgR)*SC, dispH=Math.max(H,W/imgR)*SC;
-    spareX=(dispW-W)/2; spareY=(dispH-H)/2;
-    PANK=(spareX*0.9)/45;      // px of horizontal pan per degree of turn
-    ky=spareY*0.9;             // px of vertical pan at full pitch
-    for(var i=0;i<4;i++){ wallEls[i].style.width=dispW.toFixed(0)+'px'; wallEls[i].style.height=dispH.toFixed(0)+'px'; }
+  // ---------- shared interaction state ----------
+  var heading=0, pitch=0, tHeading=0, tPitch=0;      // turning (degrees)
+  var parX=0,parY=0, tParX=0,tParY=0;                // depth-parallax vector
+  var PARAMP=0.032;                                   // parallax strength (uv units)
+  var IMGR=1600/1066;
+  var W,H;
+  function selectWalls(){
+    // returns {i0,i1,mixB,d0,d1}
+    var ops=[]; for(var i=0;i<4;i++){ ops.push({i:i, d:ang(heading-i*90)}); ops[i].op=opacityFor(Math.abs(ops[i].d)); }
+    ops.sort(function(a,b){return b.op-a.op;});
+    var a=ops[0], b=ops[1];
+    var mixB = (b.op<=0)?0: b.op/(a.op+b.op);
+    if(a.i!==lastLabel){ lastLabel=a.i; label.style.opacity='0';
+      setTimeout(function(){ label.textContent=WALLS[a.i][lang]; label.style.opacity='.94'; },160);
+      for(var j=0;j<4;j++){ dots[j].className=j===a.i?'on':''; } }
+    return {i0:a.i,i1:b.i,mixB:mixB,d0:a.d,d1:b.d};
   }
-  geom(); addEventListener('resize',geom);
-  var heading=0, pitch=0;            // rendered
-  var tHeading=0, tPitch=0;          // target
-  var lastLabel=-1, label=document.getElementById('rmLabel'), dots=document.getElementById('rmDots').children;
+  // uv transform (cover + horizontal sweep) for a wall given its in-wall angle d
+  function uvXform(d){
+    var f=(W/H)/IMGR;                 // visible width fraction under cover (portrait -> <1)
+    if(f>1) f=1;                       // landscape screens: full width
+    var scaleX=f, scaleY=1.0;
+    var rangeX=(1-f)/2;
+    var offX=(1-f)/2 + clamp(d/45,-1,1)*rangeX*0.94;
+    if(offX<0)offX=0; else if(offX>1-f)offX=1-f;
+    // vertical: allow a hair of room for pitch/parallax
+    var vpad=0.03, scY=1-2*vpad, offY=vpad + clamp(pitch/30,-1,1)*vpad;
+    return {sx:scaleX, sy:scY, ox:offX, oy:offY};
+  }
 
-  function render(){
+  // ---------- WebGL renderer ----------
+  var glOK=false, gl, prog, U={}, texes=[];
+  var canvas=document.getElementById('glc');
+  function initGL(){
+    try{ gl=canvas.getContext('webgl',{antialias:false,alpha:false,premultipliedAlpha:false})||canvas.getContext('experimental-webgl'); }catch(e){}
+    if(!gl) return false;
+    var vs='attribute vec2 p;varying vec2 v;void main(){v=vec2((p.x+1.0)*0.5,1.0-(p.y+1.0)*0.5);gl_Position=vec4(p,0.0,1.0);}';
+    var fs='precision highp float;varying vec2 v;'+
+      'uniform sampler2D tA,dA,tB,dB;uniform vec2 sA,oA,sB,oB;uniform vec2 par;uniform float mB;'+
+      'vec4 sm(sampler2D im,sampler2D dp,vec2 sc,vec2 of){vec2 b=v*sc+of;float d=texture2D(dp,b).r;vec2 uv=b+par*d;uv=clamp(uv,vec2(0.001),vec2(0.999));return texture2D(im,uv);}'+
+      'void main(){vec4 cA=sm(tA,dA,sA,oA);if(mB<=0.001){gl_FragColor=cA;return;}vec4 cB=sm(tB,dB,sB,oB);gl_FragColor=mix(cA,cB,mB);}';
+    function sh(t,src){var o=gl.createShader(t);gl.shaderSource(o,src);gl.compileShader(o);if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)){console.warn(gl.getShaderInfoLog(o));return null;}return o;}
+    var v=sh(gl.VERTEX_SHADER,vs), f=sh(gl.FRAGMENT_SHADER,fs); if(!v||!f)return false;
+    prog=gl.createProgram();gl.attachShader(prog,v);gl.attachShader(prog,f);gl.linkProgram(prog);
+    if(!gl.getProgramParameter(prog,gl.LINK_STATUS)){console.warn(gl.getProgramInfoLog(prog));return false;}
+    gl.useProgram(prog);
+    var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+    gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]),gl.STATIC_DRAW);
+    var pl=gl.getAttribLocation(prog,'p');gl.enableVertexAttribArray(pl);gl.vertexAttribPointer(pl,2,gl.FLOAT,false,0,0);
+    ['tA','dA','tB','dB','sA','oA','sB','oB','par','mB'].forEach(function(n){U[n]=gl.getUniformLocation(prog,n);});
+    gl.uniform1i(U.tA,0);gl.uniform1i(U.dA,1);gl.uniform1i(U.tB,2);gl.uniform1i(U.dB,3);
+    glOK=true; return true;
+  }
+  function mkTex(img,unit){
+    var t=gl.createTexture();gl.activeTexture(gl.TEXTURE0+unit);gl.bindTexture(gl.TEXTURE_2D,t);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,img);
+    return t;
+  }
+  function resize(){ W=innerWidth; H=innerHeight; var dpr=Math.min(devicePixelRatio||1,2);
+    canvas.width=Math.round(W*dpr); canvas.height=Math.round(H*dpr);
+    if(glOK) gl.viewport(0,0,canvas.width,canvas.height); }
+  addEventListener('resize',resize);
+
+  function drawGL(){
     heading += ang(tHeading-heading)*0.12;
-    pitch  += (tPitch-pitch)*0.12;
-    var best=-1, bestOp=-1;
-    for(var i=0;i<4;i++){
-      var d=ang(heading - i*90);
-      var ad=Math.abs(d);
-      var op = ad>=58 ? 0 : ad<=32 ? 1 : (58-ad)/26;
-      var el=wallEls[i];
-      if(op<=0){ if(el.style.opacity!=='0'){el.style.opacity='0';} continue; }
-      var tx=-d*PANK; if(tx>spareX)tx=spareX; else if(tx<-spareX)tx=-spareX;
-      var ty=pitch*ky; if(ty>spareY)ty=spareY; else if(ty<-spareY)ty=-spareY;
-      el.style.transform='translate(-50%,-50%) translate3d('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px,0)';
-      el.style.opacity=op.toFixed(3);
-      el.style.zIndex=Math.round(op*10);
-      if(op>bestOp){bestOp=op;best=i;}
-    }
-    if(best!==lastLabel && best>=0){
-      lastLabel=best;
-      label.style.opacity='0';
-      setTimeout(function(){ label.textContent=WALLS[best][lang]; label.style.opacity='.94'; },160);
-      for(var j=0;j<4;j++){ dots[j].className = j===best?'on':''; }
-    }
-    requestAnimationFrame(render);
-  }
-  requestAnimationFrame(render);
-
-  // ---- gyroscope (relative accumulation) ----
-  var orientOn=false, lastA=null, baseB=null;
-  function onOrient(e){
-    if(e.alpha==null && e.beta==null) return;
-    orientOn=true;
-    if(e.alpha!=null){
-      if(lastA!=null){ var dA=ang(e.alpha-lastA); tHeading -= dA; }
-      lastA=e.alpha;
-    }
-    if(e.beta!=null){
-      if(baseB==null) baseB=e.beta;
-      tPitch = clamp((e.beta-baseB)/34, -1, 1);
-    }
+    pitch   += (tPitch-pitch)*0.12;
+    parX += (tParX-parX)*0.10; parY += (tParY-parY)*0.10;
+    var sel=selectWalls();
+    var A=uvXform(sel.d0), B=uvXform(sel.d1);
+    // wall A textures on units 0,1 ; wall B on 2,3
+    gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texes[sel.i0].img);
+    gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,texes[sel.i0].dep);
+    gl.activeTexture(gl.TEXTURE2);gl.bindTexture(gl.TEXTURE_2D,texes[sel.i1].img);
+    gl.activeTexture(gl.TEXTURE3);gl.bindTexture(gl.TEXTURE_2D,texes[sel.i1].dep);
+    gl.uniform2f(U.sA,A.sx,A.sy);gl.uniform2f(U.oA,A.ox,A.oy);
+    gl.uniform2f(U.sB,B.sx,B.sy);gl.uniform2f(U.oB,B.ox,B.oy);
+    gl.uniform2f(U.par,parX,parY);
+    gl.uniform1f(U.mB,sel.mixB);
+    gl.drawArrays(gl.TRIANGLES,0,6);
+    requestAnimationFrame(drawGL);
   }
 
-  // ---- drag (universal) ----
+  // ---------- DOM fallback renderer (no WebGL) ----------
+  var wallEls=[document.getElementById('w0'),document.getElementById('w1'),document.getElementById('w2'),document.getElementById('w3')];
+  function startDOM(){
+    for(var i=0;i<4;i++){ wallEls[i].style.backgroundImage="url('"+WALLS[i].img+"')"; }
+    var SC=1.06,spareX,spareY,PANK,ky;
+    function geom(){ W=innerWidth;H=innerHeight; var dW=Math.max(W,H*IMGR)*SC,dH=Math.max(H,W/IMGR)*SC;
+      spareX=(dW-W)/2;spareY=(dH-H)/2;PANK=spareX*0.9/45;ky=spareY*0.9;
+      for(var i=0;i<4;i++){wallEls[i].style.width=dW.toFixed(0)+'px';wallEls[i].style.height=dH.toFixed(0)+'px';} }
+    geom();addEventListener('resize',geom);
+    (function loop(){ heading+=ang(tHeading-heading)*0.12; pitch+=(tPitch-pitch)*0.12;
+      var sel=selectWalls();
+      for(var i=0;i<4;i++){ var d=ang(heading-i*90),ad=Math.abs(d),op=opacityFor(ad),el=wallEls[i];
+        if(op<=0){ if(el.style.opacity!=='0')el.style.opacity='0'; continue; }
+        var tx=clamp(-d*PANK,-spareX,spareX), ty=clamp(pitch*ky,-spareY,spareY);
+        el.style.transform='translate(-50%,-50%) translate3d('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px,0)';
+        el.style.opacity=op.toFixed(3); el.style.zIndex=Math.round(op*10);
+      } requestAnimationFrame(loop); })();
+  }
+
+  // ---------- preload ----------
+  var imgs=[], loaded=0, need=8;
+  function done1(){ if(++loaded<need) return;
+    load.classList.add('hide'); setTimeout(function(){load.style.display='none';},500);
+    if(initGL()){ resize(); for(var i=0;i<4;i++){ texes[i]={img:mkTex(imgs[i*2],0), dep:mkTex(imgs[i*2+1],1)}; }
+      for(var k=0;k<4;k++){ wallEls[k].style.display='none'; } requestAnimationFrame(drawGL);
+    } else { canvas.style.display='none'; resize(); startDOM(); }
+  }
+  WALLS.forEach(function(w){ [w.img,w.dep].forEach(function(src){ var im=new Image(); im.crossOrigin='anonymous';
+    im.onload=function(){ imgs[imgs.indexOf(im)]=im; done1(); }; im.onerror=done1; imgs.push(im); im.src=src; }); });
+  setTimeout(function(){ if(loaded<need){ loaded=need; load.classList.add('hide'); if(!glOK){canvas.style.display='none';startDOM();} } },7000);
+
+  // ---------- input ----------
   var stage=document.getElementById('stage'), dragging=false, px,py, bH,bP;
   stage.addEventListener('pointerdown',function(e){ dragging=true; px=e.clientX; py=e.clientY; bH=tHeading; bP=tPitch; stage.setPointerCapture&&stage.setPointerCapture(e.pointerId); });
-  stage.addEventListener('pointermove',function(e){ if(!dragging)return; tHeading = bH - (e.clientX-px)*0.30; tPitch = clamp(bP + (e.clientY-py)*0.0045, -1, 1); });
+  stage.addEventListener('pointermove',function(e){ if(!dragging){
+      if(matchMedia('(pointer:fine)').matches){ tParX=-((e.clientX/innerWidth)-0.5)*2*PARAMP; tParY=-((e.clientY/innerHeight)-0.5)*2*PARAMP; }
+      return; }
+    tHeading = bH - (e.clientX-px)*0.30; tPitch = clamp(bP + (e.clientY-py)*0.0045, -1.2, 1.2); });
   function endDrag(){dragging=false;} stage.addEventListener('pointerup',endDrag); stage.addEventListener('pointercancel',endDrag);
 
-  // ---- intro / permission ----
+  var lastA=null, base=null;
+  function onOrient(e){ if(e.alpha==null&&e.beta==null&&e.gamma==null)return;
+    if(e.alpha!=null){ if(lastA!=null){ tHeading -= ang(e.alpha-lastA); } lastA=e.alpha; }
+    if(e.gamma!=null&&e.beta!=null){ if(!base){ base={g:e.gamma,b:e.beta}; }
+      tParX = clamp((e.gamma-base.g)/22,-1,1)*PARAMP;
+      tParY = clamp((e.beta -base.b)/22,-1,1)*PARAMP;
+      tPitch = clamp((e.beta-base.b)/40,-1.2,1.2); } }
+
+  // ---------- intro / permission ----------
   var intro=document.getElementById('rmIntro'), hint=document.getElementById('rmHint');
-  function showHint(){ hint.classList.add('show'); setTimeout(function(){hint.classList.remove('show');},4200); }
+  function showHint(){ hint.classList.add('show'); setTimeout(function(){hint.classList.remove('show');},4600); }
   function begin(){
     intro.classList.add('hide'); setTimeout(function(){intro.style.display='none';},600);
     if(typeof DeviceOrientationEvent!=='undefined' && typeof DeviceOrientationEvent.requestPermission==='function'){
       DeviceOrientationEvent.requestPermission().then(function(p){
-        if(p==='granted'){ lastA=null; baseB=null; window.addEventListener('deviceorientation',onOrient); hint.textContent=T.hintTilt; }
-        else { hint.textContent=T.hintDrag; }
-        showHint();
+        if(p==='granted'){ lastA=null; base=null; window.addEventListener('deviceorientation',onOrient); hint.textContent=T.hintTilt; }
+        else { hint.textContent=T.hintDrag; } showHint();
       }).catch(function(){ hint.textContent=T.hintDrag; showHint(); });
-    } else if('DeviceOrientationEvent' in window){
-      window.addEventListener('deviceorientation',onOrient); hint.textContent=T.hintTilt; showHint();
-    } else { hint.textContent=T.hintDrag; showHint(); }
+    } else if('DeviceOrientationEvent' in window){ window.addEventListener('deviceorientation',onOrient); hint.textContent=T.hintTilt; showHint(); }
+    else { hint.textContent=T.hintDrag; showHint(); }
     if(window.txEvent) txEvent('room_enter',{});
   }
   document.getElementById('rmStart').addEventListener('click',begin);
 
-  // ---- dust motes ----
+  // ---------- dust motes ----------
   var stg=document.getElementById('stage');
   for(var m=0;m<12;m++){ var dv=document.createElement('div'); dv.className='mote'; var sz=2+Math.round(Math.random()*3);
     dv.style.width=sz+'px'; dv.style.height=sz+'px'; dv.style.left=(Math.random()*100)+'%'; dv.style.top=(24+Math.random()*60)+'%';
