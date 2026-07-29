@@ -14,22 +14,21 @@
 .mf-hero .badge{margin-bottom:18px}
 .mf-h1{font-family:var(--font-display,serif);font-weight:800;font-size:clamp(30px,7vw,52px);line-height:1.22;letter-spacing:-.01em;margin:6px 0 18px}
 .mf-h1 .em{color:var(--primary,#C96F8F)}
-.mf-lead{color:var(--ink-soft,#6b5f57);font-size:clamp(15px,2.3vw,18px);line-height:1.9;max-width:560px;margin:0 auto}
+.mf-lead{color:var(--ink-soft,#6b5f57);font-size:clamp(15px,2.3vw,18px);line-height:1.9;max-width:580px;margin:0 auto}
 .mf-sec{max-width:760px;margin:0 auto;padding:52px 20px}
 .mf-kicker{font-size:12px;letter-spacing:.22em;font-weight:800;color:var(--primary,#C96F8F);text-transform:uppercase;margin-bottom:12px}
 .mf-h2{font-family:var(--font-display,serif);font-weight:800;font-size:clamp(23px,4.4vw,32px);line-height:1.3;margin:0 0 18px}
 .mf-p{color:var(--ink-soft,#6b5f57);font-size:16px;line-height:1.95;margin:0 0 16px}
 .mf-p b{color:var(--ink,#2a2320)}
-/* dark poster band */
 .mf-band{background:radial-gradient(120% 130% at 50% 0%,#2e2038,#1c1410 78%);color:#EDE3D2;margin:12px 0;border-radius:22px;padding:44px 26px}
 .mf-band .mf-kicker{color:#E6B76E}
 .mf-band .mf-h2{color:#F5ECDB}
 .mf-band .mf-p{color:#CDBEA8}
 .mf-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:24px 0 8px}
 .mf-stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 18px}
-.mf-num{font-family:var(--font-display,serif);font-weight:800;font-size:clamp(26px,6vw,38px);color:#F0C079;line-height:1.1}
+.mf-num{font-family:var(--font-display,serif);font-weight:800;font-size:clamp(24px,5.5vw,34px);color:#F0C079;line-height:1.1}
 .mf-cap{color:#C6B8A2;font-size:12.5px;line-height:1.5;margin-top:8px}
-.mf-quote{font-family:var(--font-display,serif);font-size:clamp(20px,4vw,27px);line-height:1.5;color:var(--ink,#2a2320);text-align:center;max-width:640px;margin:6px auto;font-weight:700}
+.mf-quote{font-family:var(--font-display,serif);font-size:clamp(20px,4vw,27px);line-height:1.5;color:var(--ink,#2a2320);text-align:center;max-width:660px;margin:6px auto;font-weight:700}
 .mf-quote .by{display:block;font-family:var(--font-ui,sans-serif);font-size:13px;font-weight:600;color:var(--ink-soft,#6b5f57);margin-top:14px;letter-spacing:.02em}
 .mf-cards{display:grid;grid-template-columns:1fr;gap:14px;margin-top:22px}
 @media(min-width:680px){.mf-cards{grid-template-columns:repeat(3,1fr)}}
@@ -40,7 +39,7 @@
 .mf-promise{display:grid;grid-template-columns:1fr;gap:14px;margin-top:24px}
 .mf-pr{display:flex;gap:16px;align-items:flex-start;background:var(--card,#fff);border:1px solid rgba(0,0,0,.07);border-radius:16px;padding:20px}
 .mf-pr .no{font-family:var(--font-display,serif);font-weight:800;font-size:22px;color:var(--primary,#C96F8F);flex:none;width:34px;line-height:1.1}
-.mf-pr h3{font-size:16.5px;margin:0 0 6px;font-weight:800}
+.mf-pr h3{font-size:16.5px;margin:0 0 6px;font-weight:800;color:var(--ink,#2a2320)}
 .mf-pr p{color:var(--ink-soft,#6b5f57);font-size:14px;line-height:1.75;margin:0}
 .mf-cta{text-align:center;padding:12px 20px 8px}
 .mf-cta .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:18px}
@@ -56,7 +55,7 @@
   <nav class="gnb-menu">
     <a href="world.html" data-i18n="common.nav.world">세계관</a>
     <a href="book.html" data-i18n="common.nav.book">작품</a>
-    <a href="manifesto.html" style="color:var(--primary)">약속</a>
+    <a href="manifesto.html" style="color:var(--primary)" data-k="nav_promise">약속</a>
     <a class="btn btn--sm" href="read.html"><span class="btn-hole"></span><span data-i18n="common.nav.read">무료 1화 읽기</span></a>
   </nav>
   <div class="gnb-right"><button class="theme-toggle" aria-label="테마 전환">☾</button></div>
@@ -65,85 +64,85 @@
 <main>
   <!-- HERO -->
   <section class="mf-hero">
-    <span class="badge badge--accent">텍스토피아의 약속</span>
-    <h1 class="mf-h1">세상에서 가장 아름다운 옷은,<br><span class="em">이미 당신 곁에 있습니다.</span></h1>
-    <p class="mf-lead">새로 사지 않아도 좋아요. 오래 입은 옷일수록 더 많은 이야기를 품고 있으니까. 텍스토피아는 바로 그 <b>‘옷의 기억’</b>에서 시작된 이야기입니다.</p>
+    <span class="badge badge--accent" data-k="hero_badge">텍스토피아의 약속</span>
+    <h1 class="mf-h1" data-k="hero_h1">세상에서 가장 아름다운 옷은,<br><span class="em">이미 당신 곁에 있습니다.</span></h1>
+    <p class="mf-lead" data-k="hero_lead">새로 사지 않아도 좋아요. 오래 입은 옷일수록 더 많은 이야기를 품고 있으니까. 텍스토피아는 바로 그 <b>‘옷의 기억’</b>에서 시작된 이야기입니다.</p>
   </section>
 
   <!-- PROBLEM -->
   <div class="mf-wrap">
   <div class="mf-band">
-    <div class="mf-kicker">매년, 이야기째로 버려집니다</div>
-    <h2 class="mf-h2">버려지는 건 천이 아니라,<br>누군가의 계절이에요.</h2>
-    <p class="mf-p">전 세계에서 한 해에 버려지는 옷과 섬유가 <b style="color:#F0C079">1억 2천만 톤</b>. 그중 대부분이 태워지거나 땅에 묻히고, 새 실로 다시 태어나는 건 1%도 되지 않습니다. 우리나라에서도 해마다 약 11만 톤의 옷이 버려져요. 그 안에는 누군가의 첫 출근과 마지막 인사, 늘어난 소매에 밴 온기가 함께 묻힙니다.</p>
+    <div class="mf-kicker" data-k="prob_kick">매년, 이야기째로 버려집니다</div>
+    <h2 class="mf-h2" data-k="prob_h2">버려지는 건 천이 아니라,<br>누군가의 계절이에요.</h2>
+    <p class="mf-p" data-k="prob_p">전 세계에서 한 해에 버려지는 옷과 섬유가 <b style="color:#F0C079">1억 2천만 톤</b>. 그중 대부분이 태워지거나 땅에 묻히고, 새 실로 다시 태어나는 건 1%도 되지 않습니다. 예를 들어 한국에서도 해마다 약 11만 톤의 옷이 버려져요. 그 안에는 누군가의 첫 출근과 마지막 인사, 늘어난 소매에 밴 온기가 함께 묻힙니다.</p>
     <div class="mf-stats">
-      <div class="mf-stat"><div class="mf-num">1.2억 톤</div><div class="mf-cap">한 해 버려지는 전 세계 의류·섬유 (2024)</div></div>
-      <div class="mf-stat"><div class="mf-num">80%</div><div class="mf-cap">그중 소각되거나 매립되는 비율</div></div>
-      <div class="mf-stat"><div class="mf-num">1% 미만</div><div class="mf-cap">새 옷감으로 재활용되는 비율</div></div>
-      <div class="mf-stat"><div class="mf-num">11만 톤</div><div class="mf-cap">국내에서 한 해 버려지는 옷</div></div>
+      <div class="mf-stat"><div class="mf-num" data-k="st1n">1.2억 톤</div><div class="mf-cap" data-k="st1c">한 해 버려지는 전 세계 의류·섬유 (2024)</div></div>
+      <div class="mf-stat"><div class="mf-num" data-k="st2n">80%</div><div class="mf-cap" data-k="st2c">그중 소각되거나 매립되는 비율</div></div>
+      <div class="mf-stat"><div class="mf-num" data-k="st3n">1% 미만</div><div class="mf-cap" data-k="st3c">새 옷감으로 재활용되는 비율</div></div>
+      <div class="mf-stat"><div class="mf-num" data-k="st4n">1,500억 달러</div><div class="mf-cap" data-k="st4c">매년 사라지는 원료 가치</div></div>
     </div>
   </div>
   </div>
 
   <!-- PHILOSOPHY -->
   <section class="mf-sec">
-    <div class="mf-kicker">옷에는 기억이 산다</div>
-    <h2 class="mf-h2">가장 친환경적인 옷은,<br>이미 존재하는 옷입니다.</h2>
-    <p class="mf-p">디자인 학자 조너선 채프먼은 이것을 <b>‘정서적 내구성(emotional durability)’</b>이라 불렀어요 — 오래 사랑하는 물건일수록 오래 남는다는 것. 소재를 바꾸고 재활용을 늘리는 것보다, 한 벌을 아끼고 오래 입게 만드는 <b>마음</b>이 가장 강력한 해법이라는 이야기입니다.</p>
-    <p class="mf-p">텍스토피아의 수선사 <b>이서</b>가 옷에 담긴 기억을 읽는 이야기는, 사실 우리 모두가 이미 아는 진실에서 출발합니다. 늘어난 소매 하나에도 누군가를 자주 안았던 시간이 남아 있다는 것. 옷을 오래 입는 건 낡는 게 아니라, 이야기가 깊어지는 일이라는 것.</p>
+    <div class="mf-kicker" data-k="phil_kick">옷에는 기억이 산다</div>
+    <h2 class="mf-h2" data-k="phil_h2">가장 친환경적인 옷은,<br>이미 존재하는 옷입니다.</h2>
+    <p class="mf-p" data-k="phil_p1">디자인 학자 조너선 채프먼은 이것을 <b>‘정서적 내구성(emotional durability)’</b>이라 불렀어요 — 오래 사랑하는 물건일수록 오래 남는다는 것. 소재를 바꾸고 재활용을 늘리는 것보다, 한 벌을 아끼고 오래 입게 만드는 <b>마음</b>이 가장 강력한 해법이라는 이야기입니다.</p>
+    <p class="mf-p" data-k="phil_p2">텍스토피아의 수선사 <b>이서</b>가 옷에 담긴 기억을 읽는 이야기는, 사실 우리 모두가 이미 아는 진실에서 출발합니다. 늘어난 소매 하나에도 누군가를 자주 안았던 시간이 남아 있다는 것. 옷을 오래 입는 건 낡는 게 아니라, 이야기가 깊어지는 일이라는 것.</p>
   </section>
 
   <section class="mf-sec" style="padding-top:8px">
-    <p class="mf-quote">“가장 영향이 적은 옷은, 아마도 이미 존재하는 그 옷일 것이다.”<span class="by">— 정서적 내구성 디자인, 조너선 채프먼</span></p>
+    <p class="mf-quote" data-k="quote">“가장 영향이 적은 옷은, 아마도 이미 존재하는 그 옷일 것이다.”<span class="by">— 정서적 내구성 디자인, 조너선 채프먼</span></p>
   </section>
 
   <!-- MOVEMENT -->
   <section class="mf-sec">
-    <div class="mf-kicker">우리는 혼자가 아닙니다</div>
-    <h2 class="mf-h2">다정함은, 이미 세계의 흐름입니다.</h2>
-    <p class="mf-p">옷을 아끼고, 고치고, 다시 잇는 일. 이건 낭만이 아니라 가장 빠르게 커지는 미래예요. 세계의 브랜드들이 먼저 증명하고 있습니다.</p>
+    <div class="mf-kicker" data-k="mov_kick">우리는 혼자가 아닙니다</div>
+    <h2 class="mf-h2" data-k="mov_h2">다정함은, 이미 세계의 흐름입니다.</h2>
+    <p class="mf-p" data-k="mov_p">옷을 아끼고, 고치고, 다시 잇는 일. 이건 낭만이 아니라 가장 빠르게 커지는 미래예요. 세계의 브랜드들이 먼저 증명하고 있습니다.</p>
     <div class="mf-cards">
-      <div class="mf-card"><span class="big">파타고니아</span><h3>“이 재킷을 사지 마세요”</h3><p>2011년 블랙프라이데이, 덜 사라고 광고한 브랜드. 오히려 신뢰를 얻어 매출이 30% 늘고, 2017년 연 10억 달러 브랜드가 됐어요. 그 중심엔 수선·재사용(Worn Wear)이 있었습니다.</p></div>
-      <div class="mf-card"><span class="big">래코드 · 코오롱</span><h3>소각 대신, 단 하나뿐인 옷</h3><p>해마다 태워지던 수십억 원대 재고를 업사이클해 세상에 하나뿐인 옷으로 되살립니다. 2012년 시작해 수만 벌을 되살렸고, 수선·리폼 아틀리에도 열었어요.</p></div>
-      <div class="mf-card"><span class="big">다시 입는 시장</span><h3>2030년, 3,930억 달러</h3><p>중고 의류 시장은 새 옷보다 두 배 빠르게 자라, 2030년 약 3,930억 달러 규모로 커집니다. 그 성장의 70%를 잘파세대가 이끌고 있어요.</p></div>
+      <div class="mf-card"><span class="big" data-k="c1big">파타고니아</span><h3 data-k="c1h">“이 재킷을 사지 마세요”</h3><p data-k="c1p">2011년 블랙프라이데이, 덜 사라고 광고한 브랜드. 오히려 신뢰를 얻어 매출이 30% 늘고, 2017년 연 10억 달러 브랜드가 됐어요. 그 중심엔 수선·재사용(Worn Wear)이 있었습니다.</p></div>
+      <div class="mf-card"><span class="big" data-k="c2big">래코드 · 코오롱</span><h3 data-k="c2h">소각 대신, 단 하나뿐인 옷</h3><p data-k="c2p">해마다 태워지던 수십억 원대 재고를 업사이클해 세상에 하나뿐인 옷으로 되살립니다. 2012년 시작해 수만 벌을 되살렸고, 수선·리폼 아틀리에도 열었어요.</p></div>
+      <div class="mf-card"><span class="big" data-k="c3big">다시 입는 시장</span><h3 data-k="c3h">2030년, 3,930억 달러</h3><p data-k="c3p">중고 의류 시장은 새 옷보다 두 배 빠르게 자라, 2030년 약 3,930억 달러 규모로 커집니다. 그 성장의 70%를 잘파세대가 이끌고 있어요.</p></div>
     </div>
-    <p class="mf-p" style="text-align:center;margin-top:22px;font-weight:700;color:var(--ink,#2a2320)">옷을 아끼는 일은 낭만이 아니라, 가장 빠르게 커지는 미래입니다.</p>
+    <p class="mf-p" style="text-align:center;margin-top:22px;font-weight:700;color:var(--ink,#2a2320)" data-k="mov_close">옷을 아끼는 일은 낭만이 아니라, 가장 빠르게 커지는 미래입니다.</p>
   </section>
 
   <!-- PROMISE -->
   <div class="mf-wrap">
   <div class="mf-band">
-    <div class="mf-kicker">그래서 우리는</div>
-    <h2 class="mf-h2">텍스토피아의 네 가지 약속</h2>
+    <div class="mf-kicker" data-k="pr_kick">그래서 우리는</div>
+    <h2 class="mf-h2" data-k="pr_h2">텍스토피아의 네 가지 약속</h2>
     <div class="mf-promise">
-      <div class="mf-pr"><div class="no">01</div><div><h3>이야기를 먼저.</h3><p>버리기 전에, 그 옷의 기억을 먼저 읽습니다. ‘이서의 리딩’으로 옷 한 벌의 사연을 남기는 문화를 만들어요. 버리는 손을 잠깐 멈추게 하는 한 문장을.</p></div></div>
-      <div class="mf-pr"><div class="no">02</div><div><h3>만들지 않고, 전합니다.</h3><p>텍스토피아의 굿즈는 재고도 폐기도 없는 <b style="color:#F0C079">디지털에서 출발</b>합니다. 태워질 물건을 새로 만들지 않는 것 — 그것이 옷 이야기를 파는 우리가 지켜야 할 최소한이라 믿어요.</p></div></div>
-      <div class="mf-pr"><div class="no">03</div><div><h3>버리지 않고, 잇습니다.</h3><p>옷을 쓰레기가 아니라 다음 사람에게. 옷의 기억을 이야기와 함께 이어주는 순환 — 중고·업사이클·리폼을 텍스토피아의 방식으로 준비하고 있어요.</p></div></div>
-      <div class="mf-pr"><div class="no">04</div><div><h3>받은 것을, 되돌립니다.</h3><p>이야기로 얻은 것의 일부를 다시 옷과 지구로. 수익의 일부를 의류 순환과 수선 문화에 돌려보내는 것을, 우리의 약속으로 삼으려 합니다.</p></div></div>
+      <div class="mf-pr"><div class="no">01</div><div><h3 data-k="p1h">이야기를 먼저.</h3><p data-k="p1p">버리기 전에, 그 옷의 기억을 먼저 읽습니다. ‘이서의 리딩’으로 옷 한 벌의 사연을 남기는 문화를 만들어요. 버리는 손을 잠깐 멈추게 하는 한 문장을.</p></div></div>
+      <div class="mf-pr"><div class="no">02</div><div><h3 data-k="p2h">만들지 않고, 전합니다.</h3><p data-k="p2p">텍스토피아의 굿즈는 재고도 폐기도 없는 <b style="color:#F0C079">디지털에서 출발</b>합니다. 태워질 물건을 새로 만들지 않는 것 — 그것이 옷 이야기를 파는 우리가 지켜야 할 최소한이라 믿어요.</p></div></div>
+      <div class="mf-pr"><div class="no">03</div><div><h3 data-k="p3h">버리지 않고, 잇습니다.</h3><p data-k="p3p">옷을 쓰레기가 아니라 다음 사람에게. 옷의 기억을 이야기와 함께 이어주는 순환 — 중고·업사이클·리폼을 텍스토피아의 방식으로 준비하고 있어요.</p></div></div>
+      <div class="mf-pr"><div class="no">04</div><div><h3 data-k="p4h">받은 것을, 되돌립니다.</h3><p data-k="p4p">이야기로 얻은 것의 일부를 다시 옷과 지구로. 수익의 일부를 의류 순환과 수선 문화에 돌려보내는 것을, 우리의 약속으로 삼으려 합니다.</p></div></div>
     </div>
   </div>
   </div>
 
   <!-- CTA -->
   <section class="mf-cta">
-    <h2 class="mf-h2" style="margin-bottom:6px">함께, 실을 이어요</h2>
-    <p class="mf-lead">당신의 옷에도 이야기가 있어요. 버리기 전에, 한 번 읽어봐 주세요.</p>
+    <h2 class="mf-h2" style="margin-bottom:6px" data-k="cta_h2">함께, 실을 이어요</h2>
+    <p class="mf-lead" data-k="cta_lead">당신의 옷에도 이야기가 있어요. 버리기 전에, 한 번 읽어봐 주세요.</p>
     <div class="row">
-      <a class="btn" href="reading.html" onclick="window.txEvent&&txEvent('cta_reading',{from:'manifesto'})"><span class="btn-hole"></span><span>옷의 기억 남기기</span></a>
-      <a class="btn btn--ghost" href="login.html">함께하기 · 소식 받기</a>
+      <a class="btn" href="reading.html" onclick="window.txEvent&&txEvent('cta_reading',{from:'manifesto'})"><span class="btn-hole"></span><span data-k="cta_b1">옷의 기억 남기기</span></a>
+      <a class="btn btn--ghost" href="login.html" data-k="cta_b2">함께하기 · 소식 받기</a>
     </div>
   </section>
 
   <!-- SOURCES -->
   <div class="mf-src">
-    <h4>출처</h4>
+    <h4 data-k="src_h">출처</h4>
     <p>
-      전 세계 섬유 폐기물·재활용률: <a href="https://www.bcg.com/press/12august2025-fashions-opportunity-reclaim-lost-textile-value" target="_blank" rel="noopener">BCG, “From Waste to Worth” (2025)</a> ·
-      국내 폐의류: <a href="https://www.hantoday.net/news/articleView.html?idxno=45086" target="_blank" rel="noopener">한국투데이 (2024)</a> ·
-      정서적 내구성: <a href="https://www.premierevision.com/en/articles/bd0b1d17-9f1a-f011-8b3d-000d3a236aa0/emotional-durability-the-secret-weapon-against-fast-fashion" target="_blank" rel="noopener">Première Vision · Jonathan Chapman</a> ·
-      파타고니아: <a href="https://thebrandhopper.com/case-studies/a-case-study-on-patagonias-dont-buy-this-jacket-campaign/" target="_blank" rel="noopener">“Don’t Buy This Jacket” 사례</a> ·
-      래코드: <a href="https://www.newspenguin.com/news/articleView.html?idxno=11457" target="_blank" rel="noopener">뉴스펭귄</a> ·
-      중고 시장: <a href="https://www.businesswire.com/news/home/20260402799816/en/ThredUps-14th-Annual-Resale-Report-Reveals-New-Era-of-Structural-Competition-and-AI-Driven-Discovery" target="_blank" rel="noopener">ThredUp 14th Resale Report (2026)</a>
+      <span data-k="src_1">전 세계 섬유 폐기물·재활용률·손실 가치</span>: <a href="https://www.bcg.com/press/12august2025-fashions-opportunity-reclaim-lost-textile-value" target="_blank" rel="noopener">BCG, “From Waste to Worth” (2025)</a> ·
+      <span data-k="src_2">국내 폐의류</span>: <a href="https://www.hantoday.net/news/articleView.html?idxno=45086" target="_blank" rel="noopener">한국투데이 (2024)</a> ·
+      <span data-k="src_3">정서적 내구성</span>: <a href="https://www.premierevision.com/en/articles/bd0b1d17-9f1a-f011-8b3d-000d3a236aa0/emotional-durability-the-secret-weapon-against-fast-fashion" target="_blank" rel="noopener">Première Vision · Jonathan Chapman</a> ·
+      Patagonia: <a href="https://thebrandhopper.com/case-studies/a-case-study-on-patagonias-dont-buy-this-jacket-campaign/" target="_blank" rel="noopener">“Don’t Buy This Jacket”</a> ·
+      RE;CODE: <a href="https://www.newspenguin.com/news/articleView.html?idxno=11457" target="_blank" rel="noopener">뉴스펭귄</a> ·
+      <span data-k="src_4">중고 시장</span>: <a href="https://www.businesswire.com/news/home/20260402799816/en/ThredUps-14th-Annual-Resale-Report-Reveals-New-Era-of-Structural-Competition-and-AI-Driven-Discovery" target="_blank" rel="noopener">ThredUp 14th Resale Report (2026)</a>
     </p>
   </div>
 </main>
@@ -166,5 +165,56 @@
 </nav>
 
 <script src="assets/app.js?v=8"></script>
+<script>
+(function(){
+  var lang=((window.txLang||document.documentElement.lang||'ko')+'').slice(0,2); if(lang!=='ko') lang='en';
+  if(lang==='ko') return;
+  var EN={
+    nav_promise:'Our Promise',
+    hero_badge:'The Textopia Promise',
+    hero_h1:'The most beautiful clothes in the world<br><span class="em">are already beside you.</span>',
+    hero_lead:'You don’t have to buy new. The longer you wear something, the more stories it holds. Textopia is a story that began from exactly that — <b>the memories held in cloth.</b>',
+    prob_kick:'Every year, thrown away — stories and all',
+    prob_h2:'What we throw away isn’t fabric.<br>It’s someone’s season.',
+    prob_p:'Every year the world discards <b style="color:#F0C079">120 million tons</b> of clothing and textiles. Most of it is burned or buried, and less than 1% is reborn as new fiber. In Korea alone, some 110,000 tons are thrown out each year. Buried with them: a first day at work, a last goodbye, the warmth soaked into a stretched-out sleeve.',
+    st1n:'120M tons', st1c:'Clothing & textiles discarded worldwide each year (2024)',
+    st2n:'80%', st2c:'Burned or sent to landfill',
+    st3n:'under 1%', st3c:'Recycled into new fabric',
+    st4n:'$150B', st4c:'Raw-material value lost every single year',
+    phil_kick:'Clothes are alive with memory',
+    phil_h2:'The most sustainable garment is<br>the one that already exists.',
+    phil_p1:'Design scholar Jonathan Chapman called it <b>“emotional durability”</b> — the things we love, we keep. More powerful than better materials or more recycling is the <b>feeling</b> that makes us cherish one garment and wear it for years.',
+    phil_p2:'Textopia’s mender, <b>Iseo</b>, reads the memories held in clothing — a story that starts from a truth we all already know. Even a stretched sleeve holds the hours it spent holding someone. To wear something long isn’t to wear it out; it’s to let the story deepen.',
+    quote:'“The least impactful garment is probably the one that already exists.”<span class="by">— Jonathan Chapman, on emotionally durable design</span>',
+    mov_kick:'We’re not alone',
+    mov_h2:'Tenderness is already<br>the world’s direction.',
+    mov_p:'Caring for clothes, repairing them, passing them on — it isn’t nostalgia. It’s the fastest-growing future, and the world’s brands are already proving it.',
+    c1big:'Patagonia', c1h:'“Don’t Buy This Jacket”',
+    c1p:'On Black Friday 2011, a brand told people to buy less. It won trust instead — sales rose 30% and it became a $1B brand by 2017. Repair and reuse (Worn Wear) were at its heart.',
+    c2big:'RE;CODE · Kolon', c2h:'One-of-a-kind, not the incinerator',
+    c2p:'Millions of dollars of deadstock once burned each year, upcycled into pieces that exist nowhere else. Since 2012 it has revived tens of thousands of garments and opened repair-and-reform ateliers.',
+    c3big:'The resale market', c3h:'$393B by 2030',
+    c3p:'Secondhand fashion is growing twice as fast as new, reaching about $393B by 2030 — with Gen Z and Millennials driving 70% of that growth.',
+    mov_close:'Caring for clothes isn’t sentimentality — it’s the fastest-growing future.',
+    pr_kick:'So here is our', pr_h2:'Textopia’s four promises',
+    p1h:'Story first.',
+    p1p:'Before it’s thrown away, we read the garment’s memory first. Through “Iseo’s Reading” we’re building a ritual of leaving a story for each piece — one sentence that stays a discarding hand.',
+    p2h:'We tell, we don’t manufacture.',
+    p2p:'Textopia’s goods begin as <b style="color:#F0C079">digital — no inventory, no waste</b>. Not making one more thing destined to be burned is the least we owe, as people who sell stories about clothes.',
+    p3h:'We pass on, we don’t throw out.',
+    p3p:'Clothes to the next person, not the bin. We’re building circulation — resale, upcycling, reform — that passes a garment on together with its story, the Textopia way.',
+    p4h:'We give back.',
+    p4p:'A share of what our stories earn, returned to clothing and the planet. We intend to make giving part of our revenue — to textile circulation and repair culture — a standing promise.',
+    cta_h2:'Let’s tie the thread, together',
+    cta_lead:'Your clothes have stories too. Before you let them go, read one.',
+    cta_b1:'Leave a garment’s memory', cta_b2:'Join us · Get news',
+    src_h:'Sources',
+    src_1:'Global textile waste, recycling rate & lost value',
+    src_2:'Korea textile waste', src_3:'Emotional durability', src_4:'Resale market'
+  };
+  Object.keys(EN).forEach(function(k){ var el=document.querySelector('[data-k="'+k+'"]'); if(el) el.innerHTML=EN[k]; });
+  document.documentElement.lang='en';
+})();
+</script>
 </body>
 </html>
