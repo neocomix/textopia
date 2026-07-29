@@ -353,7 +353,7 @@
     document.getElementById('rdWall').onclick=function(){
       // 옵트인 시에만 기억의 벽으로 (데모: localStorage 적재. 정식: Supabase is_public=true)
       if(document.getElementById('rdOptin').checked){
-        try{ var w=JSON.parse(localStorage.getItem('tx_wall')||'[]'); w.unshift({title:title,excerpt:reading.slice(0,80),tone:tone,emotion:sel.emotion,ts:Date.now()}); localStorage.setItem('tx_wall',JSON.stringify(w.slice(0,60))); }catch(e){}
+        try{ var w=JSON.parse(localStorage.getItem('tx_wall')||'[]'); w.unshift({title:title,reading:reading,excerpt:reading.slice(0,64)+'…',tone:tone,emotion:sel.emotion,ts:Date.now()}); localStorage.setItem('tx_wall',JSON.stringify(w.slice(0,60))); }catch(e){}
         if(window.txEvent) txEvent('wall_optin',{emotion:sel.emotion});
       }
     };

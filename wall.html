@@ -29,6 +29,19 @@
 .wl-ex{background:var(--surface);padding:14px 16px 15px;font-family:var(--font-serif);font-size:14.5px;line-height:1.75;color:var(--ink)}
 .wl-meta{display:flex;justify-content:space-between;align-items:center;padding:0 16px 13px;background:var(--surface);font-size:11.5px;color:var(--ink-soft)}
 .wl-empty{text-align:center;color:var(--ink-soft);padding:40px 0;font-family:var(--font-display)}
+.wl-item{cursor:pointer;transition:transform .12s var(--ease),box-shadow .2s}
+.wl-item:hover{transform:translateY(-2px);box-shadow:0 10px 26px -8px rgba(58,55,48,.28)}
+.wl-more{display:block;padding:0 16px 14px;background:var(--surface);font-size:11.5px;font-weight:700;color:var(--accent)}
+.wl-lb{position:fixed;inset:0;z-index:120;background:rgba(30,26,22,.6);display:flex;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(3px)}
+.wl-lb-in{position:relative;background:var(--surface);border-radius:16px;max-width:460px;width:100%;max-height:92vh;overflow:auto;box-shadow:0 24px 60px -18px rgba(30,26,22,.5);animation:wlrise .4s var(--ease)}
+.wl-lb-x{position:absolute;top:10px;right:10px;z-index:3;width:34px;height:34px;border-radius:50%;border:none;background:rgba(255,255,255,.22);color:#fff;font-size:15px;cursor:pointer;backdrop-filter:blur(4px)}
+.wl-lb-top{padding:32px 26px 24px;color:#fff;position:relative}
+.wl-lb-top::after{content:'';position:absolute;inset:10px;border:1px dashed rgba(255,255,255,.4);border-radius:12px;pointer-events:none}
+.wl-lb-ttl{font-family:var(--font-display);font-size:26px;font-weight:800;margin-top:4px;line-height:1.3}
+.wl-lb-body{padding:24px 26px 22px}
+.wl-lb-reading{font-family:var(--font-serif);font-size:16.5px;line-height:1.95;color:var(--ink);white-space:pre-wrap}
+.wl-lb-sign{margin-top:14px;font-size:13px;color:var(--ink-soft);text-align:right}
+.wl-lb-meta{margin-top:16px;padding-top:13px;border-top:1px dashed var(--stitch);font-size:12px;color:var(--ink-soft);display:flex;justify-content:space-between}
 @media(max-width:640px){.wl-grid{columns:2 150px}}
 </style>
 </head>
@@ -55,6 +68,14 @@
   <div class="wl-grid" id="wlGrid"></div>
   <div class="wl-empty wl-hidden" id="wlEmpty" style="display:none">아직 이 감정의 기억이 걸리지 않았어요.</div>
 </main>
+
+<div class="wl-lb" id="wlLb" style="display:none">
+  <div class="wl-lb-in" id="wlLbIn">
+    <button class="wl-lb-x" id="wlLbX" aria-label="close">✕</button>
+    <div class="wl-lb-top" id="wlLbTop"><div class="wl-tag" id="wlLbTag">옷의 기억</div><div class="wl-lb-ttl" id="wlLbTtl"></div></div>
+    <div class="wl-lb-body"><div class="wl-lb-reading" id="wlLbReading"></div><div class="wl-lb-sign" id="wlLbSign">— 이서</div><div class="wl-lb-meta" id="wlLbMeta"></div></div>
+  </div>
+</div>
 
 <footer>
   <div class="ft-grid">
@@ -83,17 +104,17 @@
            en:{kicker:"TEXTOPIA · WALL OF MEMORIES",h1:"The Wall of Memories",sub:"A wall where the world's garments hang anonymously, with the memories inside them. Iseo read a piece someone couldn't let go, and left it here.",cta:"Hang your garment's memory",all:"All",tag:"Memory in cloth",anon:"Anonymous",empty:"No memory of this feeling has been hung yet."}};
   // 시드(익명, 예시). 정식: Supabase readings where is_public=true.
   var SEED=[
-    {emotion:"longing",ts:Date.now()-3600e3*4, ko:{title:"늘어난 소매의 온기",excerpt:"늘어난 소매는 흠이 아니라, 그 손이 당신을 얼마나 자주 안았는지의 기록이에요."}, en:{title:"A Warmth in the Sleeves",excerpt:"The stretched-out sleeves aren't a flaw — they're a record of how often those arms held you."}},
-    {emotion:"regret",ts:Date.now()-3600e3*9, ko:{title:"여미지 못한 소맷단",excerpt:"다 여미지 못한 마음이 소맷단에 남아 있네요. 그래도 괜찮아요."}, en:{title:"The Unfinished Cuff",excerpt:"An unfinished feeling stays in the cuff. And that's alright."}},
-    {emotion:"comfort",ts:Date.now()-3600e3*20, ko:{title:"대신 안아준 옷",excerpt:"지친 날, 이 옷이 당신을 대신 안아줬군요. 오늘은 제가 안아드릴게요."}, en:{title:"The Cloth That Held You",excerpt:"On tired days, this held you when no one else could. Today, let me hold you."}},
-    {emotion:"pride",ts:Date.now()-3600e3*28, ko:{title:"여기까지의 증거",excerpt:"낡음은 흠이 아니라 훈장이에요. 당신이 여기까지 온 증거니까요."}, en:{title:"Proof of the Road",excerpt:"The wear is a medal, not a flaw — proof of how far you've come."}},
-    {emotion:"love",ts:Date.now()-3600e3*44, ko:{title:"사랑의 길이",excerpt:"사랑은 길이로 재는 것이 아니었죠. 이 작은 옷이 그걸 알아요."}, en:{title:"The Length of Love",excerpt:"Love was never measured in length; this small garment knows that."}},
-    {emotion:"growth",ts:Date.now()-3600e3*60, ko:{title:"지나온 자리",excerpt:"이 옷을 지나 당신은 조금 더 자랐어요. 이별도 성장의 다른 이름이죠."}, en:{title:"The Place You Passed",excerpt:"Past this garment you grew a little; parting is another word for growth."}},
-    {emotion:"thanks",ts:Date.now()-3600e3*72, ko:{title:"오래 품은 말",excerpt:"고맙다는 말을, 이 천이 대신 오래 품고 있었네요."}, en:{title:"A Long-Kept Thank-You",excerpt:"A thank-you this cloth has carried quietly, for a long time."}},
-    {emotion:"longing",ts:Date.now()-3600e3*96, ko:{title:"아직 남은 온기",excerpt:"이건 옷이 아니라, 아직 당신 곁에 남아 있는 온기예요."}, en:{title:"A Warmth Still Here",excerpt:"This isn't a garment — it's a warmth still beside you."}},
-    {emotion:"comfort",ts:Date.now()-3600e3*120, ko:{title:"첫 학기의 냄새",excerpt:"교실 창가의 빛 같은 게 아직 남아 있네요. 그 시절이 당신을 스쳐요."}, en:{title:"The Scent of a First Term",excerpt:"Something like classroom-window light remains. That season brushes past you."}}
+    {emotion:"longing",ts:Date.now()-3600e3*4, ko:{title:"늘어난 소매의 온기",reading:"당신은 이 니트를 손끝으로 먼저 알아보는군요. 늘어난 소매는 흠이 아니라, 그 손이 당신을 얼마나 자주 안았는지의 기록이에요. 버릴 수 없는 건 당연해요 — 이건 옷이 아니라, 아직 곁에 남은 온기니까요."}, en:{title:"A Warmth in the Sleeves",reading:"You know this knit by your fingertips before your eyes. The stretched-out sleeves aren't a flaw — they're a record of how often those arms held you. Of course you can't let it go; it isn't a garment, but a warmth still beside you."}},
+    {emotion:"regret",ts:Date.now()-3600e3*9, ko:{title:"여미지 못한 소맷단",reading:"다 여미지 못한 마음이 소맷단에 남아 있네요. 어떤 말은 끝내 꺼내지 못한 채 천에 스미기도 해요. 그래도 괜찮아요 — 못다 한 마음도, 사랑의 한 조각이니까요."}, en:{title:"The Unfinished Cuff",reading:"An unfinished feeling stays in the cuff. Some words never make it out; they settle into the cloth instead. And that's alright — even what went unsaid is a piece of love."}},
+    {emotion:"comfort",ts:Date.now()-3600e3*20, ko:{title:"대신 안아준 옷",reading:"지친 하루의 끝, 이 옷이 당신을 대신 안아줬군요. 아무 말 없이 어깨를 감싸주던 그 무게를, 천이 기억하고 있어요. 오늘은 제가 이 옷 대신 당신을 안아드릴게요."}, en:{title:"The Cloth That Held You",reading:"At the end of tired days, this held you when no one else could. The cloth remembers that quiet weight around your shoulders. Today, let me hold you in its place."}},
+    {emotion:"pride",ts:Date.now()-3600e3*28, ko:{title:"여기까지의 증거",reading:"낡음은 흠이 아니라 훈장이에요. 헤진 자리마다 당신이 버텨낸 하루가 새겨져 있죠. 이 옷은, 당신이 여기까지 왔다는 가장 정직한 증거예요."}, en:{title:"Proof of the Road",reading:"The wear is a medal, not a flaw. Every frayed spot holds a day you got through. This garment is the most honest proof of how far you've come."}},
+    {emotion:"love",ts:Date.now()-3600e3*44, ko:{title:"사랑의 길이",reading:"사랑은 길이로 재는 것이 아니었죠. 짧게 스친 시간도, 이 작은 옷 안에서는 온전히 살아 있어요. 함께한 날의 수보다, 그 마음의 깊이를 이 천이 기억해요."}, en:{title:"The Length of Love",reading:"Love was never measured in length. Even a brief time lives whole inside this small garment. More than the number of days, the cloth remembers how deeply it was felt."}},
+    {emotion:"growth",ts:Date.now()-3600e3*60, ko:{title:"지나온 자리",reading:"이 옷을 지나며 당신은 조금 더 자랐어요. 작아진 건 옷이 아니라, 그만큼 넓어진 당신이죠. 이별도, 실은 성장의 다른 이름이에요."}, en:{title:"The Place You Passed",reading:"Passing through this garment, you grew a little. It isn't the clothes that shrank — it's you who grew wider. Parting, too, is just another word for growth."}},
+    {emotion:"thanks",ts:Date.now()-3600e3*72, ko:{title:"오래 품은 말",reading:"고맙다는 말을, 이 천이 당신 대신 오래 품고 있었네요. 차마 소리내지 못한 인사가 올올이 배어 있어요. 이제 그 말을, 제가 대신 전해드릴게요 — 고마웠다고."}, en:{title:"A Long-Kept Thank-You",reading:"A thank-you the cloth carried for you, quietly, for a long time. The greeting you couldn't say aloud is woven into every thread. Let me pass it on now — that you were grateful."}},
+    {emotion:"longing",ts:Date.now()-3600e3*96, ko:{title:"아직 남은 온기",reading:"이건 옷이 아니라, 아직 당신 곁에 남아 있는 온기예요. 오래 입어 부드러워진 자리마다, 떠난 이의 손길이 머물러 있죠. 곁에 두어도 괜찮아요. 어떤 온기는, 그렇게 오래 남는 법이니까요."}, en:{title:"A Warmth Still Here",reading:"This isn't a garment — it's a warmth still beside you. In every place worn soft with time, a departed hand still lingers. It's alright to keep it close; some warmth is meant to stay that long."}},
+    {emotion:"comfort",ts:Date.now()-3600e3*120, ko:{title:"첫 학기의 냄새",reading:"교실 창가의 빛 같은 게 아직 이 옷에 남아 있네요. 설레던 첫 학기의 공기가, 옷깃 사이에 접혀 있어요. 그 시절의 당신이, 잠시 이 천을 스치고 지나가요."}, en:{title:"The Scent of a First Term",reading:"Something like classroom-window light still rests in this cloth. The air of a nervous first term is folded into the collar. For a moment, the you of back then brushes past."}}
   ];
-  function norm(d){ if(d[lang]) return {title:d[lang].title,excerpt:d[lang].excerpt,emotion:d.emotion,ts:d.ts}; return d; }
+  function norm(d){ if(d[lang]) return {title:d[lang].title,reading:d[lang].reading,excerpt:(d[lang].reading||'').slice(0,64)+'…',emotion:d.emotion,ts:d.ts}; return d; }
   function load(){ var u=[]; try{ u=JSON.parse(localStorage.getItem('tx_wall')||'[]'); }catch(e){} return u.concat(SEED.map(norm)); }
   var W=WUI[lang];
   (function chrome(){ function s(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
@@ -110,17 +131,35 @@
     var all=[['all',W.all]].concat(Object.keys(EMO[lang]).map(function(k){return [k,EMO[lang][k]];}));
     all.forEach(function(o){ var el=document.createElement('button'); el.className='wl-fchip'+(filter===o[0]?' on':''); el.textContent=o[1]; el.onclick=function(){ filter=o[0]; filters(); grid(); }; box.appendChild(el); });
   }
+  var MORE={ko:'전문 보기 →',en:'Read full →'};
   function grid(){
     var g=document.getElementById('wlGrid'), items=DATA.filter(function(d){return filter==='all'||d.emotion===filter;});
     document.getElementById('wlEmpty').style.display=items.length?'none':'block';
     g.innerHTML=items.map(function(d,i){ var tone=TONE[d.emotion]||'#8A6D4A';
       return '<article class="wl-item" style="animation-delay:'+(i*40)+'ms">'
         +'<div class="wl-top" style="background:linear-gradient(135deg,'+tone+','+shade(tone)+')"><div class="wl-tag">'+W.tag+'</div><div class="wl-ttl">'+d.title+'</div></div>'
-        +'<div class="wl-ex">'+d.excerpt+'</div>'
+        +'<div class="wl-ex">'+(d.excerpt||'')+'</div>'
         +'<div class="wl-meta"><span>'+W.anon+' · '+(EMO[lang][d.emotion]||'')+'</span><span>'+rel(d.ts)+'</span></div>'
+        +'<span class="wl-more">'+MORE[lang]+'</span>'
         +'</article>';
     }).join('');
+    [].forEach.call(g.children,function(el,i){ el.onclick=function(){ openLb(items[i]); }; });
   }
+  function openLb(d){
+    var tone=TONE[d.emotion]||'#8A6D4A';
+    document.getElementById('wlLbTop').style.background='linear-gradient(135deg,'+tone+','+shade(tone)+')';
+    document.getElementById('wlLbTag').textContent=W.tag;
+    document.getElementById('wlLbTtl').textContent=d.title||'';
+    document.getElementById('wlLbReading').textContent=d.reading||d.excerpt||'';
+    document.getElementById('wlLbSign').textContent=lang==='ko'?'— 이서':'— Iseo';
+    document.getElementById('wlLbMeta').innerHTML='<span>'+W.anon+' · '+(EMO[lang][d.emotion]||'')+'</span><span>'+rel(d.ts)+'</span>';
+    document.getElementById('wlLb').style.display='flex';
+    if(window.txEvent)txEvent('wall_open',{emotion:d.emotion});
+  }
+  function closeLb(){ document.getElementById('wlLb').style.display='none'; }
+  document.getElementById('wlLbX').onclick=closeLb;
+  document.getElementById('wlLb').addEventListener('click',function(e){ if(e.target.id==='wlLb') closeLb(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLb(); });
   filters(); grid();
 })();
 </script>
