@@ -12,7 +12,7 @@
 html,body{margin:0;height:100%;background:#1a120c;overflow:hidden;font-family:var(--font-ui,'Pretendard',sans-serif);-webkit-user-select:none;user-select:none;touch-action:none}
 .rm-stage{position:fixed;inset:0;overflow:hidden;background:#241812;cursor:grab}
 .rm-stage:active{cursor:grabbing}
-.rm-wall{position:absolute;inset:0;background-position:center center;background-size:cover;background-repeat:no-repeat;opacity:0;will-change:transform,opacity}
+.rm-wall{position:absolute;top:50%;left:50%;background-position:center center;background-size:cover;background-repeat:no-repeat;opacity:0;will-change:transform,opacity}
 /* soft edge shading so the four walls feel joined */
 .rm-vin{position:fixed;inset:0;pointer-events:none;z-index:20;background:radial-gradient(115% 80% at 50% 46%,transparent 60%,rgba(26,15,8,.5) 100%)}
 .rm-topfade{position:fixed;top:0;left:0;right:0;height:120px;pointer-events:none;z-index:19;background:linear-gradient(180deg,rgba(20,12,7,.42),transparent)}
@@ -114,10 +114,14 @@ html,body{margin:0;height:100%;background:#1a120c;overflow:hidden;font-family:va
   var SC=1.06, imgR=1600/1066;
   var W,H,spareX,spareY,PANK,ky;
   function geom(){ W=innerWidth; H=innerHeight;
+    // Each wall div is sized to the FULL image (bigger than the screen) and
+    // centered, so translating it pans across the picture while it always
+    // keeps the screen fully covered — no background ever peeks through.
     var dispW=Math.max(W,H*imgR)*SC, dispH=Math.max(H,W/imgR)*SC;
     spareX=(dispW-W)/2; spareY=(dispH-H)/2;
     PANK=(spareX*0.9)/45;      // px of horizontal pan per degree of turn
     ky=spareY*0.9;             // px of vertical pan at full pitch
+    for(var i=0;i<4;i++){ wallEls[i].style.width=dispW.toFixed(0)+'px'; wallEls[i].style.height=dispH.toFixed(0)+'px'; }
   }
   geom(); addEventListener('resize',geom);
   var heading=0, pitch=0;            // rendered
@@ -135,8 +139,8 @@ html,body{margin:0;height:100%;background:#1a120c;overflow:hidden;font-family:va
       var el=wallEls[i];
       if(op<=0){ if(el.style.opacity!=='0'){el.style.opacity='0';} continue; }
       var tx=-d*PANK; if(tx>spareX)tx=spareX; else if(tx<-spareX)tx=-spareX;
-      var ty=pitch*ky;
-      el.style.transform='translate3d('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px,0) scale('+SC+')';
+      var ty=pitch*ky; if(ty>spareY)ty=spareY; else if(ty<-spareY)ty=-spareY;
+      el.style.transform='translate(-50%,-50%) translate3d('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px,0)';
       el.style.opacity=op.toFixed(3);
       el.style.zIndex=Math.round(op*10);
       if(op>bestOp){bestOp=op;best=i;}
