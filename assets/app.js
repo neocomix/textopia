@@ -125,6 +125,7 @@ window.TX_SUPABASE = {
       + '<a class="d-link hot" href="read.html">'+t('common.drawer.read','무료 1화 읽기')+'</a>'
       + '<a class="d-link hot" href="reading.html">'+t('common.drawer.reading','옷의 기억 · 이서의 리딩')+'<span class="d-badge">NEW</span></a>'
       + '<a class="d-link" href="wall.html">'+t('common.drawer.wall','기억의 벽')+'</a>'
+      + '<a class="d-link" href="room.html">'+t('common.drawer.room','이서의 방 둘러보기')+'</a>'
       + '<a class="d-link hot" href="quiz.html">'+t('common.drawer.quiz','나의 파트너 옷 찾기')+'</a>'
       + '<a class="d-link" href="world.html">'+t('common.drawer.world','세계관 · 대륙 지도')+'</a>'
       + '<a class="d-link" href="book.html">'+t('common.drawer.book','작품 소개')+'</a>'
