@@ -257,29 +257,54 @@
 
   /* ---------- 사진 업로드 + 가벼운 편집기 (전부 브라우저 안, 저장·전송 없음) ---------- */
   var photoData=null;
-  var FILTERS_CSS={none:'none',textopia:'sepia(.4) saturate(1.12) contrast(1.03) brightness(1.04)',vintage:'sepia(.62) contrast(.96) brightness(1.06) saturate(.9)',mono:'grayscale(1) contrast(1.06)'};
   var FILTERS_LABEL={ko:{none:'원본',textopia:'텍스토피아',vintage:'빈티지',mono:'흑백'},en:{none:'Original',textopia:'Textopia',vintage:'Vintage',mono:'Mono'}};
-  var ed={img:null,scale:1,ox:0,oy:0,rot:0,filter:'textopia'};
+  var ed={img:null,scale:1,ox:0,oy:0,rot:0,filter:'textopia',src:null,raw:null};
   var cv=document.getElementById('rdCanvas'), edModal=document.getElementById('rdEd'), zoomEl=document.getElementById('rdZoom');
   var fileInput=document.getElementById('rdFile'), prevBox=document.getElementById('rdPrev'), prevImg=document.getElementById('rdPrevImg'), upLabel=document.getElementById('rdUpLabel');
 
-  function paint(ctx,S){ if(!ed.img)return; var f=S/cv.width;
+  // iOS Safari는 canvas ctx.filter 지원이 불안정 → 필터를 픽셀 단위로 직접 구워 offscreen에 저장(전 브라우저 호환)
+  function buildSource(){
+    var MAX=1400, iw=ed.img.width, ih=ed.img.height, sc=Math.min(1, MAX/Math.max(iw,ih));
+    var w=Math.max(1,Math.round(iw*sc)), h=Math.max(1,Math.round(ih*sc));
+    ed.raw=document.createElement('canvas'); ed.raw.width=w; ed.raw.height=h; ed.raw.getContext('2d').drawImage(ed.img,0,0,w,h);
+    ed.src=document.createElement('canvas'); ed.src.width=w; ed.src.height=h;
+    applyFilter();
+  }
+  function clamp(v){ return v<0?0:v>255?255:v; }
+  function applyFilter(){
+    if(!ed.raw)return; var w=ed.raw.width,h=ed.raw.height, ctx=ed.src.getContext('2d');
+    ctx.clearRect(0,0,w,h); ctx.drawImage(ed.raw,0,0);
+    if(ed.filter==='none') return;
+    var id=ctx.getImageData(0,0,w,h), d=id.data, i,r,g,b;
+    for(i=0;i<d.length;i+=4){ r=d[i]; g=d[i+1]; b=d[i+2];
+      if(ed.filter==='mono'){ var y=0.299*r+0.587*g+0.114*b; y=(y-128)*1.08+128; r=g=b=y; }
+      else if(ed.filter==='vintage'){ var a=0.62,
+        sr=0.393*r+0.769*g+0.189*b, sg=0.349*r+0.686*g+0.168*b, sb=0.272*r+0.534*g+0.131*b;
+        r=r+(sr-r)*a; g=g+(sg-g)*a; b=b+(sb-b)*a;
+        r=(r-128)*0.96+128+8; g=(g-128)*0.96+128+5; b=(b-128)*0.96+128-2; }
+      else if(ed.filter==='textopia'){ var a2=0.34,
+        tr=0.393*r+0.769*g+0.189*b, tg=0.349*r+0.686*g+0.168*b, tb=0.272*r+0.534*g+0.131*b;
+        r=r+(tr-r)*a2; g=g+(tg-g)*a2; b=b+(tb-b)*a2;
+        r=r*1.06+10; g=g*1.0+3; b=b*0.95+3; }
+      d[i]=clamp(r); d[i+1]=clamp(g); d[i+2]=clamp(b);
+    }
+    ctx.putImageData(id,0,0);
+  }
+  function paint(ctx,S){ if(!ed.src)return; var f=S/cv.width, img=ed.src, iw=img.width, ih=img.height;
     ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,S,S);
-    ctx.save(); ctx.translate(S/2+ed.ox*f, S/2+ed.oy*f); ctx.rotate(ed.rot*Math.PI/180); ctx.filter=FILTERS_CSS[ed.filter]||'none';
-    var rw=(ed.rot%180===0)?ed.img.width:ed.img.height, rh=(ed.rot%180===0)?ed.img.height:ed.img.width;
-    var s=Math.max(S/rw,S/rh)*ed.scale, iw=ed.img.width, ih=ed.img.height;
-    ctx.drawImage(ed.img,-iw*s/2,-ih*s/2,iw*s,ih*s); ctx.restore();
-    if(ed.filter==='textopia'){ ctx.save(); ctx.globalCompositeOperation='soft-light'; ctx.fillStyle='rgba(201,111,143,.16)'; ctx.fillRect(0,0,S,S); ctx.restore(); }
+    ctx.save(); ctx.translate(S/2+ed.ox*f, S/2+ed.oy*f); ctx.rotate(ed.rot*Math.PI/180);
+    var rw=(ed.rot%180===0)?iw:ih, rh=(ed.rot%180===0)?ih:iw, s=Math.max(S/rw,S/rh)*ed.scale;
+    ctx.drawImage(img,-iw*s/2,-ih*s/2,iw*s,ih*s); ctx.restore();
   }
   function drawEd(){ paint(cv.getContext('2d'), cv.width); }
   function drawFilters(){ var box=document.getElementById('rdFilters'); box.innerHTML='';
     ['none','textopia','vintage','mono'].forEach(function(k){ var b=document.createElement('button'); b.textContent=FILTERS_LABEL[lang][k]; if(ed.filter===k)b.className='on';
-      b.onclick=function(){ ed.filter=k; drawFilters(); drawEd(); }; box.appendChild(b); }); }
+      b.onclick=function(){ ed.filter=k; applyFilter(); drawFilters(); drawEd(); }; box.appendChild(b); }); }
   function openEditor(){ edModal.classList.remove('rd-hidden'); zoomEl.value=ed.scale; drawFilters(); drawEd(); }
   function closeEditor(){ edModal.classList.add('rd-hidden'); }
   if(fileInput){
     fileInput.onchange=function(e){ var f=e.target.files&&e.target.files[0]; if(!f)return;
-      var r=new FileReader(); r.onload=function(){ var im=new Image(); im.onload=function(){ ed={img:im,scale:1,ox:0,oy:0,rot:0,filter:'textopia'}; openEditor(); }; im.src=r.result; }; r.readAsDataURL(f); };
+      var r=new FileReader(); r.onload=function(){ var im=new Image(); im.onload=function(){ ed={img:im,scale:1,ox:0,oy:0,rot:0,filter:'textopia',src:null,raw:null}; buildSource(); openEditor(); }; im.src=r.result; }; r.readAsDataURL(f); };
     zoomEl.oninput=function(){ ed.scale=parseFloat(zoomEl.value); drawEd(); };
     document.getElementById('rdRot').onclick=function(){ ed.rot=(ed.rot+90)%360; ed.ox=0; ed.oy=0; drawEd(); };
     (function(){ var drag=false,px,py;
