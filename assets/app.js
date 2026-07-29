@@ -45,6 +45,20 @@ window.TX_SUPABASE = {
       if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
     }); }, {threshold:.12});
     document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+    // ----- 푸터 '둘러보기'에 옷의 기억/기억의 벽 주입 (전 페이지 공용) -----
+    var exH = document.querySelector('footer [data-i18n="common.footer.exploreH"]');
+    if (exH && exH.parentNode && !exH.parentNode.querySelector('a[href="reading.html"]')){
+      var _T = window.txT || function(){ return null; };
+      var _lang = (''+(window.txLang||document.documentElement.lang||'ko')).slice(0,2);
+      function _mk(href, ko, en, key){ var a=document.createElement('a'); a.className='stitch-link'; a.href=href; var v=_T(key); a.textContent=(v!=null?v:(_lang==='ko'?ko:en)); return a; }
+      var frag = document.createDocumentFragment();
+      frag.appendChild(document.createElement('br'));
+      frag.appendChild(_mk('reading.html','옷의 기억','Memories in Cloth','common.footer.reading'));
+      frag.appendChild(document.createElement('br'));
+      frag.appendChild(_mk('wall.html','기억의 벽','Wall of Memories','common.footer.wall'));
+      exH.parentNode.insertBefore(frag, exH.nextSibling);
+    }
   });
 
   // ----- 이벤트 로깅 -----
