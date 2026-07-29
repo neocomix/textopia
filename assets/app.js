@@ -132,6 +132,7 @@ window.TX_SUPABASE = {
       + '<a class="d-link hot" href="quiz.html">'+t('common.drawer.quiz','나의 파트너 옷 찾기')+'</a>'
       + '<a class="d-link" href="world.html">'+t('common.drawer.world','세계관 · 대륙 지도')+'</a>'
       + '<a class="d-link" href="book.html">'+t('common.drawer.book','작품 소개')+'</a>'
+      + '<a class="d-link" href="manifesto.html">'+t('common.drawer.manifesto','옷의 기억을 잇다 · 약속')+'</a>'
       + '<a class="d-link" href="imagebook.html">'+t('common.nav.imagebook','아트북')+'</a>'
       + '<a class="d-link" href="store.html">'+t('common.drawer.store','스토어')+'</a>'
       + '<a class="d-link" href="book.html#news">'+t('common.drawer.news','소식')+'</a>'
