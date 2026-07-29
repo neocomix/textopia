@@ -55,6 +55,37 @@
 .rd-actions .pri{background:var(--accent);border-color:var(--accent);color:#fff}
 .rd-toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%) translateY(16px);background:var(--primary);color:#fff;padding:10px 18px;border-radius:22px;font-size:13px;opacity:0;pointer-events:none;transition:all .3s var(--ease);font-weight:600;z-index:50}
 .rd-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* photo upload */
+.rd-photo-zone{display:flex;flex-direction:column;gap:10px}
+.rd-up{display:flex;align-items:center;justify-content:center;gap:8px;border:1.6px dashed var(--stitch);border-radius:12px;padding:16px;background:var(--bg);color:var(--ink-soft);font-size:13.5px;font-weight:700;cursor:pointer;font-family:var(--font-ui)}
+.rd-up:hover{border-color:var(--accent);color:var(--accent)}
+.rd-prev{display:flex;gap:12px;align-items:center}
+.rd-prev-img{width:74px;height:74px;border-radius:10px;object-fit:cover;border:1.4px dashed var(--stitch);flex:none}
+.rd-prev-btns{display:flex;flex-direction:column;gap:6px}
+.rd-prev-btns button{border:1.4px solid var(--stitch);background:var(--surface);color:var(--ink);border-radius:9px;padding:7px 16px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:var(--font-ui)}
+.rd-prev-btns .rm{color:var(--danger);border-color:var(--danger)}
+/* editor modal */
+.rd-ed{position:fixed;inset:0;z-index:120;background:rgba(30,26,22,.72);display:flex;align-items:center;justify-content:center;padding:16px}
+.rd-ed-in{background:var(--surface);border-radius:16px;max-width:380px;width:100%;padding:18px;max-height:94vh;overflow:auto}
+.rd-ed-h{font-family:var(--font-display);font-weight:800;font-size:17px;margin-bottom:12px}
+.rd-canvas-wrap{position:relative;width:100%;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:#1a1512;touch-action:none}
+.rd-canvas-wrap canvas{width:100%;height:100%;display:block;cursor:grab}
+.rd-canvas-wrap::after{content:'';position:absolute;inset:10px;border:1px dashed rgba(255,255,255,.5);border-radius:8px;pointer-events:none}
+.rd-ed-row{display:flex;align-items:center;gap:10px;margin-top:12px}
+.rd-ed-row label{font-size:12px;color:var(--ink-soft);font-weight:700;flex:none;width:38px}
+.rd-ed-row input[type=range]{flex:1;accent-color:var(--accent)}
+.rd-ed-row .rot{border:1.4px solid var(--stitch);background:var(--bg);color:var(--ink);border-radius:9px;padding:7px 13px;font-size:15px;cursor:pointer;font-weight:700}
+.rd-filters{display:flex;gap:7px;margin-top:12px;flex-wrap:wrap}
+.rd-filters button{border:1.4px solid var(--stitch);background:var(--bg);color:var(--ink);border-radius:20px;padding:6px 13px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:var(--font-ui)}
+.rd-filters button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.rd-ed-acts{display:flex;gap:9px;margin-top:16px}
+.rd-ed-acts button{flex:1;border-radius:11px;padding:12px;font-size:14px;font-weight:800;cursor:pointer;border:1.5px solid var(--stitch);background:var(--surface);color:var(--ink);font-family:var(--font-ui)}
+.rd-ed-acts .done{background:var(--accent);border-color:var(--accent);color:#fff}
+/* result card photo */
+.rd-photobox{position:relative;aspect-ratio:1/1;background-size:cover;background-position:center}
+.rd-photobox .ov{position:absolute;inset:0;z-index:1}
+.rd-photobox::before{content:'';position:absolute;inset:9px;border:1px dashed rgba(255,255,255,.45);border-radius:12px;pointer-events:none;z-index:2}
+.rd-photobox .cap{position:absolute;left:0;right:0;bottom:0;padding:22px 24px 16px;color:#fff;z-index:3}
 .rd-hidden{display:none!important}
 </style>
 </head>
@@ -78,7 +109,7 @@
   </div>
 
   <div id="rdForm">
-    <div class="rd-card"><div class="rd-q"><span class="n">1</span><span id="lq1">이 옷은 어떤 옷인가요?</span></div><div class="rd-chips" data-group="garment"></div></div>
+    <div class="rd-card"><div class="rd-q"><span class="n">1</span><span id="lq1">이 옷은 어떤 옷인가요?</span></div><div class="rd-chips" data-group="garment"></div><input type="text" id="rdEtc" class="rd-hidden" maxlength="24" placeholder="어떤 옷인지 적어주세요" style="margin-top:10px"></div>
     <div class="rd-card"><div class="rd-q"><span class="n">2</span><span id="lq2">지금 이 옷의 모습은?</span><span class="opt" id="lopt2">선택</span></div><div class="rd-chips" data-group="wear"></div></div>
     <div class="rd-card"><div class="rd-q"><span class="n">3</span><span id="lq3">이 옷엔 누가 함께 있나요?</span></div><div class="rd-chips" data-group="relation"></div></div>
     <div class="rd-card"><div class="rd-q"><span class="n">4</span><span id="lq4">언제의 옷인가요?</span><span class="opt" id="lopt4">선택</span></div><div class="rd-chips" data-group="era"></div></div>
@@ -86,6 +117,17 @@
     <div class="rd-card"><div class="rd-q"><span class="n">6</span><span id="lq6">이 옷은 지금?</span><span class="opt" id="lopt6">선택</span></div><div class="rd-chips" data-group="status"></div></div>
     <div class="rd-card"><div class="rd-q"><span class="n">7</span><span id="lq7">이 옷을 한 단어로 부른다면?</span><span class="opt" id="lopt7">선택 · 강력</span></div><input type="text" id="rdWord" maxlength="20" placeholder="예: 보풀, 봄, 파랑"></div>
     <div class="rd-card"><div class="rd-q"><span class="n">8</span><span id="lq8">짧은 사연이 있다면 들려주세요.</span><span class="opt" id="lopt8">선택</span></div><textarea id="rdStory" rows="3" placeholder="예: 엄마가 떠주신 스웨터, 소매가 다 늘어났는데 못 버리겠어요."></textarea><div class="rd-hint" id="rdHint">이서가 당신의 말 한마디를 리딩에 엮어드려요.</div></div>
+    <div class="rd-card"><div class="rd-q"><span class="n">9</span><span id="lq9">옷 사진을 올려볼까요?</span><span class="opt" id="lopt9">선택</span></div>
+      <div class="rd-photo-zone">
+        <label class="rd-up" id="rdUpLabel" for="rdFile"><span>📷</span><span id="rdUpText">사진 올리기</span></label>
+        <input type="file" id="rdFile" accept="image/*" class="rd-hidden">
+        <div class="rd-prev rd-hidden" id="rdPrev">
+          <img class="rd-prev-img" id="rdPrevImg" alt="">
+          <div class="rd-prev-btns"><button id="rdEditBtn">편집</button><button class="rm" id="rdRmBtn">제거</button></div>
+        </div>
+      </div>
+      <div class="rd-hint" id="rdPhotoHint">사진은 이 브라우저 안에서만 쓰이고, 저장·전송되지 않아요.</div>
+    </div>
     <button class="rd-send" id="rdSend">이서에게 보내기</button>
     <div class="rd-err" id="rdErr"></div>
   </div>
@@ -111,6 +153,16 @@
 </nav>
 
 <div class="rd-toast" id="rdToast"></div>
+
+<div class="rd-ed rd-hidden" id="rdEd">
+  <div class="rd-ed-in">
+    <div class="rd-ed-h" id="rdEdH">사진 편집</div>
+    <div class="rd-canvas-wrap"><canvas id="rdCanvas" width="600" height="600"></canvas></div>
+    <div class="rd-ed-row"><label id="rdZoomL">확대</label><input type="range" id="rdZoom" min="1" max="3" step="0.01" value="1"><button class="rot" id="rdRot" aria-label="rotate">↻</button></div>
+    <div class="rd-filters" id="rdFilters"></div>
+    <div class="rd-ed-acts"><button id="rdEdCancel">취소</button><button class="done" id="rdEdDone">완료</button></div>
+  </div>
+</div>
 
 <script src="assets/app.js?v=7"></script>
 <script>
@@ -141,14 +193,17 @@
         box.appendChild(el);
       });
     });
+    var etc=document.getElementById('rdEtc'); if(etc) etc.classList.toggle('rd-hidden', sel.garment!=='etc');
   }
   var UITEXT={
     ko:{kicker:"TEXTOPIA · 이서의 리딩",h1:"옷의 기억, 이서가 읽어드려요",sub:"버리기엔 아까운, 그런데 왜 못 버리는 옷. 그거, 이서에게 보내주세요. 제가 읽어드릴게요.",
         q1:"이 옷은 어떤 옷인가요?",q2:"지금 이 옷의 모습은?",q3:"이 옷엔 누가 함께 있나요?",q4:"언제의 옷인가요?",q5:"지금 이 옷을 보면?",q6:"이 옷은 지금?",q7:"이 옷을 한 단어로 부른다면?",q8:"짧은 사연이 있다면 들려주세요.",
-        opt:"선택",optStrong:"선택 · 강력",hint:"이서가 당신의 말 한마디를 리딩에 엮어드려요.",note:"지금은 데모 리딩(로컬)입니다. 정식 서비스는 이서가 직접 읽어드려요. 입력은 저장·전송되지 않습니다.",send:"이서에게 보내기",phWord:"예: 보풀, 봄, 파랑",phStory:"예: 엄마가 떠주신 스웨터, 소매가 다 늘어났는데 못 버리겠어요."},
+        opt:"선택",optStrong:"선택 · 강력",hint:"이서가 당신의 말 한마디를 리딩에 엮어드려요.",note:"지금은 데모 리딩(로컬)입니다. 정식 서비스는 이서가 직접 읽어드려요. 입력은 저장·전송되지 않습니다.",send:"이서에게 보내기",phWord:"예: 보풀, 봄, 파랑",phStory:"예: 엄마가 떠주신 스웨터, 소매가 다 늘어났는데 못 버리겠어요.",
+        q9:"옷 사진을 올려볼까요?",up:"사진 올리기",photoHint:"사진은 이 브라우저 안에서만 쓰이고, 저장·전송되지 않아요.",editH:"사진 편집",zoom:"확대",phEtc:"어떤 옷인지 적어주세요",edit:"편집",remove:"제거",cancel:"취소",done:"완료"},
     en:{kicker:"TEXTOPIA · THE MENDER'S READING",h1:"Iseo reads the memory in your clothes",sub:"That garment you can't throw away, though you've tried. Send it to Iseo — she'll read it for you.",
         q1:"What is this garment?",q2:"How does it look now?",q3:"Who lives in it?",q4:"From when?",q5:"When you see it now?",q6:"And now, this garment is…",q7:"One word for it?",q8:"Tell its short story, if you'd like.",
-        opt:"optional",optStrong:"optional · powerful",hint:"Iseo will weave your own words into the reading.",note:"This is a local demo reading; the real service is written by Iseo. Nothing is stored or sent.",send:"Send to Iseo",phWord:"e.g. blue, spring",phStory:"e.g. His shirt. I kept it three years. I think I'm ready now."}
+        opt:"optional",optStrong:"optional · powerful",hint:"Iseo will weave your own words into the reading.",note:"This is a local demo reading; the real service is written by Iseo. Nothing is stored or sent.",send:"Send to Iseo",phWord:"e.g. blue, spring",phStory:"e.g. His shirt. I kept it three years. I think I'm ready now.",
+        q9:"Add a photo of the garment?",up:"Add a photo",photoHint:"Your photo stays in this browser only — nothing is stored or sent.",editH:"Edit photo",zoom:"Zoom",phEtc:"What kind of garment?",edit:"Edit",remove:"Remove",cancel:"Cancel",done:"Done"}
   };
   function setT(id,v){var e=document.getElementById(id); if(e)e.textContent=v;}
   function applyText(){var u=UITEXT[lang];
@@ -156,6 +211,12 @@
     setT('lq1',u.q1);setT('lq2',u.q2);setT('lq3',u.q3);setT('lq4',u.q4);setT('lq5',u.q5);setT('lq6',u.q6);setT('lq7',u.q7);setT('lq8',u.q8);
     setT('lopt2',u.opt);setT('lopt4',u.opt);setT('lopt6',u.opt);setT('lopt7',u.optStrong);setT('lopt8',u.opt);
     setT('rdHint',u.hint);setT('rdNote',u.note);setT('rdSend',u.send);
+    setT('lq9',u.q9);setT('lopt9',u.opt);setT('rdUpText',u.up);setT('rdPhotoHint',u.photoHint);setT('rdEdH',u.editH);setT('rdZoomL',u.zoom);
+    var eb=document.getElementById('rdEditBtn'); if(eb)eb.textContent=u.edit;
+    var rb=document.getElementById('rdRmBtn'); if(rb)rb.textContent=u.remove;
+    var cc=document.getElementById('rdEdCancel'); if(cc)cc.textContent=u.cancel;
+    var dd=document.getElementById('rdEdDone'); if(dd)dd.textContent=u.done;
+    var et=document.getElementById('rdEtc'); if(et)et.placeholder=u.phEtc;
     var w=document.getElementById('rdWord'); if(w)w.placeholder=u.phWord;
     var s=document.getElementById('rdStory'); if(s)s.placeholder=u.phStory;
   }
@@ -185,11 +246,53 @@
 
   function compose(){
     var F=FRAG[lang], g=sel.garment||'etc', w=document.getElementById('rdWord').value.trim();
+    var etcEl=document.getElementById('rdEtc'), etcName=(g==='etc'&&etcEl)?etcEl.value.trim():'';
+    var m1=F.M1[g];
+    if(g==='etc'&&etcName){ m1= lang==='ko' ? ('당신이 '+etcName+'라 부르는 이 옷을, 저는 손끝으로 먼저 알아봐요.') : ('This '+etcName+', as you call it — my fingertips know it before my eyes.'); }
     var m2=F.M2[sel.era||'recent']; if(w){ m2+= lang==='ko'?(' 당신이 "'+w+'"이라 부른 그것이, 지나온 계절의 지문 같네요.'):(' the "'+w+'" you named it by — like a fingerprint of a season you walked through.'); }
     var m5=F.M5[sel.status||'kept']; if(w){ m5+= lang==='ko'?(' "'+w+'"도 그대로요.'):(' The "'+w+'" too, just as it is.'); }
-    return [F.M1[g],m2,F.M3[sel.relation||'self'],F.M4[sel.emotion||'longing'],m5].join(" ");
+    return [m1,m2,F.M3[sel.relation||'self'],F.M4[sel.emotion||'longing'],m5].join(" ");
   }
   function shade(hex){var n=parseInt(hex.slice(1),16),r=Math.max(0,(n>>16)-30),g=Math.max(0,((n>>8)&255)-30),b=Math.max(0,(n&255)-30);return '#'+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1);}
+
+  /* ---------- 사진 업로드 + 가벼운 편집기 (전부 브라우저 안, 저장·전송 없음) ---------- */
+  var photoData=null;
+  var FILTERS_CSS={none:'none',textopia:'sepia(.4) saturate(1.12) contrast(1.03) brightness(1.04)',vintage:'sepia(.62) contrast(.96) brightness(1.06) saturate(.9)',mono:'grayscale(1) contrast(1.06)'};
+  var FILTERS_LABEL={ko:{none:'원본',textopia:'텍스토피아',vintage:'빈티지',mono:'흑백'},en:{none:'Original',textopia:'Textopia',vintage:'Vintage',mono:'Mono'}};
+  var ed={img:null,scale:1,ox:0,oy:0,rot:0,filter:'textopia'};
+  var cv=document.getElementById('rdCanvas'), edModal=document.getElementById('rdEd'), zoomEl=document.getElementById('rdZoom');
+  var fileInput=document.getElementById('rdFile'), prevBox=document.getElementById('rdPrev'), prevImg=document.getElementById('rdPrevImg'), upLabel=document.getElementById('rdUpLabel');
+
+  function paint(ctx,S){ if(!ed.img)return; var f=S/cv.width;
+    ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,S,S);
+    ctx.save(); ctx.translate(S/2+ed.ox*f, S/2+ed.oy*f); ctx.rotate(ed.rot*Math.PI/180); ctx.filter=FILTERS_CSS[ed.filter]||'none';
+    var rw=(ed.rot%180===0)?ed.img.width:ed.img.height, rh=(ed.rot%180===0)?ed.img.height:ed.img.width;
+    var s=Math.max(S/rw,S/rh)*ed.scale, iw=ed.img.width, ih=ed.img.height;
+    ctx.drawImage(ed.img,-iw*s/2,-ih*s/2,iw*s,ih*s); ctx.restore();
+    if(ed.filter==='textopia'){ ctx.save(); ctx.globalCompositeOperation='soft-light'; ctx.fillStyle='rgba(201,111,143,.16)'; ctx.fillRect(0,0,S,S); ctx.restore(); }
+  }
+  function drawEd(){ paint(cv.getContext('2d'), cv.width); }
+  function drawFilters(){ var box=document.getElementById('rdFilters'); box.innerHTML='';
+    ['none','textopia','vintage','mono'].forEach(function(k){ var b=document.createElement('button'); b.textContent=FILTERS_LABEL[lang][k]; if(ed.filter===k)b.className='on';
+      b.onclick=function(){ ed.filter=k; drawFilters(); drawEd(); }; box.appendChild(b); }); }
+  function openEditor(){ edModal.classList.remove('rd-hidden'); zoomEl.value=ed.scale; drawFilters(); drawEd(); }
+  function closeEditor(){ edModal.classList.add('rd-hidden'); }
+  if(fileInput){
+    fileInput.onchange=function(e){ var f=e.target.files&&e.target.files[0]; if(!f)return;
+      var r=new FileReader(); r.onload=function(){ var im=new Image(); im.onload=function(){ ed={img:im,scale:1,ox:0,oy:0,rot:0,filter:'textopia'}; openEditor(); }; im.src=r.result; }; r.readAsDataURL(f); };
+    zoomEl.oninput=function(){ ed.scale=parseFloat(zoomEl.value); drawEd(); };
+    document.getElementById('rdRot').onclick=function(){ ed.rot=(ed.rot+90)%360; ed.ox=0; ed.oy=0; drawEd(); };
+    (function(){ var drag=false,px,py;
+      cv.addEventListener('pointerdown',function(e){ drag=true;px=e.clientX;py=e.clientY; try{cv.setPointerCapture(e.pointerId);}catch(x){} });
+      cv.addEventListener('pointermove',function(e){ if(!drag)return; var rect=cv.getBoundingClientRect(),k=cv.width/rect.width; ed.ox+=(e.clientX-px)*k; ed.oy+=(e.clientY-py)*k; px=e.clientX;py=e.clientY; drawEd(); });
+      function up(){drag=false;} cv.addEventListener('pointerup',up); cv.addEventListener('pointercancel',up);
+    })();
+    document.getElementById('rdEdCancel').onclick=closeEditor;
+    document.getElementById('rdEdDone').onclick=function(){ var out=document.createElement('canvas'); out.width=720; out.height=720; paint(out.getContext('2d'),720);
+      photoData=out.toDataURL('image/jpeg',0.9); prevImg.src=photoData; prevBox.classList.remove('rd-hidden'); upLabel.classList.add('rd-hidden'); closeEditor(); if(window.txEvent)txEvent('reading_photo',{}); };
+    document.getElementById('rdEditBtn').onclick=function(){ if(ed.img) openEditor(); };
+    document.getElementById('rdRmBtn').onclick=function(){ photoData=null; ed.img=null; prevBox.classList.add('rd-hidden'); upLabel.classList.remove('rd-hidden'); fileInput.value=''; };
+  }
 
   var stage=document.getElementById('rdStage'),form=document.getElementById('rdForm'),toastEl=document.getElementById('rdToast');
   function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(function(){toastEl.classList.remove('show');},1900);}
@@ -210,9 +313,12 @@
     var g=sel.garment||'etc',tone=TONE[g]||'#8A6D4A',reading=compose(),title=TITLE[lang][sel.emotion||'longing'];
     var again=lang==='ko'?'다시 읽어보기':'Read again', share=lang==='ko'?'카드 공유':'Share', wall=lang==='ko'?'기억의 벽에 걸기':'Hang on the Wall';
     var tagTxt=lang==='ko'?'옷의 기억':'MEMORY IN CLOTH', signTxt=lang==='ko'?'— 이서':'— Iseo', brandTxt=lang==='ko'?'텍스토피아 <b>·</b> 이서의 리딩':"Textopia <b>·</b> The Mender's Reading";
-    if(window.txEvent) txEvent('reading_done',{emotion:sel.emotion});
+    if(window.txEvent) txEvent('reading_done',{emotion:sel.emotion,photo:!!photoData});
+    var head = photoData
+      ? '<div class="rd-photobox" style="background-image:url('+photoData+')"><div class="ov" style="background:linear-gradient(180deg,rgba(20,16,14,.05) 30%,'+tone+'F0)"></div><div class="cap"><div class="rd-mk">'+tagTxt+'</div><div class="rd-title">'+title+'</div></div></div>'
+      : '<div class="rd-art" style="background:linear-gradient(135deg,'+tone+','+shade(tone)+')"><div class="rd-mk">'+tagTxt+'</div><div class="rd-title">'+title+'</div></div>';
     stage.innerHTML='<div class="rd-result"><div class="rd-mem">'
-      +'<div class="rd-art" style="background:linear-gradient(135deg,'+tone+','+shade(tone)+')"><div class="rd-mk">'+tagTxt+'</div><div class="rd-title">'+title+'</div></div>'
+      +head
       +'<div class="rd-body"><div class="rd-reading">'+reading+'</div><div class="rd-sign">'+signTxt+'</div>'
       +'<label class="rd-optin"><input type="checkbox" id="rdOptin"> '+(lang==='ko'?'이 리딩을 익명으로 「기억의 벽」에 걸어도 될까요?':'May I hang this anonymously on the Wall of Memories?')+'</label></div>'
       +'<div class="rd-foot"><span class="rd-brand">'+brandTxt+'</span><span class="rd-brand">textopia</span></div></div>'
