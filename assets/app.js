@@ -46,18 +46,23 @@ window.TX_SUPABASE = {
     }); }, {threshold:.12});
     document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
-    // ----- 푸터 '둘러보기'에 옷의 기억/기억의 벽 주입 (전 페이지 공용) -----
+    // ----- 푸터 '둘러보기' 열을 위계 순서로 재구성 (전 페이지 공용) -----
     var exH = document.querySelector('footer [data-i18n="common.footer.exploreH"]');
-    if (exH && exH.parentNode && !exH.parentNode.querySelector('a[href="reading.html"]')){
-      var _T = window.txT || function(){ return null; };
+    if (exH && exH.parentNode && !exH.parentNode.dataset.txRebuilt){
+      var pdiv = exH.parentNode; pdiv.dataset.txRebuilt = '1';
       var _lang = (''+(window.txLang||document.documentElement.lang||'ko')).slice(0,2);
-      function _mk(href, ko, en, key){ var a=document.createElement('a'); a.className='stitch-link'; a.href=href; var v=_T(key); a.textContent=(v!=null?v:(_lang==='ko'?ko:en)); return a; }
-      var frag = document.createDocumentFragment();
-      frag.appendChild(document.createElement('br'));
-      frag.appendChild(_mk('reading.html','옷의 기억','Memories in Cloth','common.footer.reading'));
-      frag.appendChild(document.createElement('br'));
-      frag.appendChild(_mk('wall.html','기억의 벽','Wall of Memories','common.footer.wall'));
-      exH.parentNode.insertBefore(frag, exH.nextSibling);
+      if (['ko','en','ja','zh','es'].indexOf(_lang) < 0) _lang = 'en';
+      while (exH.nextSibling) pdiv.removeChild(exH.nextSibling);   // 기존 링크 정리
+      var FI = [
+        ['read.html',    {ko:'무료 1화',en:'Free Chapter 1',ja:'無料1話',zh:'免费第1话',es:'Cap. 1 gratis'}],
+        ['reading.html', {ko:'옷의 기억 · 리딩',en:'Memories in Cloth',ja:'服の記憶 · リーディング',zh:'衣物的记忆',es:'Recuerdos en la tela'}],
+        ['wall.html',    {ko:'기억의 벽',en:'Wall of Memories',ja:'記憶の壁',zh:'记忆之墙',es:'Muro de recuerdos'}],
+        ['room.html',    {ko:'이서의 방',en:'Iseo’s Atelier',ja:'イソの部屋',zh:'李绪的房间',es:'El taller de Iseo'}],
+        ['world.html',   {ko:'세계관',en:'The World',ja:'世界観',zh:'世界观',es:'El mundo'}],
+        ['manifesto.html',{ko:'옷의 기억을 잇다 · 약속',en:'Our Promise',ja:'服の記憶をつなぐ · 約束',zh:'延续衣物的记忆 · 承诺',es:'Nuestra promesa'}],
+        ['store.html',   {ko:'스토어',en:'Store',ja:'ストア',zh:'商店',es:'Tienda'}]
+      ];
+      FI.forEach(function(it){ pdiv.appendChild(document.createElement('br')); var a=document.createElement('a'); a.className='stitch-link'; a.href=it[0]; a.textContent=(it[1][_lang]||it[1].en); pdiv.appendChild(a); });
     }
   });
 
@@ -120,23 +125,31 @@ window.TX_SUPABASE = {
     right.appendChild(btn);
     var ovl = document.createElement('div'); ovl.className = 'drawer-ovl';
     var dr = document.createElement('nav'); dr.className = 'drawer';
+    var dl=((window.txLang||document.documentElement.lang||'ko')+'').slice(0,2); if(['ko','en','ja','zh','es'].indexOf(dl)<0) dl='en';
+    function sl(m){ return '<div class="d-sec" style="padding:20px 20px 2px;font-size:10.5px;letter-spacing:.16em;font-weight:800;text-transform:uppercase;color:var(--ink-soft,#9a8f86);opacity:.72">'+(m[dl]||m.en)+'</div>'; }
+    function L(m){ return m[dl]||m.en; }
+    var authed=false; try{ for(var _i=0;_i<localStorage.length;_i++){ var _k=localStorage.key(_i); if(/^sb-.*-auth-token$/.test(_k)&&localStorage.getItem(_k)){ authed=true; break; } } }catch(e){}
+    var mfLabel={ko:'옷의 기억을 잇다 · 약속',en:'Our Promise',ja:'服の記憶をつなぐ · 約束',zh:'延续衣物的记忆 · 承诺',es:'Nuestra promesa'};
     dr.innerHTML = '<div class="d-head"><b>'+t('common.drawer.brand','텍스토피아')+'</b><button class="d-close" aria-label="'+t('common.drawer.close','닫기')+'">✕</button></div>'
       + '<a class="d-link" href="index.html">'+t('common.drawer.home','홈')+'</a>'
-      + (function(){ var authed=false; try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(/^sb-.*-auth-token$/.test(k)&&localStorage.getItem(k)){ authed=true; break; } } }catch(e){}
-          return authed ? '<a class="d-link" href="welcome.html">'+t('common.drawer.mythread','나의 실 · 프로필')+'</a>'
-                        : '<a class="d-link hot" href="login.html">'+t('common.drawer.enter','관문 · 로그인')+'</a>'; })()
+      + sl({ko:'읽기',en:'Read',ja:'読む',zh:'阅读',es:'Leer'})
       + '<a class="d-link hot" href="read.html">'+t('common.drawer.read','무료 1화 읽기')+'</a>'
-      + '<a class="d-link hot" href="reading.html">'+t('common.drawer.reading','옷의 기억 · 이서의 리딩')+'<span class="d-badge">NEW</span></a>'
-      + '<a class="d-link" href="wall.html">'+t('common.drawer.wall','기억의 벽')+'</a>'
-      + '<a class="d-link" href="room.html">'+t('common.drawer.room','이서의 방 둘러보기')+'</a>'
-      + '<a class="d-link hot" href="quiz.html">'+t('common.drawer.quiz','나의 파트너 옷 찾기')+'</a>'
-      + '<a class="d-link" href="world.html">'+t('common.drawer.world','세계관 · 대륙 지도')+'</a>'
       + '<a class="d-link" href="book.html">'+t('common.drawer.book','작품 소개')+'</a>'
-      + '<a class="d-link" href="manifesto.html">'+t('common.drawer.manifesto','옷의 기억을 잇다 · 약속')+'</a>'
-      + '<a class="d-link" href="imagebook.html">'+t('common.nav.imagebook','아트북')+'</a>'
       + '<a class="d-link" href="store.html">'+t('common.drawer.store','스토어')+'</a>'
-      + '<a class="d-link" href="book.html#news">'+t('common.drawer.news','소식')+'</a>'
+      + sl({ko:'경험',en:'Experience',ja:'体験',zh:'体验',es:'Experiencia'})
+      + '<a class="d-link hot" href="reading.html">'+L({ko:'옷의 기억 · 이서의 리딩',en:'Memories in Cloth · Reading',ja:'服の記憶 · イソのリーディング',zh:'衣物的记忆 · 解读',es:'Recuerdos en la tela'})+'<span class="d-badge">NEW</span></a>'
+      + '<a class="d-link" href="wall.html">'+L({ko:'기억의 벽',en:'Wall of Memories',ja:'記憶の壁',zh:'记忆之墙',es:'Muro de recuerdos'})+'</a>'
+      + '<a class="d-link" href="room.html">'+L({ko:'이서의 방 둘러보기',en:'Iseo’s Atelier',ja:'イソの部屋をめぐる',zh:'游览李绪的房间',es:'El taller de Iseo'})+'</a>'
+      + '<a class="d-link hot" href="quiz.html">'+t('common.drawer.quiz','나의 파트너 옷 찾기')+'</a>'
+      + sl({ko:'세계와 브랜드',en:'World & Brand',ja:'世界とブランド',zh:'世界与品牌',es:'Mundo y marca'})
+      + '<a class="d-link" href="world.html">'+t('common.drawer.world','세계관 · 대륙 지도')+'</a>'
+      + '<a class="d-link" href="imagebook.html">'+L({ko:'아트북',en:'Art Book',ja:'アートブック',zh:'画册',es:'Libro de arte'})+'</a>'
+      + '<a class="d-link" href="manifesto.html">'+(mfLabel[dl]||mfLabel.en)+'</a>'
       + '<a class="d-link" href="book.html#about">'+t('common.drawer.about','우리 이야기')+'</a>'
+      + '<a class="d-link" href="book.html#news">'+L({ko:'소식',en:'News',ja:'お知らせ',zh:'消息',es:'Novedades'})+'</a>'
+      + sl({ko:'계정',en:'Account',ja:'アカウント',zh:'账户',es:'Cuenta'})
+      + (authed ? '<a class="d-link" href="welcome.html">'+t('common.drawer.mythread','나의 실 · 프로필')+'</a>'
+                : '<a class="d-link hot" href="login.html">'+(function(){var m={ko:'관문 · 로그인',en:'Enter · Sign in',ja:'関門 · ログイン',zh:'入口 · 登录',es:'Entrar · Acceder'};return m[dl]||m.en;})()+'</a>')
       + '<div class="d-theme"><span>'+t('common.drawer.theme','화면 모드')+'</span><button class="theme-toggle" aria-label="테마 전환" style="display:block">☾</button></div>'
       + '<div class="d-legal"><a class="stitch-link" href="terms.html">'+t('common.drawer.terms','이용약관')+'</a> · <a class="stitch-link" href="privacy.html">'+t('common.drawer.privacy','개인정보처리방침')+'</a></div>';
     document.body.appendChild(ovl); document.body.appendChild(dr);
