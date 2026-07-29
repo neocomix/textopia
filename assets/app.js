@@ -122,6 +122,9 @@ window.TX_SUPABASE = {
     var dr = document.createElement('nav'); dr.className = 'drawer';
     dr.innerHTML = '<div class="d-head"><b>'+t('common.drawer.brand','텍스토피아')+'</b><button class="d-close" aria-label="'+t('common.drawer.close','닫기')+'">✕</button></div>'
       + '<a class="d-link" href="index.html">'+t('common.drawer.home','홈')+'</a>'
+      + (function(){ var authed=false; try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(/^sb-.*-auth-token$/.test(k)&&localStorage.getItem(k)){ authed=true; break; } } }catch(e){}
+          return authed ? '<a class="d-link" href="welcome.html">'+t('common.drawer.mythread','나의 실 · 프로필')+'</a>'
+                        : '<a class="d-link hot" href="login.html">'+t('common.drawer.enter','관문 · 로그인')+'</a>'; })()
       + '<a class="d-link hot" href="read.html">'+t('common.drawer.read','무료 1화 읽기')+'</a>'
       + '<a class="d-link hot" href="reading.html">'+t('common.drawer.reading','옷의 기억 · 이서의 리딩')+'<span class="d-badge">NEW</span></a>'
       + '<a class="d-link" href="wall.html">'+t('common.drawer.wall','기억의 벽')+'</a>'
