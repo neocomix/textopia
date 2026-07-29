@@ -24,6 +24,10 @@
 .mf-band .mf-kicker{color:#E6B76E}
 .mf-band .mf-h2{color:#F5ECDB}
 .mf-band .mf-p{color:#CDBEA8}
+.mf-band--waste{background:linear-gradient(rgba(22,14,8,.72),rgba(22,14,8,.84)), url('assets/mfp-waste.jpg') center/cover !important}
+.mf-figure{max-width:900px;margin:26px auto 0;padding:0 20px}
+.mf-figure img{width:100%;height:auto;border-radius:18px;display:block;box-shadow:0 12px 36px rgba(0,0,0,.16)}
+.mf-figure figcaption{font-size:12px;color:var(--ink-soft,#8a7d72);text-align:center;margin-top:10px;line-height:1.5}
 .mf-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:24px 0 8px}
 .mf-stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 18px}
 .mf-num{font-family:var(--font-display,serif);font-weight:800;font-size:clamp(24px,5.5vw,34px);color:#F0C079;line-height:1.1}
@@ -69,9 +73,11 @@
     <p class="mf-lead" data-k="hero_lead">새로 사지 않아도 좋아요. 오래 입은 옷일수록 더 많은 이야기를 품고 있으니까. 텍스토피아는 바로 그 <b>‘옷의 기억’</b>에서 시작된 이야기입니다.</p>
   </section>
 
+  <figure class="mf-figure" style="margin-top:8px"><img src="assets/mfp-hero.jpg" alt="잘 기운 스웨터를 품에 안은 사람" loading="lazy"></figure>
+
   <!-- PROBLEM -->
   <div class="mf-wrap">
-  <div class="mf-band">
+  <div class="mf-band mf-band--waste">
     <div class="mf-kicker" data-k="prob_kick">매년, 이야기째로 버려집니다</div>
     <h2 class="mf-h2" data-k="prob_h2">버려지는 건 천이 아니라,<br>누군가의 계절이에요.</h2>
     <p class="mf-p" data-k="prob_p">전 세계에서 한 해에 버려지는 옷과 섬유가 <b style="color:#F0C079">1억 2천만 톤</b>. 그중 대부분이 태워지거나 땅에 묻히고, 새 실로 다시 태어나는 건 1%도 되지 않습니다. 예를 들어 한국에서도 해마다 약 11만 톤의 옷이 버려져요. 그 안에는 누군가의 첫 출근과 마지막 인사, 늘어난 소매에 밴 온기가 함께 묻힙니다.</p>
@@ -92,6 +98,8 @@
     <p class="mf-p" data-k="phil_p2">텍스토피아의 수선사 <b>이서</b>가 옷에 담긴 기억을 읽는 이야기는, 사실 우리 모두가 이미 아는 진실에서 출발합니다. 늘어난 소매 하나에도 누군가를 자주 안았던 시간이 남아 있다는 것. 옷을 오래 입는 건 낡는 게 아니라, 이야기가 깊어지는 일이라는 것.</p>
   </section>
 
+  <figure class="mf-figure"><img src="assets/mfp-repair.jpg" alt="옷을 손바느질로 수선하는 손" loading="lazy"></figure>
+
   <section class="mf-sec" style="padding-top:8px">
     <p class="mf-quote" data-k="quote">“가장 영향이 적은 옷은, 아마도 이미 존재하는 그 옷일 것이다.”<span class="by">— 정서적 내구성 디자인, 조너선 채프먼</span></p>
   </section>
@@ -109,6 +117,8 @@
     <p class="mf-p" style="text-align:center;margin-top:22px;font-weight:700;color:var(--ink,#2a2320)" data-k="mov_close">옷을 아끼는 일은 낭만이 아니라, 가장 빠르게 커지는 미래입니다.</p>
   </section>
 
+  <figure class="mf-figure"><img src="assets/mfp-atelier.jpg" alt="기운 옷들이 걸린 수선·업사이클 공방" loading="lazy"></figure>
+
   <!-- PROMISE -->
   <div class="mf-wrap">
   <div class="mf-band">
@@ -123,8 +133,10 @@
   </div>
   </div>
 
+  <figure class="mf-figure"><img src="assets/mfp-passing.jpg" alt="기운 옷을 다음 사람에게 건네는 손" loading="lazy"></figure>
+
   <!-- CTA -->
-  <section class="mf-cta">
+  <section class="mf-cta" style="padding-top:40px">
     <h2 class="mf-h2" style="margin-bottom:6px" data-k="cta_h2">함께, 실을 이어요</h2>
     <p class="mf-lead" data-k="cta_lead">당신의 옷에도 이야기가 있어요. 버리기 전에, 한 번 읽어봐 주세요.</p>
     <div class="row">
