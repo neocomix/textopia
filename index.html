@@ -90,6 +90,32 @@
 </section>
 <button class="hero-skip" id="heroSkip" data-i18n="index.hero.skip">바로 입장 ↓</button>
 
+<!-- ===== 입구 카드: 히어로 바로 아래 빠른 진입 (햄버거 메뉴는 그대로 유지) ===== -->
+<style>
+.entry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.entry-card{position:relative;display:block;aspect-ratio:4/3;border-radius:var(--radius-card);overflow:hidden;border:1.5px solid var(--stitch);box-shadow:var(--shadow-card);transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .2s var(--ease)}
+.entry-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.entry-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,14,0) 34%,rgba(20,18,14,.2) 58%,rgba(20,18,14,.74) 100%)}
+.entry-card--lead::after{background:linear-gradient(180deg,rgba(40,20,34,0) 30%,rgba(120,40,74,.3) 60%,rgba(52,18,36,.82) 100%)}
+.entry-card--lead{border-color:var(--accent)}
+.entry-label{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;align-items:center;gap:8px;padding:13px 15px;color:#fff;font-family:var(--font-display);font-weight:700;font-size:clamp(15px,1.9vw,18px);text-shadow:0 1px 6px rgba(0,0,0,.45)}
+.entry-label::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(201,111,143,.3);flex:none}
+.entry-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(58,55,48,.24);border-color:var(--accent);border-style:dashed}
+.entry-card:hover img{transform:scale(1.06)}
+@media(max-width:640px){.entry-grid{grid-template-columns:repeat(2,1fr);gap:11px}.entry-card{aspect-ratio:1/1}}
+</style>
+<section class="section entry" aria-label="바로가기">
+  <h2 class="reveal" data-i18n="common.footer.exploreH">둘러보기</h2>
+  <div class="entry-grid">
+    <a class="entry-card entry-card--lead reveal" href="read.html" onclick="txEvent('entry_click',{to:'read'})"><img src="assets/img/hero-alley.webp" alt="" loading="lazy"><span class="entry-label"><span data-i18n="common.nav.read">무료 1화 읽기</span></span></a>
+    <a class="entry-card reveal" href="world.html" onclick="txEvent('entry_click',{to:'world'})"><img src="assets/img/hero-continent.webp" alt="" loading="lazy"><span class="entry-label"><span data-i18n="common.nav.world">세계관</span></span></a>
+    <a class="entry-card reveal" href="book.html" onclick="txEvent('entry_click',{to:'book'})"><img src="assets/img/char-yiseo.webp" alt="" loading="lazy"><span class="entry-label"><span data-i18n="common.nav.book">작품</span></span></a>
+    <a class="entry-card reveal" href="imagebook.html" onclick="txEvent('entry_click',{to:'imagebook'})"><img src="assets/img/art-404.webp" alt="" loading="lazy"><span class="entry-label"><span data-i18n="common.nav.imagebook">이미지북</span></span></a>
+    <a class="entry-card reveal" href="quiz.html" onclick="txEvent('entry_click',{to:'quiz'})"><img src="assets/img/char-blue.webp" alt="" loading="lazy"><span class="entry-label"><span data-i18n="common.footer.quiz">파트너 옷 찾기</span></span></a>
+    <a class="entry-card reveal" href="store.html" onclick="txEvent('entry_click',{to:'store'})"><img src="assets/img/region-cotton.webp" alt="" loading="lazy"><span class="entry-label"><span data-i18n="common.footer.store">스토어</span></span></a>
+  </div>
+</section>
+
 <!-- ===== H2 책 소개 ===== -->
 <section class="section" id="books">
   <h2 class="reveal" data-i18n="index.books.h2">전 3권, 완결로 만나는 이야기</h2>
