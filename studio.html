@@ -20,6 +20,14 @@
 @media(min-width:640px){.team-grid{grid-template-columns:repeat(2,1fr)}}
 .value-row{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px dashed color-mix(in srgb,var(--stitch) 40%,transparent);font-size:14.5px}
 .value-row b{color:var(--primary);white-space:nowrap}
+.office-live-card{position:relative;display:block;max-width:900px;margin:10px auto 0;border-radius:16px;overflow:hidden;border:1px solid color-mix(in srgb,var(--stitch) 45%,transparent);box-shadow:0 10px 40px rgba(0,0,0,.08);transition:transform .25s ease,box-shadow .25s ease;background:#fff}
+.office-live-card:hover{transform:translateY(-4px);box-shadow:0 18px 55px rgba(0,0,0,.15)}
+.office-live-card img{display:block;width:100%;height:auto}
+.office-live-badge{position:absolute;top:14px;left:14px;z-index:2;display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;background:rgba(22,22,24,.72);color:#fff;font-size:12px;font-weight:800;letter-spacing:.03em;backdrop-filter:blur(4px)}
+.office-live-badge i{width:8px;height:8px;border-radius:50%;background:#f15a24;animation:pulseDot 1.8s infinite}
+@keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(241,90,36,.6)}70%{box-shadow:0 0 0 8px rgba(241,90,36,0)}100%{box-shadow:0 0 0 0 rgba(241,90,36,0)}}
+.office-live-cta{position:absolute;bottom:14px;right:16px;z-index:2;padding:9px 16px;border-radius:999px;background:#fff;color:var(--primary);font-weight:800;font-size:14px;box-shadow:0 4px 14px rgba(0,0,0,.16)}
+@media(max-width:560px){.office-live-cta{font-size:12.5px;padding:7px 12px;bottom:10px;right:10px}.office-live-badge{font-size:11px}}
 </style>
 </head>
 <body>
@@ -36,6 +44,16 @@
   <p class="ey">Seam Press · Studio</p>
   <h1>둘이서, AI랑 셋이서<br>이야기를 짓습니다</h1>
   <p>시접출판사(Seam Press)는 오르션(Orsion)의 출판 브랜드입니다. 코드를 짜는 사람과 옷을 짓는 사람이, AI를 세 번째 동료 삼아 소설 한 편을 세계로 만들었어요. 완결된 이야기, 살아있는 캐릭터, 몰입형 웹, 그리고 그 모든 걸 만드는 우리만의 도구까지.</p>
+</section>
+
+<section class="section">
+  <h2 class="reveal">지금, 우리 사무실을 들여다보세요</h2>
+  <p class="sec-sub reveal">오르션 시접출판사가 이 순간 AI 동료 32명과 어떻게 일하고 있는지 — 실시간으로.</p>
+  <a class="office-live-card reveal" href="office" aria-label="실시간 AI 오피스 열기">
+    <span class="office-live-badge"><i></i>LIVE · 실시간 근무 중</span>
+    <img src="assets/office-preview.jpg?v=1" alt="오르션 실시간 AI 오피스 미리보기" loading="lazy">
+    <span class="office-live-cta">실시간 오피스 열기 →</span>
+  </a>
 </section>
 
 <section class="section">
