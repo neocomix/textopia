@@ -15,4 +15,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://www.textopia.world/sitemap.xml
+Sitemap: https://textopia.world/sitemap.xml
