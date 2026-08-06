@@ -147,6 +147,10 @@ window.TX_SUPABASE = {
       + '<a class="d-link" href="manifesto.html">'+(mfLabel[dl]||mfLabel.en)+'</a>'
       + '<a class="d-link" href="book.html#about">'+t('common.drawer.about','우리 이야기')+'</a>'
       + '<a class="d-link" href="book.html#news">'+L({ko:'소식',en:'News',ja:'お知らせ',zh:'消息',es:'Novedades'})+'</a>'
+      + sl({ko:'스튜디오',en:'Studio',ja:'スタジオ',zh:'工作室',es:'Estudio'})
+      + '<a class="d-link" href="studio.html">'+L({ko:'회사 소개',en:'About',ja:'会社紹介',zh:'关于',es:'Nosotros'})+'</a>'
+      + '<a class="d-link" href="brand.html">'+L({ko:'브랜드',en:'Brand',ja:'ブランド',zh:'品牌',es:'Marca'})+'</a>'
+      + '<a class="d-link" href="press.html">'+L({ko:'프레스',en:'Press',ja:'プレス',zh:'新闻',es:'Prensa'})+'</a>'
       + sl({ko:'계정',en:'Account',ja:'アカウント',zh:'账户',es:'Cuenta'})
       + (authed ? '<a class="d-link" href="welcome.html">'+t('common.drawer.mythread','나의 실 · 프로필')+'</a>'
                 : '<a class="d-link hot" href="login.html">'+(function(){var m={ko:'관문 · 로그인',en:'Enter · Sign in',ja:'関門 · ログイン',zh:'入口 · 登录',es:'Entrar · Acceder'};return m[dl]||m.en;})()+'</a>')

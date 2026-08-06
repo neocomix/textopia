@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>브랜드 — 텍스토피아 | 시접출판사</title>
+<meta name="description" content="텍스토피아 브랜드 시스템 — 무드, 컬러, 타이포그래피, 그래픽 모티프, 보이스. 우리가 시각을 결정하는 기준.">
+<link rel="stylesheet" href="assets/styles.css?v=6">
+<script src="assets/i18n.js?v=8"></script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23C96F8F' stroke-width='3'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='12' cy='20' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23C96F8F'/%3E%3C/svg%3E">
+<style>
+.brand-hero{max-width:1000px;margin:0 auto;padding:120px 20px 10px}
+.brand-hero .ey{font-size:12.5px;font-weight:800;letter-spacing:.18em;color:var(--accent);text-transform:uppercase;margin-bottom:14px}
+.brand-hero h1{font-size:clamp(24px,4.6vw,38px);line-height:1.4;margin-bottom:6px}
+.brand-hero .sub{color:var(--ink-soft);font-size:13.5px}
+.kw{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chip{border:1px solid var(--stitch);border-radius:16px;padding:5px 14px;font-size:13px}
+.chip.no{border-style:dashed;color:var(--ink-soft);text-decoration:line-through;opacity:.75}
+.sw{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:720px){.sw{grid-template-columns:repeat(4,1fr)}}
+.swatch{border:1.5px solid var(--stitch);border-radius:10px;overflow:hidden;background:var(--surface)}
+.swatch .c{height:66px}.swatch .m{padding:9px 11px;font-size:12px;line-height:1.65}
+.swatch .m b{font-size:12.5px}.swatch .m .hex{color:var(--ink-soft)}
+.trow{padding:14px 0;border-bottom:1px dashed color-mix(in srgb,var(--stitch) 35%,transparent)}
+.trow:last-child{border-bottom:none}.trole{color:var(--ink-soft);font-size:12px;margin-bottom:4px}
+.d1{font-family:var(--font-display);font-weight:700;font-size:40px;letter-spacing:-.01em;line-height:1.25}
+.d2{font-family:var(--font-display);font-weight:700;font-size:24px}
+.read{font-family:var(--font-serif);font-size:17px;line-height:1.85}
+.motif{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.prog{height:3px;background:var(--primary);width:60%;border-radius:2px;max-width:300px}
+.vrow{display:grid;grid-template-columns:70px 1fr;gap:12px;font-size:14px;padding:8px 0}
+.vrow .t{font-weight:800;font-size:12px}.vrow .t.do{color:var(--primary)}.vrow .t.no{color:var(--danger)}
+.q{font-family:var(--font-display);color:var(--primary)}
+pre.tok{white-space:pre-wrap;font-family:ui-monospace,monospace;font-size:12px;line-height:1.7;color:var(--ink);margin:0}
+</style>
+</head>
+<body>
+<header class="gnb">
+  <a class="logo" href="index.html"><span>텍스토피아</span><span class="dot"></span></a>
+  <nav class="gnb-menu">
+    <a href="world.html">세계관</a><a href="book.html">작품</a><a href="book.html#news">소식</a><a href="imagebook.html">이미지북</a>
+    <a class="btn btn--sm" href="read.html"><span class="btn-hole"></span><span>무료 1화 읽기</span></a>
+  </nav>
+  <div class="gnb-right"><button class="theme-toggle" aria-label="테마 전환">☾</button></div>
+</header>
+
+<section class="brand-hero">
+  <p class="ey">Brand System</p>
+  <h1>“햇살 드는 아틀리에에서,<br>낡은 것이 사랑받는 순간.”</h1>
+  <p class="sub">텍스토피아가 모든 시각을 결정하는 기준 · 정본 v1.0</p>
+</section>
+
+<section class="section">
+  <h2 class="reveal">무드 — 우리다움의 10단어</h2>
+  <p class="sec-sub reveal">지향</p>
+  <div class="kw reveal"><span class="chip">수공예</span><span class="chip">온기</span><span class="chip">인디고</span><span class="chip">숨</span><span class="chip">단정함</span></div>
+  <p class="sec-sub reveal" style="margin-top:16px">금지</p>
+  <div class="kw reveal"><span class="chip no">차가운 테크</span><span class="chip no">네온</span><span class="chip no">과장된 판타지</span><span class="chip no">유치한 캐릭터풍</span><span class="chip no">어두운 고딕</span></div>
+</section>
+
+<section class="section">
+  <h2 class="reveal">컬러</h2>
+  <p class="sec-sub reveal">낮의 아틀리에</p>
+  <div class="sw reveal">
+    <div class="swatch"><div class="c" style="background:#F7F1E3"></div><div class="m"><b>Cream</b><br><span class="hex">#F7F1E3 · bg</span></div></div>
+    <div class="swatch"><div class="c" style="background:#FFFDF8"></div><div class="m"><b>Paper</b><br><span class="hex">#FFFDF8 · surface</span></div></div>
+    <div class="swatch"><div class="c" style="background:#3A3730"></div><div class="m"><b>Thread Ink</b><br><span class="hex">#3A3730 · ink</span></div></div>
+    <div class="swatch"><div class="c" style="background:#28456E"></div><div class="m"><b>Indigo</b><br><span class="hex">#28456E · primary</span></div></div>
+    <div class="swatch"><div class="c" style="background:#C96F8F"></div><div class="m"><b>Blush</b><br><span class="hex">#C96F8F · accent</span></div></div>
+    <div class="swatch"><div class="c" style="background:#8A6D4A"></div><div class="m"><b>Stitch</b><br><span class="hex">#8A6D4A · stitch</span></div></div>
+    <div class="swatch"><div class="c" style="background:#6E6759"></div><div class="m"><b>Ink Soft</b><br><span class="hex">#6E6759</span></div></div>
+    <div class="swatch"><div class="c" style="background:#B4452E"></div><div class="m"><b>Danger</b><br><span class="hex">#B4452E</span></div></div>
+  </div>
+  <p class="sec-sub reveal" style="margin-top:22px">밤의 아틀리에</p>
+  <div class="sw reveal">
+    <div class="swatch"><div class="c" style="background:#14172A"></div><div class="m"><b>Night Indigo</b><br><span class="hex">#14172A · bg</span></div></div>
+    <div class="swatch"><div class="c" style="background:#1E2238"></div><div class="m"><b>Night Paper</b><br><span class="hex">#1E2238</span></div></div>
+    <div class="swatch"><div class="c" style="background:#EDE6D6"></div><div class="m"><b>Warm White</b><br><span class="hex">#EDE6D6 · ink</span></div></div>
+    <div class="swatch"><div class="c" style="background:#8FB0E0"></div><div class="m"><b>Indigo Light</b><br><span class="hex">#8FB0E0</span></div></div>
+    <div class="swatch"><div class="c" style="background:#E8A7BF"></div><div class="m"><b>Blush Light</b><br><span class="hex">#E8A7BF</span></div></div>
+    <div class="swatch"><div class="c" style="background:#E8B26B"></div><div class="m"><b>Steam Amber</b><br><span class="hex">#E8B26B · glow</span></div></div>
+    <div class="swatch"><div class="c" style="background:#7A6F5A"></div><div class="m"><b>Stitch</b><br><span class="hex">#7A6F5A</span></div></div>
+    <div class="swatch"><div class="c" style="background:#E58B74"></div><div class="m"><b>Danger</b><br><span class="hex">#E58B74</span></div></div>
+  </div>
+  <div class="card reveal" style="margin-top:16px"><p style="font-size:13.5px;color:var(--ink-soft)">본문 대비 AAA(7:1)·UI 4.5:1 이상 · <b style="color:var(--accent)">Blush는 화면당 1회</b> · 순수 검정·흰색 전면 금지 · 색만으로 정보 구분 금지.</p></div>
+</section>
+
+<section class="section">
+  <h2 class="reveal">타이포그래피</h2>
+  <div class="card reveal">
+    <div class="trow"><div class="trole">디스플레이 · 마루 부리 Bold</div><div class="d1">당신의 옷은, 살아있다</div></div>
+    <div class="trow"><div class="trole">섹션 · 마루 부리 Bold</div><div class="d2">버려진 것들의 두 번째 이야기</div></div>
+    <div class="trow"><div class="trole">본문 UI · Pretendard</div><div style="font-size:15px">담백하고 단정하게. 12px 미만은 쓰지 않습니다.</div></div>
+    <div class="trow"><div class="trole">뷰어 본문 · 리디바탕</div><div class="read">한 땀, 한 땀. 옷의 결을 따라 마음을 깁는 이야기.</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="reveal">그래픽 모티프</h2>
+  <div class="motif reveal">
+    <button class="btn"><span class="btn-hole"></span>무료 1화 읽기</button>
+    <button class="btn btn--ghost">서점에서 보기</button>
+    <a class="stitch-link" href="#">꿰매지는 링크 →</a>
+  </div>
+  <div class="reveal" style="margin-top:18px"><div class="trole" style="color:var(--ink-soft);font-size:12px;margin-bottom:6px">실 진행률 · 상단 3px</div><div class="prog"></div></div>
+  <div class="card reveal" style="margin-top:18px;max-width:360px"><h3 style="font-family:var(--font-display)">원단 카드</h3><p style="color:var(--ink-soft);font-size:14px">내부 상하 재봉선 · 원단 텍스처 3% · 무한 루프는 실타래 로더만.</p></div>
+</section>
+
+<section class="section">
+  <h2 class="reveal">보이스 & 표기</h2>
+  <div class="card reveal">
+    <div class="vrow"><span class="t do">이렇게</span><span>다정하고 담백한 존댓말 · 옷·바느질 은유 · 감정을 앞세우고 궁금증은 감질나게.</span></div>
+    <div class="vrow"><span class="t no">금지</span><span>클릭베이트 · 이모지·느낌표 남발 · 유행어 · <b>3권 결말 스포일러</b>(티저까지만).</span></div>
+    <div class="vrow"><span class="t do">표기</span><span>옷의 말 <span class="q">『 』</span> · 이서 속마음 ‘ ’ · 인간 대사 “ ” · <b>실라</b>(마나 아님) · 캐논 지명.</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="reveal">디자인 토큰</h2>
+  <div class="card reveal"><pre class="tok">:root{
+  --bg:#F7F1E3; --surface:#FFFDF8; --ink:#3A3730; --ink-soft:#6E6759;
+  --primary:#28456E; --accent:#C96F8F; --stitch:#8A6D4A; --danger:#B4452E;
+  --dur-fast:.2s; --dur-med:.4s; --dur-slow:.8s;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --radius-card:10px; --radius-btn:24px;
+}</pre></div>
+  <p style="margin-top:14px"><a class="stitch-link" href="press.html">프레스 킷 · 로고·자산 받기 →</a></p>
+</section>
+
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand"><b>텍스토피아</b><br><span>옷이 살아 숨 쉬는 세계. 버려진 것들의 두 번째 이야기.</span></div>
+    <div><b data-i18n="common.footer.exploreH">둘러보기</b></div>
+    <div><b>스튜디오</b><br><a class="stitch-link" href="studio.html">회사 소개</a><br><a class="stitch-link" href="brand.html">브랜드</a><br><a class="stitch-link" href="press.html">프레스</a></div>
+    <div class="ft-biz">시접출판사(Seam Press)는 오르션(Orsion)의 출판 브랜드입니다 · 대표 권택준 · 사업자등록번호 609-35-66228 · 문의 hello@textopia.world</div>
+  </div>
+  <div class="ft-bottom">ⓒ 2026 Orsion. 오늘 당신의 옷은, 행복한가요?</div>
+</footer>
+
+<nav class="bottom-nav">
+  <a href="world.html"><span class="ico">🧵</span><span>세계관</span></a>
+  <a href="book.html"><span class="ico">📖</span><span>작품</span></a>
+  <a class="cta" href="read.html"><span class="pill">무료 1화</span></a>
+  <a href="quiz.html"><span class="ico">🔮</span><span>퀴즈</span></a>
+</nav>
+<script src="assets/app.js?v=6"></script>
+</body>
+</html>

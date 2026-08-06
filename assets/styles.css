@@ -281,3 +281,12 @@ body{word-break:keep-all}
 .char-photo{width:64%;aspect-ratio:1;border-radius:50%;object-fit:cover;border:2px solid color-mix(in srgb,var(--primary) 30%,var(--surface));box-shadow:0 3px 10px rgba(58,55,48,.14)}
 .world-hero{display:block;width:100%;height:auto;border-radius:16px;box-shadow:0 12px 34px rgba(58,55,48,.20);margin:6px 0 22px}
 .err-art{display:block;width:min(420px,80%);height:auto;margin:0 auto 18px;border-radius:16px;box-shadow:0 10px 30px rgba(58,55,48,.18)}
+
+/* ── 히어로 act1 미세 애니 (여름 승인 · 모션원칙 개정: 히어로 배경 1개 앰비언트 루프 허용) ── */
+.act1 .alley{animation:txKen 22s ease-in-out infinite alternate;will-change:transform;z-index:0}
+.act1 .big-type,.act1 .scroll-hint{position:relative;z-index:2}
+.act1::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:1;mix-blend-mode:screen;
+  background:radial-gradient(ellipse 60% 46% at 50% 66%,rgba(232,178,107,.28),transparent 66%);
+  animation:txBreathe 6s ease-in-out infinite}
+@keyframes txKen{0%{transform:scale(1.03)}100%{transform:scale(1.09) translate(-1%,-1.2%)}}
+@keyframes txBreathe{0%,100%{opacity:.5}50%{opacity:1}}
