@@ -26,8 +26,13 @@
 .office-live-badge{position:absolute;top:14px;left:14px;z-index:2;display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;background:rgba(22,22,24,.72);color:#fff;font-size:12px;font-weight:800;letter-spacing:.03em;backdrop-filter:blur(4px)}
 .office-live-badge i{width:8px;height:8px;border-radius:50%;background:#f15a24;animation:pulseDot 1.8s infinite}
 @keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(241,90,36,.6)}70%{box-shadow:0 0 0 8px rgba(241,90,36,0)}100%{box-shadow:0 0 0 0 rgba(241,90,36,0)}}
-.office-live-cta{position:absolute;bottom:14px;right:16px;z-index:2;padding:9px 16px;border-radius:999px;background:#fff;color:var(--primary);font-weight:800;font-size:14px;box-shadow:0 4px 14px rgba(0,0,0,.16)}
-@media(max-width:560px){.office-live-cta{font-size:12.5px;padding:7px 12px;bottom:10px;right:10px}.office-live-badge{font-size:11px}}
+.office-live-cta{position:absolute;bottom:14px;right:16px;z-index:3;padding:9px 16px;border-radius:999px;background:#fff;color:var(--primary);font-weight:800;font-size:14px;box-shadow:0 4px 14px rgba(0,0,0,.16)}
+.office-live-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,20,22,0) 42%,rgba(20,20,22,.24));transition:background .25s ease}
+.office-live-card:hover .office-live-veil{background:linear-gradient(180deg,rgba(20,20,22,.14) 0%,rgba(20,20,22,.44))}
+.office-live-play{position:absolute;z-index:3;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:999px;background:rgba(255,255,255,.95);color:#16161a;font-weight:800;font-size:15px;box-shadow:0 8px 26px rgba(0,0,0,.22);transition:transform .25s ease;white-space:nowrap}
+.office-live-card:hover .office-live-play{transform:translate(-50%,-50%) scale(1.06)}
+.office-live-play b{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#f15a24;color:#fff;font-size:11px;padding-left:2px}
+@media(max-width:560px){.office-live-cta{font-size:12.5px;padding:7px 12px;bottom:10px;right:10px}.office-live-badge{font-size:11px}.office-live-play{font-size:13px;padding:10px 16px}}
 </style>
 </head>
 <body>
@@ -51,7 +56,9 @@
   <p class="sec-sub reveal">오르션 시접출판사가 이 순간 AI 동료 32명과 어떻게 일하고 있는지 — 실시간으로.</p>
   <a class="office-live-card reveal" href="office" aria-label="실시간 AI 오피스 열기">
     <span class="office-live-badge"><i></i>LIVE · 실시간 근무 중</span>
-    <img src="assets/office-preview.jpg?v=1" alt="오르션 실시간 AI 오피스 미리보기" loading="lazy">
+    <img src="assets/office-preview.jpg?v=2" alt="오르션 실시간 AI 오피스 미리보기" loading="lazy">
+    <span class="office-live-veil"></span>
+    <span class="office-live-play"><b>▶</b>클릭해서 실제 근무 모습 보기</span>
     <span class="office-live-cta">실시간 오피스 열기 →</span>
   </a>
 </section>
