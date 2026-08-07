@@ -3,6 +3,7 @@ window.TX_SUPABASE = {
   url: 'https://hoqbklxewyziancqpdwv.supabase.co',
   key: 'sb_publishable_Nctbwra5wJWT9J1JeSt_WA_6kEd2y6e'
 };
+window.TX_WEB3_KEY = '05136de2-e511-4a03-a64b-a7f26f05d6a9'; // web3forms 공개 키(문의 폼·챗봇 공용) · hello@textopia.world
 (function(){
   // ----- 테마 -----
   var saved = localStorage.getItem('tx-theme');
@@ -151,6 +152,7 @@ window.TX_SUPABASE = {
       + '<a class="d-link" href="studio.html">'+L({ko:'회사 소개',en:'About',ja:'会社紹介',zh:'关于',es:'Nosotros'})+'</a>'
       + '<a class="d-link" href="brand.html">'+L({ko:'브랜드',en:'Brand',ja:'ブランド',zh:'品牌',es:'Marca'})+'</a>'
       + '<a class="d-link" href="press.html">'+L({ko:'프레스',en:'Press',ja:'プレス',zh:'新闻',es:'Prensa'})+'</a>'
+      + '<a class="d-link" href="contact.html">'+L({ko:'문의',en:'Contact',ja:'お問い合わせ',zh:'联系我们',es:'Contacto'})+'</a>'
       + sl({ko:'계정',en:'Account',ja:'アカウント',zh:'账户',es:'Cuenta'})
       + (authed ? '<a class="d-link" href="welcome.html">'+t('common.drawer.mythread','나의 실 · 프로필')+'</a>'
                 : '<a class="d-link hot" href="login.html">'+(function(){var m={ko:'관문 · 로그인',en:'Enter · Sign in',ja:'関門 · ログイン',zh:'入口 · 登录',es:'Entrar · Acceder'};return m[dl]||m.en;})()+'</a>')
@@ -166,4 +168,12 @@ window.TX_SUPABASE = {
     tt.textContent = document.documentElement.dataset.theme === 'dark' ? '☀' : '☾';
     tt.addEventListener('click', window.toggleTheme);
   });
+})();
+
+/* ----- '블루' 안내 위젯 로더 (전 페이지 공용) ----- */
+(function(){
+  if (window.__blueChatLoaded) return;
+  var s = document.createElement('script');
+  s.src = 'assets/blue-chat.js?v=1'; s.defer = true;
+  document.head.appendChild(s);
 })();

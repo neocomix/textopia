@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>문의하기 — 텍스토피아 · 오르션</title>
+<meta name="description" content="텍스토피아 IP 협업·라이선스·브랜드 콜라보 문의. 웹툰·영상화·굿즈·글로벌 출간 제안을 기다립니다.">
+<link rel="stylesheet" href="assets/styles.css?v=6">
+<script src="assets/i18n.js?v=11"></script>
+<script src="assets/contact-i18n.js?v=11"></script>
+<script>try{document.title=(window.txT&&window.txT('contact.meta.title'))||document.title;var _d=window.txT&&window.txT('contact.meta.desc');if(_d){var _m=document.querySelector('meta[name="description"]');if(_m)_m.setAttribute('content',_d);}}catch(e){}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23C96F8F' stroke-width='3'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='12' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='12' cy='20' r='2' fill='%23C96F8F'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23C96F8F'/%3E%3C/svg%3E">
+<style>
+/* ===== contact.html 전용 (사이트 디자인 토큰 재사용) ===== */
+.k-hero{position:relative;min-height:52vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:118px 22px 54px;overflow:hidden}
+.k-hero .bg{position:absolute;inset:0;background-size:cover;background-position:center;
+  background-image:linear-gradient(180deg,rgba(18,20,38,.60),rgba(18,20,38,.42) 45%,rgba(18,20,38,.80)),url(assets/img/hero-continent.webp)}
+.k-hero .inner{position:relative;z-index:2;max-width:720px}
+.k-kicker{font-family:var(--font-ui);font-weight:700;font-size:12.5px;letter-spacing:.28em;color:#E8A7BF;margin-bottom:16px}
+.k-hero h1{font-family:var(--font-display);font-weight:800;color:#F3ECDD;font-size:clamp(30px,6.4vw,54px);line-height:1.12;letter-spacing:-.01em;margin:0 0 14px}
+.k-hero .sub{font-family:var(--font-ui);color:#DCE0EE;font-size:clamp(14px,2.6vw,16.5px);line-height:1.7;white-space:pre-line;opacity:.95}
+.k-wrap{max-width:940px;margin:0 auto;padding:0 22px}
+/* 협업 카드 */
+.k-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin:-42px auto 0;position:relative;z-index:3}
+.k-card{background:var(--surface);border:1.5px solid var(--stitch);border-radius:14px;padding:18px 16px;box-shadow:var(--shadow-card,0 10px 26px rgba(58,55,48,.14))}
+.k-card b{font-family:var(--font-display);font-size:15px;color:var(--ink);display:block;margin-bottom:6px}
+.k-card span{color:var(--ink-soft);font-size:12.5px;line-height:1.6}
+/* 폼 */
+.k-form-sec{padding:48px 0 26px}
+.k-form-card{max-width:640px;margin:0 auto;background:var(--surface);border:1.5px solid var(--stitch);border-radius:18px;padding:34px 30px 30px;box-shadow:var(--shadow-card,0 12px 30px rgba(58,55,48,.14))}
+.k-form-card h2{font-family:var(--font-display);font-size:clamp(20px,3.6vw,26px);color:var(--ink);text-align:center;margin:0 0 22px}
+.k-field{margin-bottom:15px}
+.k-field label{display:block;font-family:var(--font-ui);font-weight:600;font-size:12.5px;letter-spacing:.02em;color:var(--ink-soft);margin-bottom:6px}
+.k-field input,.k-field textarea,.k-field select{width:100%;background:var(--paper,#fff);border:1.5px solid var(--line,#E4D8C4);border-radius:11px;
+  padding:11px 13px;font-family:var(--font-ui);font-size:14px;color:var(--ink);transition:border-color var(--dur-fast,.15s) var(--ease,ease)}
+.k-field input:focus,.k-field textarea:focus,.k-field select:focus{outline:none;border-color:var(--accent)}
+.k-field textarea{min-height:128px;resize:vertical}
+.k-field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23C05F7F' stroke-width='2.4'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:36px;cursor:pointer}
+.k-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.k-send{width:100%;background:var(--accent);color:#fff;border:none;border-radius:26px;padding:14px;font-family:var(--font-ui);font-weight:700;
+  font-size:15px;cursor:pointer;margin-top:6px;transition:transform var(--dur-fast,.15s) var(--ease,ease),opacity .15s}
+.k-send:hover{transform:translateY(-1px)}
+.k-send:disabled{opacity:.6;cursor:default;transform:none}
+.k-fmsg{min-height:18px;font-size:12.5px;color:#C0392B;margin:8px 2px 0;text-align:center}
+.k-note{text-align:center;color:var(--ink-soft);font-size:12px;line-height:1.6;margin:16px 0 0}
+.k-or{text-align:center;margin:18px 0 2px}
+.k-or a{color:var(--accent);font-weight:600;font-size:13px;text-decoration:none;border-bottom:1px dashed var(--accent);padding-bottom:1px}
+.k-hp{position:absolute;left:-9999px;opacity:0}
+/* 성공 상태 */
+.k-ok{display:none;text-align:center;padding:14px 4px 6px}
+.k-ok .ic{width:60px;height:60px;margin:0 auto 16px;border-radius:50%;border:2px dashed var(--accent);display:flex;align-items:center;justify-content:center}
+.k-ok .ic svg{width:30px;height:30px;stroke:var(--accent);fill:none;stroke-width:2.2}
+.k-ok h2{font-family:var(--font-display);font-size:24px;color:var(--ink);margin:0 0 10px}
+.k-ok p{color:var(--ink-soft);font-size:14px;line-height:1.7;max-width:400px;margin:0 auto 22px}
+.k-ok .again{background:transparent;color:var(--accent);border:1.5px dashed var(--accent);border-radius:22px;padding:11px 22px;
+  font-family:var(--font-ui);font-weight:600;font-size:13.5px;cursor:pointer}
+.k-biz{max-width:640px;margin:26px auto 0;text-align:center;color:var(--ink-soft);font-size:11px;line-height:1.7;opacity:.85}
+@media(min-width:760px){ .gnb-menu{display:flex} }
+@media(max-width:820px){ .k-cards{grid-template-columns:repeat(2,1fr)} }
+@media(max-width:560px){ .k-cards{grid-template-columns:1fr} .k-row{grid-template-columns:1fr} .k-form-card{padding:26px 20px 24px} }
+@media print{ .gnb,.bottom-nav{display:none !important} }
+</style>
+</head>
+<body>
+<div class="hero-progress" id="heroProgress"></div>
+
+<header class="gnb">
+  <a class="logo" href="index.html"><span data-i18n="common.drawer.brand">텍스토피아</span><span class="dot"></span></a>
+  <nav class="gnb-menu">
+    <a href="world.html" data-i18n="common.nav.world">세계관</a>
+    <a href="book.html" data-i18n="common.nav.book">작품</a>
+    <a href="book.html#news" data-i18n="common.nav.news">소식</a>
+    <a href="book.html#about" data-i18n="common.nav.about">이야기</a>
+    <a href="imagebook.html" data-i18n="common.nav.imagebook">이미지북</a>
+    <a href="contact.html" data-i18n="common.nav.contact" style="color:var(--accent)">문의</a>
+    <a class="btn btn--sm" href="read.html"><span class="btn-hole"></span><span data-i18n="common.nav.read">무료 1화 읽기</span></a>
+  </nav>
+  <div class="gnb-right"><button class="theme-toggle" aria-label="테마 전환">☾</button></div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="k-hero">
+  <div class="bg"></div>
+  <div class="inner">
+    <p class="k-kicker" data-i18n="contact.hero.kicker">GET IN TOUCH</p>
+    <h1 data-i18n="contact.hero.title">함께 이야기를 짓고 싶다면</h1>
+    <p class="sub" data-i18n="contact.hero.sub">협업 · 라이선스 · 브랜드 콜라보 · 글로벌 출간.
+어떤 이야기든, 편하게 남겨 주세요. 사람이 직접 읽고 답장합니다.</p>
+  </div>
+</section>
+
+<!-- ===== 협업 카드 ===== -->
+<div class="k-wrap">
+  <div class="k-cards reveal">
+    <div class="k-card"><b data-i18n="contact.cards.c1t">웹툰 · 영상화</b><span data-i18n="contact.cards.c1d">완결 원고·설정집·캐릭터·지도 기반 2차 저작.</span></div>
+    <div class="k-card"><b data-i18n="contact.cards.c2t">브랜드 콜라보</b><span data-i18n="contact.cards.c2d">업사이클·패션·리빙·ESG 브랜드 굿즈·캠페인.</span></div>
+    <div class="k-card"><b data-i18n="contact.cards.c3t">IP 라이선스 · 굿즈</b><span data-i18n="contact.cards.c3d">캐릭터·세계관 활용 라이선싱과 굿즈 소싱.</span></div>
+    <div class="k-card"><b data-i18n="contact.cards.c4t">글로벌 출간</b><span data-i18n="contact.cards.c4d">AI 번역 초벌 기반 다국어 전자책 동시 확장.</span></div>
+  </div>
+</div>
+
+<!-- ===== 폼 ===== -->
+<section class="k-form-sec">
+  <div class="k-form-card reveal">
+    <form id="kForm" novalidate>
+      <h2 data-i18n="contact.form.h2">문의 남기기</h2>
+      <div class="k-row">
+        <div class="k-field">
+          <label for="kName" data-i18n="contact.form.name">이름 / 회사</label>
+          <input id="kName" name="name" autocomplete="name" data-i18n-attr="placeholder:contact.form.namePh">
+        </div>
+        <div class="k-field">
+          <label for="kEmail" data-i18n="contact.form.email">이메일</label>
+          <input id="kEmail" name="email" type="email" autocomplete="email" data-i18n-attr="placeholder:contact.form.emailPh">
+        </div>
+      </div>
+      <div class="k-field">
+        <label for="kType" data-i18n="contact.form.type">문의 유형</label>
+        <select id="kType" name="inquiry_type"></select>
+      </div>
+      <div class="k-field">
+        <label for="kMsg" data-i18n="contact.form.msg">문의 내용</label>
+        <textarea id="kMsg" name="message" data-i18n-attr="placeholder:contact.form.msgPh"></textarea>
+      </div>
+      <input class="k-hp" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="k-fmsg" id="kFmsg"></div>
+      <button class="k-send" type="submit" id="kSend" data-i18n="contact.form.send">문의 보내기</button>
+      <p class="k-note" data-i18n="contact.form.note">보내주신 내용은 hello@textopia.world 로 전달됩니다. 답장은 사람이 직접 씁니다.</p>
+      <p class="k-or"><span data-i18n="contact.form.or">또는 바로 메일 보내기</span> · <a href="mailto:hello@textopia.world">hello@textopia.world</a></p>
+    </form>
+
+    <div class="k-ok" id="kOk">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <h2 data-i18n="contact.ok.h2">실이 이어졌어요.</h2>
+      <p data-i18n="contact.ok.body">문의가 접수됐습니다. 사람이 직접 읽고, 보내주신 언어로 답장 드릴게요.</p>
+      <button class="again" id="kAgain" data-i18n="contact.ok.again">문의 하나 더 남기기</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand"><b data-i18n="common.drawer.brand">텍스토피아</b><br><span data-i18n="common.footer.brandDesc">옷이 살아 숨 쉬는 세계. 버려진 것들의 두 번째 이야기.</span></div>
+    <div><b data-i18n="common.footer.exploreH">둘러보기</b><br><a class="stitch-link" href="world.html" data-i18n="common.footer.world">세계관</a><br><a class="stitch-link" href="imagebook.html" data-i18n="common.nav.imagebook">이미지북</a><br><a class="stitch-link" href="read.html" data-i18n="common.footer.read">무료 1화</a><br><a class="stitch-link" href="quiz.html" data-i18n="common.footer.quiz">파트너 옷 찾기</a><br><a class="stitch-link" href="store.html" data-i18n="common.footer.store">스토어</a><br><a class="stitch-link" href="contact.html" data-i18n="common.nav.contact">문의</a></div>
+    <div><b data-i18n="common.footer.policyH">약관·정책</b><br><a class="stitch-link" href="terms.html" data-i18n="common.footer.terms">이용약관</a><br><a class="stitch-link" href="privacy.html" data-i18n="common.footer.privacy">개인정보처리방침</a><br><a class="stitch-link" href="book.html#faq" data-i18n="common.footer.faq">자주 묻는 질문</a></div>
+    <div class="ft-biz" data-i18n-html="common.footer.biz">시접출판사(Seam Press)는 오르션(Orsion)의 출판 브랜드입니다 · 상호 오르션 · 대표 권택준 · 사업자등록번호 609-35-66228<br>경기도 화성시 동탄구 동탄감배산로 143, 202동 19층 1901-50호 · 문의 hello@textopia.world · 통신판매업 신고 준비 중</div>
+  </div>
+  <div class="ft-bottom" data-i18n="common.footer.bottom">ⓒ 2026 Orsion. 오늘 당신의 옷은, 행복한가요?</div>
+</footer>
+
+<nav class="bottom-nav">
+  <a href="world.html"><span class="ico">🧵</span><span data-i18n="common.bottom.world">세계관</span></a>
+  <a href="book.html"><span class="ico">📖</span><span data-i18n="common.bottom.book">작품</span></a>
+  <a class="cta" href="read.html"><span class="pill" data-i18n="common.bottom.read">무료 1화</span></a>
+  <a href="contact.html"><span class="ico">✉️</span><span data-i18n="common.nav.contact">문의</span></a>
+</nav>
+
+<script>
+/* ===== 문의 폼 로직 (Web3Forms, window.TX_WEB3_KEY 단일 소스) ===== */
+(function () {
+  function L(){ var l = window.txLang; if(!l){try{l=localStorage.getItem('tx-lang');}catch(e){}} l=l||(document.documentElement.lang||'ko').slice(0,2); return (window.I18N&&window.I18N[l]&&window.I18N[l].contact)?l:'ko'; }
+  function T(path){ return (window.txT && window.txT('contact.'+path)) || ''; }
+  var form = document.getElementById('kForm'),
+      okBox = document.getElementById('kOk'),
+      sel = document.getElementById('kType'),
+      fmsg = document.getElementById('kFmsg'),
+      btn = document.getElementById('kSend'),
+      sendLabel = T('form.send');
+
+  // 문의 유형 옵션 채우기 (배열이라 data-i18n 미사용)
+  function fillTopics(){
+    var l = L();
+    var topics = (window.I18N[l].contact.form && window.I18N[l].contact.form.topics) || [];
+    sel.innerHTML = '';
+    topics.forEach(function(t){ var o=document.createElement('option'); o.value=t; o.textContent=t; sel.appendChild(o); });
+  }
+  fillTopics();
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (form.botcheck.value) return; // honeypot
+    var name = form.name.value.trim(), email = form.email.value.trim(), msg = form.message.value.trim();
+    if (!name) { fmsg.textContent = T('err.name'); form.name.focus(); return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { fmsg.textContent = T('err.email'); form.email.focus(); return; }
+    if (!msg) { fmsg.textContent = T('err.msg'); form.message.focus(); return; }
+    fmsg.textContent = ''; btn.disabled = true; btn.textContent = T('form.sending');
+
+    var lang = L();
+    var LN = { ko:'한국어', en:'English', ja:'日本語', zh:'中文', es:'Español' };
+    var payload = {
+      access_key: window.TX_WEB3_KEY || 'YOUR_WEB3FORMS_ACCESS_KEY',
+      subject: '[문의/Inquiry] ' + name + ' · ' + (form.inquiry_type.value || '-') + ' · ' + lang.toUpperCase(),
+      from_name: 'TEXTOPIA 문의폼',
+      name: name, email: email, message: msg,
+      inquiry_type: form.inquiry_type.value,
+      language: lang, language_name: LN[lang] || lang,
+      page: location.pathname, site: location.host
+    };
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (r) { return r.json(); }).then(function (d) {
+      if (d && d.success) {
+        window.txEvent && window.txEvent('contact_submit', { lang: lang, type: form.inquiry_type.value });
+        form.style.display = 'none'; okBox.style.display = 'block';
+        okBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else { throw new Error('fail'); }
+    }).catch(function () {
+      fmsg.textContent = T('err.fail'); btn.disabled = false; btn.textContent = sendLabel;
+    });
+  });
+
+  document.getElementById('kAgain').addEventListener('click', function () {
+    form.reset(); form.style.display = 'block'; okBox.style.display = 'none';
+    btn.disabled = false; btn.textContent = sendLabel; fmsg.textContent = '';
+    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+})();
+</script>
+<script src="assets/app.js?v=9"></script>
+</body>
+</html>
