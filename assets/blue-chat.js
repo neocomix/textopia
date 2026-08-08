@@ -52,7 +52,7 @@
       fSent: '접수됐어. 답장은 사람이 직접 써서 보낼 거야.',
       fErr: '…실이 잠깐 엉켰어. 잠시 후 다시 시도해줘.',
       eName: '이름을 알려줘', eEmail: '이메일 형식이 아닌데?', eMsg: '내용을 적어줘',
-      fallback: '난 정해진 것만 안내해. 아래에서 골라봐.',
+      greet: '어, 왔어. 반갑다. 뭐 찾는 거 있어?', thanks: '뭘 이런 걸로. …또 필요한 거 있으면 말해.', fallback: '난 정해진 것만 안내해. 아래에서 골라봐.',
       open: '블루에게 물어보기', close: '닫기'
     },
     en: {
@@ -76,7 +76,7 @@
       fSent: 'Got it. A real person will write back to you soon.',
       fErr: '…the thread tangled for a sec. Try again shortly.',
       eName: 'Tell me your name', eEmail: 'That’s not an email', eMsg: 'Write something',
-      fallback: 'I only guide set things. Pick from below.',
+      greet: 'Oh, hey. Good to see you. Looking for something?', thanks: 'Don’t mention it. …Ask if you need anything else.', fallback: 'I only guide set things. Pick from below.',
       open: 'Ask Blue', close: 'Close'
     },
     ja: {
@@ -100,7 +100,7 @@
       fSent: '受け取った。返事は人が直接書いて送るからな。',
       fErr: '…糸が少し絡まった。少し経ってからもう一度。',
       eName: '名前を教えて', eEmail: 'メール形式じゃないな', eMsg: '内容を書いて',
-      fallback: 'おれは決まった案内しかできない。下から選んで。',
+      greet: 'お、来たな。よく来た。何か探してるのか?', thanks: 'これくらい何てことない。…また必要なら言えよ。', fallback: 'おれは決まった案内しかできない。下から選んで。',
       open: 'ブルーに聞く', close: '閉じる'
     },
     zh: {
@@ -124,7 +124,7 @@
       fSent: '收到了。回复会由真人亲自写好发给你。',
       fErr: '…线暂时缠住了，稍后再试。',
       eName: '告诉我名字', eEmail: '这不是邮箱格式', eMsg: '写点内容吧',
-      fallback: '我只能做固定的引导，从下面选吧。',
+      greet: '哦，来了。欢迎。找什么吗?', thanks: '这点小事。…还需要什么就说。', fallback: '我只能做固定的引导，从下面选吧。',
       open: '问问布鲁', close: '关闭'
     },
     es: {
@@ -148,7 +148,7 @@
       fSent: 'Recibido. Una persona real te responderá pronto.',
       fErr: '…el hilo se enredó un momento. Inténtalo en un rato.',
       eName: 'Dime tu nombre', eEmail: 'Eso no es un correo', eMsg: 'Escribe algo',
-      fallback: 'Solo guío cosas fijas. Elige abajo.',
+      greet: 'Ah, hola. Me alegra verte. ¿Buscas algo?', thanks: 'No es nada. …Dime si necesitas algo más.', fallback: 'Solo guío cosas fijas. Elige abajo.',
       open: 'Pregúntale a Blue', close: 'Cerrar'
     }
   };
@@ -195,6 +195,8 @@
   .bchat-row img{width:26px;height:26px;border-radius:50%;object-fit:cover;flex:none}\
   .bchat-bubble{background:var(--paper,#fff);color:var(--ink,#2E2B24);border:1.4px solid var(--line,#E4D8C4);\
     border-radius:14px 14px 14px 4px;padding:10px 13px;font-size:13.5px;line-height:1.6;max-width:80%;white-space:pre-wrap}\
+  .bchat-row.me{justify-content:flex-end}\
+  .bchat-bubble.me{background:var(--accent,#C05F7F);color:#fff;border-color:var(--accent,#C05F7F);border-radius:14px 14px 4px 14px}\
   .bchat-qr{display:flex;flex-wrap:wrap;gap:7px;margin:2px 0 6px 34px}\
   .bchat-qr button,.bchat-qr a{display:inline-block;background:var(--surface,#FBF6EC);color:var(--accent,#C05F7F);\
     border:1.4px dashed var(--accent,#C05F7F);border-radius:18px;padding:8px 14px;font-size:13px;font-weight:600;\
@@ -222,6 +224,11 @@
     var row = el('div', 'bchat-row');
     row.appendChild(el('img')).src = av;
     row.appendChild(el('div', 'bchat-bubble', esc(text)));
+    body.appendChild(row); scrollDown();
+  }
+  function me(text) {
+    var row = el('div', 'bchat-row me');
+    row.appendChild(el('div', 'bchat-bubble me', esc(text)));
     body.appendChild(row); scrollDown();
   }
   function quick(items) { // items: [{label, on}] or {label, href, blank}
@@ -327,17 +334,23 @@
   }
 
   /* 자유 입력(키워드 매칭) — 하단 입력창 */
-  function keyword(text) {
-    var t = T[lang()], s = text.toLowerCase();
-    if (/소개서|회사|company|profile|perfil|会社|简介|紹介/.test(s)) return companyMenu();
-    if (/문의|contact|메일|mail|问|問|inquir|consulta/.test(s)) return inquiry();
-    if (/구경|둘러|tour|기능|feature|office|직원|逛|見|案内|恐/.test(s)) return tourMenu();
-    say(t.fallback);
+  function quickMenu() {
+    var t = T[lang()];
     quick([
       { label: t.m_tour, on: tourMenu },
       { label: t.m_company, on: companyMenu },
       { label: t.m_inquiry, on: inquiry }
     ]);
+  }
+  function keyword(text) {
+    var t = T[lang()], s = text.toLowerCase();
+    if (/소개서|회사|company|profile|perfil|会社|简介|紹介/.test(s)) return companyMenu();
+    if (/문의|contact|메일|mail|问|問|inquir|consulta/.test(s)) return inquiry();
+    if (/구경|둘러|tour|기능|feature|office|직원|逛|見|案内|恐/.test(s)) return tourMenu();
+    if (/고마|감사|thank|thx|ありがと|感謝|谢谢|謝謝|gracias/.test(s)) { say(t.thanks); return quickMenu(); }
+    if (/안녕|하이|헬로|반가|하잉|여보세요|\bhi\b|\bhey\b|hello|こんにち|おはよ|こんばん|やあ|你好|您好|哈囉|hola|buenas|buenos/.test(s)) { say(t.greet); return quickMenu(); }
+    say(t.fallback);
+    quickMenu();
   }
 
   function build() {
@@ -367,7 +380,7 @@
     inp.style.borderTop = '1.5px dashed var(--stitch,#9A7B4F)'; inp.style.maxWidth = 'none'; inp.style.flex = 'none';
     inp.innerHTML = '<div style="display:flex;gap:8px"><input name="q" placeholder="…" style="flex:1" aria-label="message">' +
       '<button class="send" type="submit" style="border-radius:10px;padding:9px 14px">↵</button></div>';
-    inp.addEventListener('submit', function (e) { e.preventDefault(); var v = inp.q.value.trim(); if (!v) return; say('👤 ' + v); inp.q.value = ''; keyword(v); });
+    inp.addEventListener('submit', function (e) { e.preventDefault(); var v = inp.q.value.trim(); if (!v) return; me(v); inp.q.value = ''; keyword(v); });
     panel.appendChild(inp);
 
     fab.addEventListener('click', function () { opened ? close() : open(); });

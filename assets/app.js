@@ -174,6 +174,6 @@ window.TX_WEB3_KEY = '05136de2-e511-4a03-a64b-a7f26f05d6a9'; // web3forms 공개
 (function(){
   if (window.__blueChatLoaded) return;
   var s = document.createElement('script');
-  s.src = 'assets/blue-chat.js?v=1'; s.defer = true;
+  s.src = 'assets/blue-chat.js?v=2'; s.defer = true;
   document.head.appendChild(s);
 })();
