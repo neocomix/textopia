@@ -4,6 +4,18 @@ window.TX_SUPABASE = {
   key: 'sb_publishable_Nctbwra5wJWT9J1JeSt_WA_6kEd2y6e'
 };
 window.TX_WEB3_KEY = '05136de2-e511-4a03-a64b-a7f26f05d6a9'; // web3forms 공개 키(문의 폼·챗봇 공용) · hello@textopia.world
+/* 언어 서브디렉토리(/en//ja//zh//es/) 인식 링크 리졸버 — app.js가 런타임에 주입하는 상대링크를 올바른 경로로 변환 */
+window.txHref = function(file){
+  var m = (''+file).match(/^([a-z0-9\-]+)\.html(#[^"']*)?$/i);
+  if(!m) return file;
+  var pg=m[1], hash=m[2]||'';
+  var cur=(location.pathname.match(/^\/(en|ja|zh|es)(?:\/|$)/)||[])[1];
+  if(!cur) return file; // 루트(한국어): 상대경로 그대로
+  var TR=['index','world','book','imagebook','quiz','store']; // 프리렌더된 번역 페이지
+  if(pg==='index') return '/'+cur+'/'+hash;
+  if(TR.indexOf(pg)>=0) return '/'+cur+'/'+pg+hash;
+  return '/'+pg+hash; // 미번역 페이지 → 루트로
+};
 (function(){
   // ----- 테마 -----
   var saved = localStorage.getItem('tx-theme');
@@ -23,14 +35,14 @@ window.TX_WEB3_KEY = '05136de2-e511-4a03-a64b-a7f26f05d6a9'; // web3forms 공개
     var nav = document.querySelector('.bottom-nav');
     if (nav){
       if (!nav.querySelector('a[href="imagebook.html"]')){
-        var _ib=document.createElement('a'); _ib.href='imagebook.html';
+        var _ib=document.createElement('a'); _ib.href=window.txHref('imagebook.html');
         _ib.innerHTML='<span class="ico">🖼️</span><span>'+((window.txT&&window.txT('common.nav.imagebook'))||'아트북')+'</span>';
         var _cta=nav.querySelector('.cta');
         if(_cta&&_cta.nextSibling){ nav.insertBefore(_ib,_cta.nextSibling); } else { nav.appendChild(_ib); }
       }
       // 옷의 기억(이서의 리딩) — 히어로 기능, 무료1화 바로 옆에 노출
       if (!nav.querySelector('a[href="reading.html"]')){
-        var _rd=document.createElement('a'); _rd.href='reading.html';
+        var _rd=document.createElement('a'); _rd.href=window.txHref('reading.html');
         _rd.innerHTML='<span class="ico">🧶</span><span style="white-space:nowrap">'+((window.txT&&window.txT('common.nav.reading'))||'옷의 기억')+'</span>';
         if(location.pathname.replace(/^\//,'').indexOf('reading')===0) _rd.className='active';
         var _cta2=nav.querySelector('.cta');
@@ -63,7 +75,7 @@ window.TX_WEB3_KEY = '05136de2-e511-4a03-a64b-a7f26f05d6a9'; // web3forms 공개
         ['manifesto.html',{ko:'옷의 기억을 잇다 · 약속',en:'Our Promise',ja:'服の記憶をつなぐ · 約束',zh:'延续衣物的记忆 · 承诺',es:'Nuestra promesa'}],
         ['store.html',   {ko:'스토어',en:'Store',ja:'ストア',zh:'商店',es:'Tienda'}]
       ];
-      FI.forEach(function(it){ pdiv.appendChild(document.createElement('br')); var a=document.createElement('a'); a.className='stitch-link'; a.href=it[0]; a.textContent=(it[1][_lang]||it[1].en); pdiv.appendChild(a); });
+      FI.forEach(function(it){ pdiv.appendChild(document.createElement('br')); var a=document.createElement('a'); a.className='stitch-link'; a.href=window.txHref(it[0]); a.textContent=(it[1][_lang]||it[1].en); pdiv.appendChild(a); });
     }
   });
 
@@ -158,6 +170,8 @@ window.TX_WEB3_KEY = '05136de2-e511-4a03-a64b-a7f26f05d6a9'; // web3forms 공개
                 : '<a class="d-link hot" href="login.html">'+(function(){var m={ko:'관문 · 로그인',en:'Enter · Sign in',ja:'関門 · ログイン',zh:'入口 · 登录',es:'Entrar · Acceder'};return m[dl]||m.en;})()+'</a>')
       + '<div class="d-theme"><span>'+t('common.drawer.theme','화면 모드')+'</span><button class="theme-toggle" aria-label="테마 전환" style="display:block">☾</button></div>'
       + '<div class="d-legal"><a class="stitch-link" href="terms.html">'+t('common.drawer.terms','이용약관')+'</a> · <a class="stitch-link" href="privacy.html">'+t('common.drawer.privacy','개인정보처리방침')+'</a></div>';
+    // 언어 서브디렉토리에서 주입 링크 경로 보정
+    dr.innerHTML = dr.innerHTML.replace(/href="([a-z0-9\-]+\.html(?:#[^"]*)?)"/gi, function(_,h){ return 'href="'+window.txHref(h)+'"'; });
     document.body.appendChild(ovl); document.body.appendChild(dr);
     function open(){ document.body.classList.add('drawer-open'); }
     function close(){ document.body.classList.remove('drawer-open'); }
@@ -174,6 +188,6 @@ window.TX_WEB3_KEY = '05136de2-e511-4a03-a64b-a7f26f05d6a9'; // web3forms 공개
 (function(){
   if (window.__blueChatLoaded) return;
   var s = document.createElement('script');
-  s.src = 'assets/blue-chat.js?v=2'; s.defer = true;
+  s.src = '/assets/blue-chat.js?v=3'; s.defer = true;
   document.head.appendChild(s);
 })();

@@ -14,11 +14,11 @@
   function web3key() { return window.TX_WEB3_KEY || 'YOUR_WEB3FORMS_ACCESS_KEY'; }
 
   var PDF = {
-    ko: 'assets/company/TEXTOPIA_Company_Profile_KO.pdf',
-    en: 'assets/company/TEXTOPIA_Company_Profile_EN.pdf',
-    ja: 'assets/company/TEXTOPIA_Company_Profile_JA.pdf',
-    zh: 'assets/company/TEXTOPIA_Company_Profile_ZH.pdf',
-    es: 'assets/company/TEXTOPIA_Company_Profile_ES.pdf'
+    ko: '/assets/company/TEXTOPIA_Company_Profile_KO.pdf',
+    en: '/assets/company/TEXTOPIA_Company_Profile_EN.pdf',
+    ja: '/assets/company/TEXTOPIA_Company_Profile_JA.pdf',
+    zh: '/assets/company/TEXTOPIA_Company_Profile_ZH.pdf',
+    es: '/assets/company/TEXTOPIA_Company_Profile_ES.pdf'
   };
   var LANG_NAMES = { ko: '한국어', en: 'English', ja: '日本語', zh: '中文', es: 'Español' };
 
@@ -154,7 +154,7 @@
   };
 
   var TOUR = [
-    { k: 't_office', href: 'office/', blank: true, line: 'officeLine' },
+    { k: 't_office', href: '/office/', blank: true, line: 'officeLine' },
     { k: 't_world', href: 'world.html' },
     { k: 't_read', href: 'read.html' },
     { k: 't_image', href: 'imagebook.html' },
@@ -213,7 +213,7 @@
   .bchat-hp{position:absolute;left:-9999px;opacity:0}\
   ';
 
-  var av = 'assets/img/char-blue.webp';
+  var av = '/assets/img/char-blue.webp';
   var root, panel, body, fab, nudge, opened = false;
 
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
@@ -235,7 +235,7 @@
     var wrap = el('div', 'bchat-qr');
     items.forEach(function (it) {
       var b;
-      if (it.href) { b = el('a', null, esc(it.label)); b.href = it.href; if (it.blank) b.target = '_blank'; if (it.on) b.addEventListener('click', it.on); }
+      if (it.href) { b = el('a', null, esc(it.label)); b.href = (window.txHref ? window.txHref(it.href) : it.href); if (it.blank) b.target = '_blank'; if (it.on) b.addEventListener('click', it.on); }
       else { b = el('button', null, esc(it.label)); b.type = 'button'; b.addEventListener('click', it.on); }
       wrap.appendChild(b);
     });

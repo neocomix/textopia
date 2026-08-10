@@ -4,72 +4,270 @@
     <loc>https://textopia.world/</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/"/>
   </url>
   <url>
     <loc>https://textopia.world/world</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/world"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/world"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/world"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/world"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/world"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/world"/>
   </url>
   <url>
     <loc>https://textopia.world/book</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/book"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/book"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/book"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/book"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/book"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/book"/>
   </url>
   <url>
     <loc>https://textopia.world/imagebook</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/imagebook"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/imagebook"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/imagebook"/>
   </url>
   <url>
     <loc>https://textopia.world/quiz</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/quiz"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/quiz"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/quiz"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/quiz"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/quiz"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/quiz"/>
   </url>
   <url>
     <loc>https://textopia.world/store</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/store"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/store"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/store"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/store"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/store"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/store"/>
   </url>
   <url>
     <loc>https://textopia.world/en/</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/"/>
   </url>
   <url>
     <loc>https://textopia.world/en/world</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/world"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/world"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/world"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/world"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/world"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/world"/>
   </url>
   <url>
     <loc>https://textopia.world/en/book</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/book"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/book"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/book"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/book"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/book"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/book"/>
   </url>
   <url>
     <loc>https://textopia.world/en/imagebook</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/imagebook"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/imagebook"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/imagebook"/>
   </url>
   <url>
     <loc>https://textopia.world/en/quiz</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/quiz"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/quiz"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/quiz"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/quiz"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/quiz"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/quiz"/>
   </url>
   <url>
     <loc>https://textopia.world/en/store</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/store"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/store"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/store"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/store"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/store"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/store"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/ja/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/ja/world</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/world"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/world"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/world"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/world"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/world"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/world"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/ja/book</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/book"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/book"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/book"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/book"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/book"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/book"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/ja/imagebook</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/imagebook"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/ja/quiz</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/quiz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/quiz"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/quiz"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/quiz"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/quiz"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/quiz"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/ja/store</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/store"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/store"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/store"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/store"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/store"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/store"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/zh/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/zh/world</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/world"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/world"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/world"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/world"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/world"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/world"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/zh/book</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/book"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/book"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/book"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/book"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/book"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/book"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/zh/imagebook</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/imagebook"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/zh/quiz</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/quiz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/quiz"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/quiz"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/quiz"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/quiz"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/quiz"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/zh/store</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/store"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/store"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/store"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/store"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/store"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/store"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/es/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/es/world</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/world"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/world"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/world"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/world"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/world"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/world"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/es/book</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/book"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/book"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/book"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/book"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/book"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/book"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/es/imagebook</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/imagebook"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/imagebook"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/es/quiz</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/quiz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/quiz"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/quiz"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/quiz"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/quiz"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/quiz"/>
+  </url>
+  <url>
+    <loc>https://textopia.world/es/store</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://textopia.world/store"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://textopia.world/en/store"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://textopia.world/ja/store"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://textopia.world/zh/store"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://textopia.world/es/store"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://textopia.world/store"/>
   </url>
   <url><loc>https://textopia.world/read</loc></url>
