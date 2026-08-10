@@ -148,7 +148,7 @@
     txEvent('quiz_done', {result:best});
     box.innerHTML = '<div class="card fade-in" style="text-align:center;padding:34px 26px">'
       + '<div class="res-img" style="background:'+COLORS[best]+'"><img src="assets/img/'+IMG[best]+'.webp" alt="" loading="lazy" onerror="this.remove()" style="width:100%;height:100%;object-fit:cover;object-position:'+(POS[best]||'center')+'"></div>'
-      + '<p class="res-sub">'+r.sub+'</p><h1 class="res-name">'+r.name+'</h1>'
+      + '<p class="res-sub">'+r.sub+'</p><h2 class="res-name">'+r.name+'</h2>'
       + '<p class="res-desc">'+r.desc+'</p>'
       + '<p class="res-meta"><b>'+UI.mateLabel+'</b> '+r.mate+'<br><b>'+UI.spotLabel+'</b> '+r.spot+'</p>'
       + '<button class="btn" id="shareBtn" style="width:100%;margin-bottom:10px"><span class="btn-hole"></span>'+UI.share+'</button>'
