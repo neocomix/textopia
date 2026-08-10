@@ -168,17 +168,12 @@ window.I18N.es = {
 (function(){
   var I18N = window.I18N;
   function detect(){
+    try { var mp = location.pathname.match(/^\/(en|ja|zh|es)(?:\/|$)/); if (mp && I18N[mp[1]]) return mp[1]; } catch(e){}
     try {
       var saved = localStorage.getItem('tx-lang');
       if (saved && I18N[saved]) return saved;
     } catch(e){}
-    var navs = navigator.languages || [navigator.language || 'en'];
-    for (var i=0;i<navs.length;i++){
-      var l = (navs[i]||'').toLowerCase();
-      if (l.indexOf('ko') === 0) return 'ko';
-      if (l.indexOf('en') === 0) return 'en';
-    }
-    return I18N.en ? 'en' : 'ko';
+    return 'ko';
   }
   var LANG = detect();
   window.txLang = LANG;
@@ -258,7 +253,13 @@ window.I18N.es = {
     Object.keys(I18N).forEach(function(code){
       var b = document.createElement('button'); b.type='button'; b.textContent = I18N[code]._label || code;
       if (code===LANG) b.className='on';
-      b.addEventListener('click', function(){ try{ localStorage.setItem('tx-lang', code); }catch(e){} location.reload(); });
+      b.addEventListener('click', function(){
+        try{ localStorage.setItem('tx-lang', code); }catch(e){}
+        var PRE={en:1}; // 프리렌더된 언어 디렉토리
+        var p=location.pathname.replace(/^\/(en|ja|zh|es)(?=\/|$)/,''); if(p==='')p='/';
+        if(PRE[code]) location.href='/'+code+(p==='/'?'/':p);
+        else location.href=(p==='/'?'/':p);
+      });
       menu.appendChild(b);
     });
     btn.addEventListener('click', function(e){ e.stopPropagation(); wrap.classList.toggle('open'); });
